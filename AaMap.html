@@ -1,0 +1,2504 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.umd.js"></script>
+  <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.0.3/maptiler-sdk.css" rel="stylesheet" />
+  <style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.animated-popup {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform-origin: bottom;
+    transition: opacity 1.2s, max-height 0.7s ease-out;
+}
+
+.animated-popup.show {
+    opacity: 1;
+    max-height: 600px;
+    color: azures; 
+}
+
+.animated-popup .title {
+    font-size: 20px;
+    font-family: 'apercu-regular-pro', 'aktiv-grotesk', 'Helvetica Neue', sans-serif;
+    font-weight: bold; 
+    margin: 0; 
+    padding: 0;
+
+}
+
+.animated-popup .popup-text {
+    font-family: 'apercu-regular-pro', 'aktiv-grotesk', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+}
+
+.animated-popup img {
+    max-width: 100%; 
+    max-height: auto;
+
+}
+
+@media (max-height: 700px) {
+    .animated-popup img {
+        display: none;
+        padding-bottom: 0% !important;
+    }
+    .animated-popup {
+        height: auto;
+        margin-top: -15px !important;
+        margin-bottom: -5px !important;
+        margin-right: 5px;
+    } 
+}
+
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <script>
+
+const bounds = [
+        [-79.47238371329142, 43.61082090443321], // Southwest coordinates
+        [-79.33180580177495, 43.73906861492549] // Northeast coordinates
+    ];
+
+    const map = new maptilersdk.Map({
+        container: 'map',
+        style: 'https://api.maptiler.com/maps/4e019c22-f7f5-497e-b80d-bc8846a39355/style.json?key=z9VOeu3imEGki5iEoRnx',
+        center: [-79.37066, 43.64419],
+        zoom: 15,
+        pitch: 60, 
+        bearing: -48.8, 
+        maxBounds: bounds,
+        minZoom: 15,
+});
+
+    function preload_image(im_url) {
+      let img = new Image();
+      img.src = im_url;
+    }
+
+    // Event listener for when the map is loaded
+    map.on('load', function () {
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN0ORHnd2PsHFWTdtLNE5uKcVOJHn1ha_isW5acRCg-ny-STOQEuZVnaZ1Z9Oo5PdJu-9EYS7bbK4VUaORgmi0mxmmAlm_8HRjBBbq5xR66E6qxUrg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPLgerzdhbhmme0UyIzoGmDnpS59YDxbHef8Z3I_RXvAH-X_PhyO1RPUg5YoKI6x_UDz4wDU8kXWy906k4IP2R2-Ho16ISKbKqBS673QId5kqvhTx8=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMZAb14W_g3j9LFLJNCtb-_wqdj4jA_HtttIFtOEmR0oFF6E0guQWeZAqlS4HAHDiKDnyA7SIY0TCdACHNqZ2M6FMfLngL0w6eyZduzefR8-5DZtCc=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczONNY0KwTkZw6QKG7OPQ9PzCI766sJGKDI2JMd0ZbPhXYYxqvz42YTgDDi_fw1W0fZNVZdOt2tvywc8Jyi3vMMxgIBRvKkrCVK4zh7xXzDmy0tBfVQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNjoyB--P3nqJzTF14g4koStsT1R2H62-obTGA5r2QT9OLJgj19moGwKHr5I9f6EuuDvQMrc9NdnOBFiSg-kxjkTnG-itWXTnEIoKc7DDZ5CPSQ1XY=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOqNgK-KlDwsnEdUllovdft_ulX0nRJ4VlS0EwFDRnV6-HbIWW9gPJkAUpCNF2yt0pnDZtvnXBf7Bp03fCXOCHw4TqpjH648fW5EsZ_HnI1kpZaH-A=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNT3np8G8WvEjbsUfcm_1sUskVWACbXyNWqTz4ru5NVTv1c_sKsZMGxb68BFckhaC1B13zrtIPuvf5m3ePXzVl3gfGIg0gXf5c1pcFfOVu5ojt2tc4=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO4WS7Z2_sF484nvLMTyGZuAR62qx_OzUjAOP-wQj8YVNZzntAaT5ARK0WUs0RJH27gKqTcrWZXYoUTS1tm43Phn7HA56nnSWQwcUIJKkgNNwoo6CI=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOkzKXhbzmK-qII_8mJHjyRFe16ZAzScU95TrID82S-3r0MHEHhz3b6TMNU6-9v3TAyWymTDdOYeGH5Mo-p-QQfiemg0xqKgRxjPv9W_FNXcFJQlg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP0BHbxD-hntd1GzpWClghQAffRh4s_Zndyqt7ZTfKJyqM_yReVd5ATDT0-oTbLfpmJL8O6V60ZEHButynDAo89HvPKsr87F9ylWFIsyVQEDPhOPw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPC9R_RUlbNNkE7lS6KozlY7wlO9FPqJ91sG9YJ79qCmzSiwpmr2XUkVNewCH6r6D0ipJdoNWbAeWE04UAeo1edL_gS43PsfPFtPyirPZ6Jf8_oG9Q=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNFZGVNKuvoWxJrU9mApAGlqmzRIDdf-s_pPi-drgI52KH1J_iTx9CHSEeEvQucMIeeDDXht0kOzlGbtfRd56vYWEdpUYhxri7cD7DxeKbrL7wgkhk=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOBSGvWGYbwY-sEJEagMkDNV2Kawh8zEvy67Qp12YRlBSPYpjjAqrcvl9xvzcW6CK7qXPTY1DyREPf70bUN5sm_bd2IRuEy5XVn3LwNRB5KUvDBaM8=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP9fbfb_3K8GULbD59a_RjpL5FpKm3ngMhSMVbnYtfDL2E5Vyyrq4wRDxm2aCeI14dd42_SUHSs8Zhzp17AXyx3LW6VaIA3TEO3KYOvtvR89UULeb0=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOVdElK5JCcnUOXZIpViGUmIbfAGHNDA0KjENXhj2YwXpfb0lbJvh_-CqWUMLUHwceoAuAZN2RkFEFm003GV7XY3vZuhfbpaUpU-ILfIDOcFXJz4Q=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP1Vx-2jOphPhbXChpO_roxF7YTtiCUkQwd-0_Y1YMDNf40u8Gqv_416OnSuDR4RXaQZEpmXVsy1fcODkb7KETZIJWRoRJ2unW-HW4Gq3DAE3wHJgc=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO402lpNrs0P0QIcNlrBlk3yKXGEFo1_JwrvknrAx1FjnNI53SFjk2SaJS7pk-4FVRWZKCJlEhrDGoe2kUayL0c-x3j_WoKwU4rHEgqOCv8mXVxbvE=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMn2cqUUOkjnmLUP34wXX8fhVd1L-VYVMQyYC-FMjtdRujUvFLbLzWb1Om4L2WAclWdxKskHa5Lh2JuWqz189INv0iQ8mEveb8L0hWst0wrttK8gQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPmzGXBrlPxC9Mz_Lhfc5VzzWtLB4poq-QPYGLcBAZYeUbVH0Be17X3UPR641MYH4set_xfqBh0zNVOi3izF1FNK8iLqsyKHioi4we4vsJNIH5JDIY=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMfQ-Z6luDn7XCEfXtT9yNpYv7RS6iZMh8lp6smzr-r0uno7rFGU0ranOnr9th7jEgD24crpfCvknJr3b59AwlWt4biK4epEtLy1-Qxd7BX8j5kwhY=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMiNOO7IJTlVCjxJn_5vsAJrv_Ob5TlU5TOQ7TrXQAUPDPuIGFSenh0k0fqdA3xqz__XO0s0gD4u-CAopmDL8Lr6iiCQiVQ6l0_wFf1dG_JSrgpJCw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO-UXVRia1gv_5r911VnVYKWWCCc1z98JnV0wSBoXIXAPTnyAqCWduoNsYeGcUqPmtbQqz-KDf09csFyRC6duOFxGEtEnRXhVchPX3GCLX96Bih7-c=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOuhoJiIjys04HS9uoipt1D7XWvQqyfZ9Wnqir9_B_TidYWm20rklcZw3dgnXADg3WX4DaAoM1MNQltnxwxguky2bJKurj45Ok5S5TBMqmHS96kZgc=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMswcvk251ugwkDFBt9sy-e1HIkGQ7EUfO3l48vahNcm3Bw4b3PldxLwb14oa4hUf21yRxYrk817q_SOQkQGW56CbpsTcWgDjKnd34ujdINXNwJNVg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN3o0PbqiPjzGGZmOmmvgqKuTCMMq_NZ9_lzvgz7n_Jn4FIg25umaIy__zmcY9ZXoAAZ-gIOm-Cnf6otNmkbndRxzg2cb3KBfwPa11R1nYTTrSwE_I=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPgDzxoCaXi4YE4TfQRJPRLfdujMT2ffr8yEbN0WiAHFiQLM1lVoypo9OO5X2gUMQUdUqq8JlO-wETrSQzM3NTZ6wys36Hdu5aTC1FdoGhCIOPXsw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPz56vVv-ivbkRxfxC8Dc9EC_xZcL_SLe5WzDlBdhBJdusu7OyapPgmDNZBR143eNbKZvitEXWMbl2fXsJxloK2xUyLqX6nCY8w06B0K_iv7FVQvg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPB85kwITZEHxZMzmvlBlc-tfs5m8I_EHKBsf2H8ofO0OSl1ivtPnup3vnqYBe-PN0sMGt3bvbk3HUvw_EScwdnZZVAYNLgvP_fl3DsFmVtS8NDBA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP-OtmpfMGK2380hdkrXIdKI4-yHZJphCx4NC1eiFhqo9iDztgYrsd5s7oqmGFvpKYR9023iEssS5OWpMnIsz6s5CfHE08SkMhO2CmPT0pEKv_iWQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNZtA7ji8QpcKwJnqB9jzJCGqaqv_D2fQ_PKr6-iv6LkyNzvu5grwHUiUrgH-yJl2MYIswxzhJf7Pi2aX1n48iOTuBw0im0TvRflqzQH6MBdMFdkhY=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPOhzuqYKrGfDmH1rEsKGYjebyc4-cPlfPN67vqSDODocGpAw_PaPxyilLLnNrg-F6_twUGy30bJKtpUw4qqnG-s3SGABxcNQJEDgougUMIOwy5sA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO2sTIUj2zSymk9vtMT3Z2Z9YNTXqPxLgKi3D2UgwF9R65Sx-ijfq8IZWUWCbH0r0gKzcER2EWCOdQxPnreUM1CIF8N8qUttJyuvU1ZqPVXpt_2Lw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPq54fSf3E4wXkMlA2kulempDPiZQEcwevZHmBxBMhqnGXXA97ppiBykDvSoTpsJFCP2GAGkQBO5MbdydFt0mhkptMKn7PWYpsN5Duu_aFFK3g5wmE=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOZQ59J8rXNLQjaq5FeSF57isvBPkbLiXl12h4ds9hgGkamYG846rj4xyyAvzl5b__mFGkP22Yh5ubuGbOBHPSLIOOSUSJ5tvhjXob924XlRcUT3s8=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMDZd9ozu-LrCbKYFluJQL6Rgur1ZSEbIww3cZXJSQYs7hMG9kbvPwMxbvldCXikbrFh_yTCEvIhHNvgzuO2JRrSIfqB2usuOze9DWsGiN8ACrpIPQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNFkZvu-h2Mh-u7aesi9Kz03HWsA5P_uMUjsRCbrDEuDQTpdSM5RKFcZu52TlQjRM4UfruPCnpYjCBxK9TKXQUSqdW1vrK8Ra1yuZddG1uc62q6DEs=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMhJ5jc8fA73tq3It5lkokasqsIC7kb1U9zxkMVOzbvLSkmAcxID_1UKXDuvFqIOidA-XP8Q00Uwr6xGDqvAAlhkEuoAnA56MbgstmrHMBmYj5lj2M=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOIzXIPZfdziveS3rjdCQXXzTcDcLzdChLlNTSg-eVRvPjHHBz96Nae7-WWN5RoLKibqDEnt9rVL8U5XK3OkzQOcuo0dCnGypRXlYWgHtoxT43lmw=s0");
+      preload_image("https://live.staticflickr.com/65535/53938299794_b1bafe969e_k.jpg");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMPZIffdL6CL97pKfSP-as5oFnTJ-6EzGXwe1mmPkZwk-QQ4g5MvojwiRR8y8AWAaSqBmfV97nepzGefBmzKnwAgafVsv9CIujSmzyC_COOGlxzh7Q=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO9UHYZS2aOUxvmbaStVBrzLI24jcaqtx1477dMZ1P3pkqYUnmbvYx0UV7wH23wCOoXq4VvHA3Fnvnec1oqgg6BzPOjx6_JzfElq4XL6P3wgSXJPcg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOgeKt0R1tPvyUVE_a8FHj1Q9i2oNMiCbJMhWlZ2WA--48jImmWP44akAikKVYggpXVe75v-g4s4T89ff_V9FahmxKsvnZyDV4czFMYPZkPTfxT1kw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPSGYZ_OZHSzbZhdVQ2CfKgrR1EYrdKGdoWYPaRK3464ekkUcCMU8Jws19k9Qxid7BP0XuUa_3ofc5SN5HxS9m5-56BTG5olOTG1Rxbe9LGQIbV2M8=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOhMw3CLOuPPGHfiLs00h2It4p-T7JGI0gpNKCxibPE5njObuSt6tPiVPCzYDZnOU8y2nf4XDRVNFRbp8dk3iUp8l0D4q0s-p8G7_A1iK8SaR1mR24=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMCSbhialO-Hm9sgA_xNjBEnaLLo1spbEgN8pYBt1mUlFWNsCL3kEt5c-2Zs-47d2l-MRHenqHocdHqSznqP0D4TA9WSj-3sXrRtCOTk4WMc7F7bIg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNbqT2KALnDi5o0h3eM0z6tisZKG4paicGdd0GTWztam9pjFHYbj0pHe4rPp5oLiUDwsyhSh2hF3OeSdSoO4lq1nazk07Wu5E-fHch6xg0mBi_PuFI=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNITUtBZQjOE6ucA7EUnOSeye5fth7oOafXZbJz_VC4Q26rIziEfjD1pVSfPyFp9oKn0tzJrIBZ_5SKSwABejYjETOuqlEgQtRir75evi6GmvJh928=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNrB-BJoovdNV59LEpdKGvsK14eYmJ452BjimCER2p7T31dJaegnvStW1-XhCnrTLI3_AA6xgSnS7JsCkPMWL2ykrN92IcRg_wiEZI2JPH746GXpA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOCJyhnaj5gJAY5toSex61lMaGAtgrv8w2ddeL6UHT6xqETMMVGdzeGP1KYncdLeuou2w4BaDOfd4bQWBIU5Tn22_EHnUsMMeqx40IEY7Dadt4I2R8=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOGX05PvBA5PcSmU0gMRRhkKoW6dpHgMtRrDr5kJTmMcseYowgl5pnHpwLCGTfx3ao459cBqATv3mXPLqfD4lJ8-sbBH77WzAxyv91QjJtlRDqDfWw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMyR23liAKFxP5iSC_EG3PfTlIfF9xzjbuCL3ZL1e_DlT9OI-1IfzvDr5KinUPUg7ggixB0aswT63g3cCk6va5I5_DMK5WL_CADrx6P0L9Yp7pI92c=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN83kG28bXQDyIUvW7OcLjxuccenTnQBmof6y8UzdmlgTAegk-EqxJ5j5tMRPZDUNIeli0ybd-IWG0PjBQPlXeeDVKY_w_v8ISZQ2eyp0112oiN1NU=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO0gu82hP1kFo3GMhzdJV0qGoAqSGf2OhZ4T_g0uxFRZxVaT0Aiw7IrHoB3jf9aS1LhXDWrE6m4A-2OB3F0wsk9hJ611CPmSluLITEDRzHGtlzCpBE=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMwgrGHTByYxbDFCmz2xNVqJBgCdZt7-1pOflipPFLcBM792uX3kZdYLqYnO502alfDsq7Gb7E2TRhwaZaE_ZdvX7YM2f6FJ4wMPm4uJKWrLwpJ7Xw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNePKsbOX8jIFMyx9h1ri0UqRT9ROkqSClvzRdUzLcKjSgsnyJ06hDfuC0TDnJurP-tS0AOwCyTBnyQw_dFUkgA3Xit5nIX703RrywlTQsAl1vpOiM=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNu7c9_J0bAAdf9EMVInaQQtjQ9ZF4Rv1PwQTTFbAgLqA2QJOvAi1zpx-h3yFPaS4s6kSYifR9tHTKu2GUwGHej7nB2ehe_XB4lilwfptdY5fRsmbQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOU3vS67NFYoFRCoZw8KYqYKbeK-prcZbgaHcGdQmp3xuhdOCUXdddzCZrpcm1FKjkjLOFTXT5nMyvQfPI84zhupR9VXo4uKKzig1lNqv_u69MiAjQ");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNIMDfFav3Q5KgytgjZYc47g7gU172hSXZJojI3QIN0DUCLPR2TwaiIxan5VhcveF2ICmTQ6odHE0c7-KjWWYi4_Z5-SJOcxycJOGClbgqHUZbrxss=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNIj1An9BghUzSqm6PObVjksN_qvvLtiqvB6lsqdNdDAosRCylgH6NwKwGdzVMidM-QIW6FPxMVGlbMc4peSJu7VqJDU-yWdnH2SLayZxpbv3fHeJM=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOQTYBUJY-c_Wl5sROJD1cQDYr5bgslYVhz1AbDW8QhtWRpujaqIe4dd6gascOon7aTQGdH-oE9-6p5w873j44LHuRfi6xc7EOVuJvRfgO_fQTtMQw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMWTJlh1l1T6_rMYq-RwoX-p9ENqsp_iNkIZYCHvdzK-s5rYWDz0O37pCqPQox7l0Fe_fTa8yy4ph_Xu_H_UiBm-Ho0QGIvTO5XMTQodMwjgb8bIBg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMdr_hC8C8nX2eZ1YuZmK0vESRBj02085TQKnDamRe8qnBBmyEzCFrE6T_IGsdHaShly-k2KtK8frBYYgclnWR__W3h2NOmVGt8xXiVecEzYAqlNRo=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPsm6HsAQgQCIKzJHa7HneKKjfHfXvS7e4s_iCAKAoHruh1iWYoxnAW9-_MaXnxCrg_6H_YFch5-3FZmtW5L1oX-Oj-1Fc-tcIwAczc1vqMaZQcelM=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNsLJVSmZCaeErWhK4LjbfTUVj2T5Rr3Ltf8vACr5AsTWaineLShq1mdrFlDXPVr7pfxNiO1noKPcw-1YL-f4H4Ro43_TqY3GI0fmQeo1-OtqMpu1k=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMCx25zl748drhr4a7r6YofiLlP9ALDB_M5Miy8Mv7fgbnxCRusIoWshe1oOW_7qo0b1tERfGoqjweYk8Q4nvGrveqW5Wl_HxcAQKx9o4G1xVv4vq8=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOBbb4UWJm77COqoxw9SiGP5JHKgdhwvR083RA8qPQA-1M8KyAhoRGY9p8Ta401bjm6TEbCgIPWrX1HL9uNvBEhKhXACjtmC4YVMAQi_UOERjjLKU0=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPpgAGf7pSBJIB7tcmBUwLq492oK7deq2xCKsHFTsJdbaCEHyB6Q9l1bvkTwY4uBNUAQLARurEflEU3YTm8ssezcKdxCrajX0l8pJG8LI_mTkLuINE=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN-RCzOHESafUOVSN68pO39jrmcFtXX4OfVbo4bC2lE1iRBV3BBNmMvn3qRoDLmMvbKKEN51o_dA-elj1q_Rg3HlrEnBd6vB1DUJwh3XzeHWYi2F84=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMT4uWZurRTHT79pvhDVMNzdfC8hJv_O330DdOhAN9UdQB7VUZqw0hVa4-EH3Ss2Gm0OP-RyknryqixvWQdbwdD6joXaY0pu1bgA4xllb5hPUx0H8g=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOmmHtf_t5soX6wG38W9Pf5D8fgGwxUvv4gik4NT2Eoc5DfOrBFQYI2x5BvRBdZJw8ANAdbhbi9TrqSzQlxe7u9x3kvqHIL0aAjkUZbfDR0tz-dDto=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNMfekSZplrnjyg9uMzW9XzZJ7siHO0NvZ_p9LaFdxKTYzgCr7LCg5GZ6XaGkt1i4wZIyz_Tb8UUfKfoyqUvdmRJrkx1kU7xTPDiRdSAVoqnz5dG2U=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMk5pQYFFZZXlE-NWFXc6yf2_377Y3Bcr94GCF3qVfZoU3-2ASXWKJX4pjQCMIfdT__IQxfrZA_xBNyV4tNny2jEFEUMLYKsnDss4mxgGh6Upub0hQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNBDVHFRVE9-lrotsml8n9kRNcGAw3h6WHF04J4atzn6Yajbz5_HXd3yZdLhT4q2GmdVj4_7ZD_FDo7OYx3wEuDAEWC2KSCWaIuJK1S2xXGd0DLqZM=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMOsqSTr8VXTWSbAp_ZrZRwbDPU_7eaB6xmHJRgoXl4T6PIf8i0BqUXrCzq0IfYM7Ogj2LvN9QK_y6DrajOboY25g3AhCiWc_1mes-kuJGLneWGOXY=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN92eJSbNnhvCFrBYz7ZzsLzhhScQNE2RytWfW96geZKtyXW9DUjsI7HAAvUJV1Q-fDD8thB08XMjjPjytcenp0J32UCdYxhFVmoCkwYkeQjViD4ns=s0");
+    });
+let popup;
+
+function addPopupToBuilding(buildingLayerId, popupContent, longitude, latitude) {
+
+    map.on('click', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: [buildingLayerId] });
+
+        if (!features.length) {
+            return;
+        }
+
+        // If a popup already exists, remove it
+        if (popup) {
+            popup.remove();
+        }
+
+        const wrapperElement = document.createElement('div');
+        wrapperElement.className = 'animated-popup';
+
+        const popupElement = document.createElement('div');
+        popupElement.innerHTML = popupContent;
+
+        wrapperElement.appendChild(popupElement);
+
+        popup = new maptilersdk.Popup({
+            closeButton: false, 
+            closeOnClick: true,
+        })
+        
+        .setLngLat([longitude, latitude])
+        .setDOMContent(wrapperElement)
+        .addTo(map);
+
+        setTimeout(() => {
+            wrapperElement.classList.add('show');
+        }, 0);
+    });
+
+    map.on('mouseenter', buildingLayerId, function () {
+        map.getCanvas().style.cursor = 'pointer';
+        map.setPaintProperty(buildingLayerId, 'fill-extrusion-color', '#007DFF'); 
+    });
+
+    map.on('mouseleave', buildingLayerId, function () {
+        map.getCanvas().style.cursor = '';
+        map.setPaintProperty(buildingLayerId, 'fill-extrusion-color', '#0026FF');
+    });
+}
+
+function addPopupToPolygon(polygonLayerId, popupContent, longitude, latitude) {
+
+    map.on('click', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: [polygonLayerId] });
+
+        if (!features.length) {
+            return;
+        }
+
+        // If a popup already exists, remove it
+        if (popup) {
+            popup.remove();
+        }
+
+        const wrapperElement = document.createElement('div');
+        wrapperElement.className = 'animated-popup';
+
+        const popupElement = document.createElement('div');
+        popupElement.innerHTML = popupContent;
+
+        wrapperElement.appendChild(popupElement);
+
+        popup = new maptilersdk.Popup({
+            closeButton: false, 
+            closeOnClick: true,
+        })
+        
+        .setLngLat([longitude, latitude])
+        .setDOMContent(wrapperElement)
+        .addTo(map);
+
+        setTimeout(() => {
+            wrapperElement.classList.add('show');
+        }, 0);
+    });
+
+    map.on('mouseenter', polygonLayerId, function () {
+        map.getCanvas().style.cursor = 'pointer';
+        map.setPaintProperty(polygonLayerId, 'fill-extrusion-color', '#8EB8D9');
+    });
+
+    map.on('mouseleave', polygonLayerId, function () {
+        map.getCanvas().style.cursor = '';
+        map.setPaintProperty(polygonLayerId, 'fill-extrusion-color', '#909FD8');
+    });
+}
+
+map.on('load', function () {
+
+    map.addLayer({
+    'id': 'Building 3D',
+    'type': 'fill-extrusion',
+    'source': 'maptiler_planet',
+    'source-layer': 'building',
+    'minzoom': 15,
+    'layout': {
+      'visibility': 'visible'
+    },
+    'paint': {
+      'fill-extrusion-base': ['get', 'render_min_height'],
+      'fill-extrusion-color': 'hsl(0, 0%, 40%)',
+      'fill-extrusion-height': ['get', 'render_height'],
+      'fill-extrusion-opacity': 0.4
+    },
+  });
+    
+    function addCustomPolygon(map, coordinates, height, popupText, popupLng, popupLat, idOfBuilding) {
+      
+        map.addSource(idOfBuilding, {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'Polygon',
+                    coordinates: coordinates,
+                },
+                properties: {
+                    height: height,
+                },
+            },
+        });
+    
+        map.addLayer({
+            id: idOfBuilding,
+            type: 'fill-extrusion',
+            source: idOfBuilding,
+            layout: {},
+            paint: {
+                'fill-extrusion-color': '#909FD8',
+                'fill-extrusion-height': ['get', 'height'],
+                'fill-extrusion-base': 0,
+                'fill-extrusion-opacity': 1,
+            },
+        });
+    
+        addPopupToPolygon(idOfBuilding, popupText, popupLng, popupLat);
+    }
+
+    function addCustomUnderConstruction(map, coordinates, height, popupText, popupLng, popupLat, idOfBuilding) {
+      
+      map.addSource(idOfBuilding, {
+          type: 'geojson',
+          data: {
+              type: 'Feature',
+              geometry: {
+                  type: 'Polygon',
+                  coordinates: coordinates,
+              },
+              properties: {
+                  height: height,
+              },
+          },
+      });
+  
+      map.addLayer({
+          id: idOfBuilding,
+          type: 'fill-extrusion',
+          source: idOfBuilding,
+          layout: {},
+          paint: {
+              'fill-extrusion-color': '#72EDF7',
+              'fill-extrusion-height': ['get', 'height'],
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': 0.5,
+          },
+      });
+  
+      addPopupConstruction(idOfBuilding, popupText, popupLng, popupLat);
+  }
+  
+  function addPopupConstruction(buildingLayerId, popupContent, longitude, latitude) {
+
+  map.on('click', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: [buildingLayerId] });
+
+    if (!features.length) {
+        return;
+    }
+
+    // If a popup already exists, remove it
+    if (popup) {
+        popup.remove();
+    }
+
+    const wrapperElement = document.createElement('div');
+    wrapperElement.className = 'animated-popup';
+
+    const popupElement = document.createElement('div');
+    popupElement.innerHTML = popupContent;
+
+    wrapperElement.appendChild(popupElement);
+
+    popup = new maptilersdk.Popup({
+        closeButton: false, 
+        closeOnClick: true,
+    })
+    
+    .setLngLat([longitude, latitude])
+    .setDOMContent(wrapperElement)
+    .addTo(map);
+
+    setTimeout(() => {
+        wrapperElement.classList.add('show');
+    }, 0);
+});
+
+map.on('mouseenter', buildingLayerId, function () {
+    map.getCanvas().style.cursor = 'pointer';
+    map.setPaintProperty(buildingLayerId, 'fill-extrusion-color', '#72C4F7'); 
+});
+
+map.on('mouseleave', buildingLayerId, function () {
+    map.getCanvas().style.cursor = '';
+    map.setPaintProperty(buildingLayerId, 'fill-extrusion-color', '#72EDF7');
+});
+}
+    
+    // ALL BUILDINGS AND POLYGONS (TOP LAYER AT BOTTOM)
+
+    
+    // CANARY COMMONS BLOCK 12 POLYGON:
+    const canaryCommonsBlock12Coords = [
+      [
+        [-79.35561744865598, 43.652991993835634],
+        [-79.35492754319995, 43.65316424235768],
+        [-79.3545453420553, 43.65226081093629],
+        [-79.35523200851857, 43.652103792934625],
+        [-79.35561744865598, 43.652991993835634],
+      ],
+    ];
+    
+    const canaryCommonsBlock12 = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN0ORHnd2PsHFWTdtLNE5uKcVOJHn1ha_isW5acRCg-ny-STOQEuZVnaZ1Z9Oo5PdJu-9EYS7bbK4VUaORgmi0mxmmAlm_8HRjBBbq5xR66E6qxUrg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Canary Commons Block 12</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: DundeeKilmer</p>' +
+        '</div>';
+    
+    const canaryCommonsBlock12height = 36; 
+    const canaryCommonsBlock12Lng = -79.35535;
+    const canaryCommonsBlock12Lat = 43.65306;
+    const canaryCommonsBlock12Id = 'canaryCommonsBlock12'
+    
+    addCustomPolygon(map, canaryCommonsBlock12Coords, canaryCommonsBlock12height, canaryCommonsBlock12, canaryCommonsBlock12Lng, canaryCommonsBlock12Lat, canaryCommonsBlock12Id);
+    
+    
+    // FLEUR POLYGON:
+    const fleurCoords = [
+      [
+        [-79.376537, 43.655295],
+        [-79.376332, 43.655371],
+        [-79.376073, 43.655427],
+        [-79.376014, 43.655235],
+        [-79.375903, 43.655035],
+        [-79.376469, 43.655017],
+        [-79.376465, 43.655135],
+        [-79.376537, 43.655295],
+      ],
+    ];
+    
+    const fleur = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPLgerzdhbhmme0UyIzoGmDnpS59YDxbHef8Z3I_RXvAH-X_PhyO1RPUg5YoKI6x_UDz4wDU8kXWy906k4IP2R2-Ho16ISKbKqBS673QId5kqvhTx8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Fleur</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: Menkes Development</p>' +
+        '</div>';
+    
+    const fleurheight = 110; 
+    const fleurLng = -79.376537;
+    const fleurLat = 43.655295;
+    const fleurId = 'fleur'
+    
+    addCustomPolygon(map, fleurCoords, fleurheight, fleur, fleurLng, fleurLat, fleurId);
+        
+    // EAST 55 POLYGON:
+    const east55Coords = [
+      [
+        [-79.365862, 43.653707],
+        [-79.365783, 43.653520],
+        [-79.366126, 43.653443],
+        [-79.366100, 43.653373],
+        [-79.366344, 43.653315],
+        [-79.366475, 43.653637],
+        [-79.366229, 43.653694],
+        [-79.366204, 43.653631],
+        [-79.365862, 43.653707],
+      ],
+    ];
+
+    const east55 = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczONNY0KwTkZw6QKG7OPQ9PzCI766sJGKDI2JMd0ZbPhXYYxqvz42YTgDDi_fw1W0fZNVZdOt2tvywc8Jyi3vMMxgIBRvKkrCVK4zh7xXzDmy0tBfVQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">East 55</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: Bel-East Corp. </p>' +
+        '</div>';
+    
+    const east55height = 90; 
+    const east55Lng = -79.36638;
+    const east55Lat = 43.65359;
+    const east55Id = 'east 55'
+    
+    addCustomPolygon(map, east55Coords, east55height, east55, east55Lng, east55Lat, east55Id);
+    
+    // 1 HOTEL AND CONDOMINIUM POLYGON:
+    const hotel1Coords = [
+      [
+        [-79.40222, 43.64317],
+        [-79.39985, 43.64364],
+        [-79.39969, 43.64326],
+        [-79.40050, 43.64308],
+        [-79.40056, 43.64321],
+        [-79.40114, 43.64310],
+        [-79.40109, 43.64297],
+        [-79.40206, 43.64277],
+        [-79.40222, 43.64317],
+      ],
+    ];
+    
+    const hotel1 = 
+        '<a href="https://www.architectsalliance.com/projects/thompson-hotel-residences" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNjoyB--P3nqJzTF14g4koStsT1R2H62-obTGA5r2QT9OLJgj19moGwKHr5I9f6EuuDvQMrc9NdnOBFiSg-kxjkTnG-itWXTnEIoKc7DDZ5CPSQ1XY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">1 Hotel and Condominiums</span>' +
+        '<p class="popup-text">Completed: 2008</p>' +
+        '<p class="popup-text">Client: Mohari Canada Inc. </p>' +
+        '</div>'; +
+        '</a>';
+    
+    const hotel1height = 55; 
+    const hotel1Lng = -79.401143;
+    const hotel1Lat = 43.643139;
+    const hotel1Id = 'hotel 1'
+    
+    addCustomPolygon(map, hotel1Coords, hotel1height, hotel1, hotel1Lng, hotel1Lat, hotel1Id);
+    
+    // PANDA POLYGON:
+    const pandaCoords = [
+      [
+        [-79.381955, 43.656996],
+        [-79.382662, 43.656844],
+        [-79.382795, 43.657195],
+        [-79.382494, 43.657260],
+        [-79.382436, 43.657119],
+        [-79.382041, 43.657194],
+        [-79.381955, 43.656996],
+      ],
+    ];
+    
+    const panda = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOqNgK-KlDwsnEdUllovdft_ulX0nRJ4VlS0EwFDRnV6-HbIWW9gPJkAUpCNF2yt0pnDZtvnXBf7Bp03fCXOCHw4TqpjH648fW5EsZ_HnI1kpZaH-A=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Panda</span>' +
+        '<p class="popup-text">Completed: 2024</p>' +
+        '<p class="popup-text">Client: Lifetime Developments</p>' +
+        '</div>';
+    
+    const pandaheight = 110; 
+    const pandaLng = -79.382494;
+    const pandaLat = 43.657260;
+    const pandaId = 'panda'
+    
+    addCustomPolygon(map, pandaCoords, pandaheight, panda, pandaLng, pandaLat, pandaId);
+    
+    // SMART HOUSE POLYGON:
+    const smartHouseCoords = [
+      [
+        [-79.38805, 43.65045],
+        [-79.38792, 43.65047],
+        [-79.38768, 43.65053],
+        [-79.38763, 43.65038],
+        [-79.38756, 43.65024],
+        [-79.38768, 43.65022],
+        [-79.38794, 43.65016],
+        [-79.38799, 43.65031],
+        [-79.38805, 43.65045],
+      ],
+    ];
+    
+    const smartHouse = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNT3np8G8WvEjbsUfcm_1sUskVWACbXyNWqTz4ru5NVTv1c_sKsZMGxb68BFckhaC1B13zrtIPuvf5m3ePXzVl3gfGIg0gXf5c1pcFfOVu5ojt2tc4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Smart House</span>' +
+        '<p class="popup-text">Completed: 2018</p>' +
+        '<p class="popup-text">Client: Urban Capital Property Group</p>' +
+        '</div>';
+    
+    const smartHouseheight = 100; 
+    const smartHouseLng = -79.38792;
+    const smartHouseLat = 43.65047;
+    const smartHouseId = 'smart house'
+    
+    addCustomPolygon(map, smartHouseCoords, smartHouseheight, smartHouse, smartHouseLng, smartHouseLat, smartHouseId);
+    
+    // ROEHAMPTON EAST TOWER POLYGON:
+    const roehamptonEastCoords = [
+      [
+        [-79.39303, 43.70899],
+        [-79.39273, 43.70905],
+        [-79.39258, 43.70869],
+        [-79.39289, 43.70862],
+        [-79.39303, 43.70899],
+      ],
+    ];
+    
+    const roehamptonEast = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO4WS7Z2_sF484nvLMTyGZuAR62qx_OzUjAOP-wQj8YVNZzntAaT5ARK0WUs0RJH27gKqTcrWZXYoUTS1tm43Phn7HA56nnSWQwcUIJKkgNNwoo6CI=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Roehampton Redpath - East Tower</span>' +
+            '<p class="popup-text">Completed: 2020</p>' +
+            '<p class="popup-text">Client: Freed Developments, Capital Developments</p>' +
+            '</div>';
+    
+    const roehamptonEastheight = 130; 
+    const roehamptonEastLng = -79.39273;
+    const roehamptonEastLat = 43.70905;
+    const roehamptonEastId = 'redpath east tower'
+    
+    addCustomPolygon(map, roehamptonEastCoords, roehamptonEastheight, roehamptonEast, roehamptonEastLng, roehamptonEastLat, roehamptonEastId);
+    
+    // WEST BLOCK POLYGON:
+    const westBlockCoords = [
+      [
+        [-79.39924, 43.63760],
+        [-79.39883, 43.63768],
+        [-79.39873, 43.63743],
+        [-79.39914, 43.63734],
+        [-79.39924, 43.63760],
+      ],
+    ];
+    
+    const westBlock = '<a href="https://www.architectsalliance.com/projects/500-lakeshore-loblaws" target="blank" style="color: inherit; text-decoration: none;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOkzKXhbzmK-qII_8mJHjyRFe16ZAzScU95TrID82S-3r0MHEHhz3b6TMNU6-9v3TAyWymTDdOYeGH5Mo-p-QQfiemg0xqKgRxjPv9W_FNXcFJQlg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">West Block</span>' +
+            '<p class="popup-text">Completed: 2020</p>' +
+            '<p class="popup-text">Client: Wittington Properties Limited</p>' +
+            '</div>'+
+            '</a>';
+    
+    const westBlockheight = 160; 
+    const westBlockLng = -79.39883;
+    const westBlockLat = 43.63768;
+    const westBlockId = 'west block east tower'
+    
+    addCustomPolygon(map, westBlockCoords, westBlockheight, westBlock, westBlockLng, westBlockLat, westBlockId);
+    addPopupToBuilding('West Block - West Tower', westBlock, -79.39988268753186, 43.637694852435544);
+    
+    // 383 SORAUREN POLYGON:
+    const soraurenCoords = [
+      [
+        [-79.44488, 43.65036],
+        [-79.44430, 43.65048],
+        [-79.44402, 43.65024],
+        [-79.44479, 43.65009],
+        [-79.44488, 43.65036],
+      ],
+    ];
+    
+    const sorauren = '<a href="https://www.architectsalliance.com/projects/sorauren" target="blank" style="color: inherit; text-decoration: none;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP0BHbxD-hntd1GzpWClghQAffRh4s_Zndyqt7ZTfKJyqM_yReVd5ATDT0-oTbLfpmJL8O6V60ZEHButynDAo89HvPKsr87F9ylWFIsyVQEDPhOPw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">383 Sorauren</span>' +
+            '<p class="popup-text">Completed: 2016</p>' +
+            '<p class="popup-text">Client: Gairloch Developments</p>' +
+            '</div>' +
+            '</a>';
+    
+    const soraurenheight = 31; 
+    const soraurenLng = -79.4445965082448;
+    const soraurenLat = 43.650475236637035;
+    const soraurenId = '383 sorauren polygon'
+    
+    addCustomPolygon(map, soraurenCoords, soraurenheight, sorauren, soraurenLng, soraurenLat, soraurenId);
+    addPopupToBuilding('383 Sorauren', sorauren, -79.4445965082448, 43.650475236637035);
+    
+    // YONGE AND RICH POLYGON:
+    const yongeAndRichCoords = [
+      [
+        [-79.37748, 43.65191],
+        [-79.37704, 43.65200],
+        [-79.37702, 43.65195],
+        [-79.37699, 43.65196],
+        [-79.37692, 43.65178],
+        [-79.37677, 43.65181],
+        [-79.37670, 43.65162],
+        [-79.37705, 43.65155],
+        [-79.37712, 43.65174],
+        [-79.37703, 43.65175],
+        [-79.37706, 43.65183],
+        [-79.37719, 43.65180],
+        [-79.37717, 43.65176],
+        [-79.37741, 43.65171],
+        [-79.37748, 43.65191],
+      ],
+    ];
+    
+    const yongeAndRich = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPC9R_RUlbNNkE7lS6KozlY7wlO9FPqJ91sG9YJ79qCmzSiwpmr2XUkVNewCH6r6D0ipJdoNWbAeWE04UAeo1edL_gS43PsfPFtPyirPZ6Jf8_oG9Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Yonge+Rich</span>' +
+            '<p class="popup-text">Completed: 2018</p>' +
+            '<p class="popup-text">Client: Great Gulf</p>' +
+            '</div>';
+    
+    const yongeAndRichheight = 180; 
+    const yongeAndRichLng = -79.37748;
+    const yongeAndRichLat = 43.65191;
+    const yongeAndRichId = 'yonge and rich'
+    
+    addCustomPolygon(map, yongeAndRichCoords, yongeAndRichheight, yongeAndRich, yongeAndRichLng, yongeAndRichLat, yongeAndRichId);
+    
+    // ART SHOPPE POLYGON:
+    const artShoppeCoords = [
+      [
+        [-79.39765, 43.70419],
+        [-79.39749, 43.70422],
+        [-79.39750, 43.70425],
+        [-79.39697, 43.70443],
+        [-79.39694, 43.70434],
+        [-79.39744, 43.70423],
+        [-79.39735, 43.70397],
+        [-79.39730, 43.70374],
+        [-79.39678, 43.70385],
+        [-79.39672, 43.70369],
+        [-79.39753, 43.70352],
+        [-79.39765, 43.70419],
+      ],
+    ];
+    
+    const artShoppe = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNFZGVNKuvoWxJrU9mApAGlqmzRIDdf-s_pPi-drgI52KH1J_iTx9CHSEeEvQucMIeeDDXht0kOzlGbtfRd56vYWEdpUYhxri7cD7DxeKbrL7wgkhk=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Art Shoppe</span>' +
+            '<p class="popup-text">Completed: 2020</p>' +
+            '<p class="popup-text">Client: Freed Developments, Capital Developments</p>' +
+            '</div>';
+            
+    const artShoppeheight = 50; 
+    const artShoppeLng = -79.39734;
+    const artShoppeLat = 43.70395;
+    const artShoppeId = 'art shoppe'
+    
+    addCustomPolygon(map, artShoppeCoords, artShoppeheight, artShoppe, artShoppeLng, artShoppeLat, artShoppeId);
+    addPopupToBuilding('Art Shoppe', artShoppe, -79.39734, 43.70395);
+    
+    // FORM POLYGON:
+    const formCoords = [
+      [
+        [-79.39088, 43.65199],
+        [-79.39061, 43.65205],
+        [-79.39040, 43.65155],
+        [-79.39067, 43.65149],
+        [-79.39088, 43.65199],
+      ],
+    ];
+    
+    const form = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOBSGvWGYbwY-sEJEagMkDNV2Kawh8zEvy67Qp12YRlBSPYpjjAqrcvl9xvzcW6CK7qXPTY1DyREPf70bUN5sm_bd2IRuEy5XVn3LwNRB5KUvDBaM8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">FORM</span>' +
+            '<p class="popup-text">Completed: 2020</p>' +
+            '<p class="popup-text">Client: Tridel</p>' +
+            '</div>';
+    
+    const formheight = 60; 
+    const formLng = -79.39088;
+    const formLat = 43.65199;
+    const formId = 'form'
+    
+    addCustomPolygon(map, formCoords, formheight, form, formLng, formLat, formId);
+    
+    // BRANT PARK POLYGON:
+    const brantParkCoords = [
+      [
+        [-79.39813, 43.64654],
+        [-79.39724, 43.64672],
+        [-79.39716, 43.64652],
+        [-79.39805, 43.64634],
+        [-79.39813, 43.64654],
+      ],
+    ];
+    
+    const brantPark = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP9fbfb_3K8GULbD59a_RjpL5FpKm3ngMhSMVbnYtfDL2E5Vyyrq4wRDxm2aCeI14dd42_SUHSs8Zhzp17AXyx3LW6VaIA3TEO3KYOvtvR89UULeb0=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Brant Park</span>' +
+            '<p class="popup-text">Completed: 2016</p>' +
+            '<p class="popup-text">Client: Lamb Development Corp, Fortress Real Developments</p>' +
+            '</div>';
+            
+    const brantParkheight = 45; 
+    const brantParkLng = -79.39770527836274;
+    const brantParkLat = 43.646608675430535;
+    const brantParkId = 'brant park'
+    
+    addCustomPolygon(map, brantParkCoords, brantParkheight, brantPark, brantParkLng, brantParkLat, brantParkId);
+        
+    // PAN AM VILLAGE-2 POLYGON:
+    const panAm2Coords = [
+      [
+        [-79.35813, 43.65341],
+        [-79.35740, 43.65358],
+        [-79.35721, 43.65310],
+        [-79.35792, 43.65294],
+        [-79.35813, 43.65341],
+      ],
+    ];
+    
+    const panAm2 = '<a href="https://www.architectsalliance.com/projects/panam-athletes-village" target="blank" style="color: inherit; text-decoration: none;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Pan Am Village</span>' +
+            '<p class="popup-text">Completed: 2015</p>' +
+            '<p class="popup-text">Client: DundeeKilmer</p>' +
+            '</div>' +
+            '</a>';
+            
+    const panAm2height = 16; 
+    const panAm2Lng = -79.35638;
+    const panAm2Lat = 43.65280;
+    const panAm2Id = 'pan am 2'
+    
+    addCustomPolygon(map, panAm2Coords, panAm2height, panAm2, panAm2Lng, panAm2Lat, panAm2Id);
+    
+
+
+        // PAN AM VILLAGE-4 POLYGON:
+        const panAm4Coords = [
+      [
+        [-79.35821, 43.65358],
+        [-79.35734, 43.65378],
+        [-79.35722, 43.65355],
+        [-79.35812, 43.65337],
+        [-79.35821, 43.65358],
+      ],
+    ];
+    
+    const panAm4 = '<a href="https://www.architectsalliance.com/projects/panam-athletes-village" target="blank" style="color: inherit; text-decoration: none;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Pan Am Village</span>' +
+            '<p class="popup-text">Completed: 2015</p>' +
+            '<p class="popup-text">Client: DundeeKilmer</p>' +
+            '</div>' +
+            '</a>';
+            
+    const panAm4height = 35; 
+    const panAm4Lng = -79.35638;
+    const panAm4Lat = 43.65280;
+    const panAm4Id = 'pan am 4'
+    
+    addCustomPolygon(map, panAm4Coords, panAm4height, panAm4, panAm4Lng, panAm4Lat, panAm4Id);
+
+        // PAN AM VILLAGE-5 POLYGON:
+        const panAm5Coords = [
+      [
+        [-79.35659, 43.65277],
+        [-79.35588, 43.65293],
+        [-79.35580, 43.65272],
+        [-79.35651, 43.65258],
+        [-79.35659, 43.65277]
+
+      ],
+    ];
+  
+    const panAm5height = 45; 
+    const panAm5Lng = -79.35638;
+    const panAm5Lat = 43.65280;
+    const panAm5Id = 'pan am 5'
+    
+    addCustomPolygon(map, panAm5Coords, panAm5height, panAm4, panAm5Lng, panAm4Lat, panAm5Id);
+    
+    // ST JAMES CATHEDRAL POLYGON:
+    const stJamesCathedralCoords = [
+      [
+        [-79.37457, 43.65106],
+        [-79.37430, 43.65112],
+        [-79.37427, 43.65104],
+        [-79.37429, 43.65104],
+        [-79.37415, 43.65069],
+        [-79.37424, 43.65067],
+        [-79.37432, 43.65085],
+        [-79.37447, 43.65082],
+        [-79.37457, 43.65106],
+      ],
+    ];
+    
+    const stJamesCathedral = '<a href="https://www.architectsalliance.com/projects/saint-james-cathedral-centre" target="blank" style="color: inherit; text-decoration: none;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOVdElK5JCcnUOXZIpViGUmIbfAGHNDA0KjENXhj2YwXpfb0lbJvh_-CqWUMLUHwceoAuAZN2RkFEFm003GV7XY3vZuhfbpaUpU-ILfIDOcFXJz4Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">St. James Cathedral Centre</span>' +
+            '<p class="popup-text">Completed: 2012</p>' +
+            '<p class="popup-text">Client: Cathedral Church of St. James</p>' +
+            '</div>' +
+            '</a>';
+            
+    const stJamesCathedralheight = 20; 
+    const stJamesCathedralLng = -79.37430;
+    const stJamesCathedralLat = 43.65112;
+    const stJamesCathedralId = 'st james cathedral'
+    
+    addCustomPolygon(map, stJamesCathedralCoords, stJamesCathedralheight, stJamesCathedral, stJamesCathedralLng, stJamesCathedralLat, stJamesCathedralId);
+    
+    // NXT POLYGON:
+    const nxtCoords = [
+      [
+        [-79.47065, 43.63640],
+        [-79.47039, 43.63652],
+        [-79.46994, 43.63600],
+        [-79.47020, 43.63588],
+        [-79.47065, 43.63640],
+      ],
+    ];
+    
+    const nxt =
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP1Vx-2jOphPhbXChpO_roxF7YTtiCUkQwd-0_Y1YMDNf40u8Gqv_416OnSuDR4RXaQZEpmXVsy1fcODkb7KETZIJWRoRJ2unW-HW4Gq3DAE3wHJgc=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">NXT</span>' +
+            '<p class="popup-text">Completed: 2013</p>' +
+            '<p class="popup-text">Client: Cresford Developments</p>' +
+            '</div>';
+            
+    const nxtheight = 110; 
+    const nxtLng = -79.47093629559306;
+    const nxtLat = 43.63624548011145;
+    const nxtId = 'nxt'
+    
+    addCustomPolygon(map, nxtCoords, nxtheight, nxt, nxtLng, nxtLat, nxtId);
+    addPopupToBuilding('NXT', nxt, -79.47093629559306, 43.63624548011145);
+    
+    // RADIO CITY-1 POLYGON:
+    const radioCity1Coords = [
+      [
+        [-79.37840, 43.66368],
+        [-79.37817, 43.66373],
+        [-79.37816, 43.66372],
+        [-79.37812, 43.66373],
+        [-79.37801, 43.66348],
+        [-79.37836, 43.66341],
+        [-79.37840, 43.66350],
+        [-79.37836, 43.66351],
+        [-79.37842, 43.66365],
+        [-79.37839, 43.66366],
+        [-79.37840, 43.66368],
+      ],
+    ];
+    
+    const radioCity1 = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO402lpNrs0P0QIcNlrBlk3yKXGEFo1_JwrvknrAx1FjnNI53SFjk2SaJS7pk-4FVRWZKCJlEhrDGoe2kUayL0c-x3j_WoKwU4rHEgqOCv8mXVxbvE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Radio City</span>' +
+            '<p class="popup-text">Completed: 2012</p>' +
+            '<p class="popup-text">Client: Cathedral Church of St. James</p>' +
+            '</div>';
+            
+    const radioCity1height = 100; 
+    const radioCity1Lng = -79.37799921082551;
+    const radioCity1Lat = 43.66343171077597;
+    const radioCity1Id = 'radio city 1'
+    
+    addCustomPolygon(map, radioCity1Coords, radioCity1height, radioCity1, radioCity1Lng, radioCity1Lat, radioCity1Id);
+    
+    // RADIO CITY-2 POLYGON:
+    const radioCity2Coords = [
+      [
+        [-79.37797, 43.66328],
+        [-79.37770, 43.66334],
+        [-79.37761, 43.66311],
+        [-79.37788, 43.66305],
+        [-79.37797, 43.66328],
+      ],
+    ];
+    
+    const radioCity2 = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO402lpNrs0P0QIcNlrBlk3yKXGEFo1_JwrvknrAx1FjnNI53SFjk2SaJS7pk-4FVRWZKCJlEhrDGoe2kUayL0c-x3j_WoKwU4rHEgqOCv8mXVxbvE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Radio City</span>' +
+            '<p class="popup-text">Completed: 2006</p>' +
+            '<p class="popup-text">Client: Context Development Inc.</p>' +
+            '</div>';
+            
+    const radioCity2height = 120; 
+    const radioCity2Lng = -79.37799921082551;
+    const radioCity2Lat = 43.66343171077597;
+    const radioCity2Id = 'radio city 2'
+    
+    addCustomPolygon(map, radioCity2Coords, radioCity2height, radioCity2, radioCity2Lng, radioCity2Lat, radioCity2Id);
+    
+    // Terrence Donnelly Centre for Cellular & Biomolecular Research POLYGON:
+    const bioCentreCoords = [
+      [
+        [-79.39326, 43.66039],
+        [-79.39284, 43.66048],
+        [-79.39260, 43.65991],
+        [-79.39289, 43.65985],
+        [-79.39290, 43.65987],
+        [-79.39304, 43.65984],
+        [-79.39326, 43.66039],
+      ],
+    ];
+    
+    const bioCentre = '<a href="https://www.architectsalliance.com/projects/tdccbr" target="blank" style="color: inherit; text-decoration: none;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMn2cqUUOkjnmLUP34wXX8fhVd1L-VYVMQyYC-FMjtdRujUvFLbLzWb1Om4L2WAclWdxKskHa5Lh2JuWqz189INv0iQ8mEveb8L0hWst0wrttK8gQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Terrence Donnelly Centre for Cellular & Biomolecular Research</span>' +
+            '<p class="popup-text">Completed: 2006</p>' +
+            '<p class="popup-text">Client: University of Toronto</p>' +
+            '</div>'+
+            '</a>';
+            
+    const bioCentreheight = 50; 
+    const bioCentreLng = -79.39326;
+    const bioCentreLat = 43.66039;
+    const bioCentreId = 'bio centre'
+    
+    addCustomPolygon(map, bioCentreCoords, bioCentreheight, bioCentre, bioCentreLng, bioCentreLat, bioCentreId);
+    
+    // WOODSWORTH RESIDENCE-1 POLYGON:
+    const woodsworthResidence1Coords = [
+      [
+        [-79.39954, 43.66741],
+        [-79.39945, 43.66743],
+        [-79.39944, 43.66742],
+        [-79.39926, 43.66746],
+        [-79.39918, 43.66725],
+        [-79.39945, 43.66719],
+        [-79.39947, 43.66727],
+        [-79.39949, 43.66727],
+        [-79.39954, 43.66741],
+      ],
+    ];
+    
+    const woodsworthResidence1 = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPmzGXBrlPxC9Mz_Lhfc5VzzWtLB4poq-QPYGLcBAZYeUbVH0Be17X3UPR641MYH4set_xfqBh0zNVOi3izF1FNK8iLqsyKHioi4we4vsJNIH5JDIY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Woodsworth Student Residence & Classroom Complex</span>' +
+            '<p class="popup-text">Completed: 2004</p>' +
+            '<p class="popup-text">Client: University of Toronto</p>' +
+            '</div>';
+            
+    const woodsworthResidence1height = 70; 
+    const woodsworthResidence1Lng = -79.39945;
+    const woodsworthResidence1Lat = 43.66743;
+    const woodsworthResidence1Id = 'woodsworth residence'
+    
+    addCustomPolygon(map, woodsworthResidence1Coords, woodsworthResidence1height, woodsworthResidence1, woodsworthResidence1Lng, woodsworthResidence1Lat, woodsworthResidence1Id);
+    
+    // WOODSWORTH RESIDENCE-2 POLYGON:
+    const woodsworthResidence2Coords = [
+      [
+        [-79.39957, 43.66741],
+        [-79.39893, 43.66755],
+        [-79.39877, 43.66715],
+        [-79.39895, 43.66712],
+        [-79.39905, 43.66736],
+        [-79.39921, 43.66733],
+        [-79.39918, 43.66725],
+        [-79.39931, 43.66722],
+        [-79.39924, 43.66704],
+        [-79.39937, 43.66702],
+        [-79.39940, 43.66710],
+        [-79.39945, 43.66710],
+        [-79.39957, 43.66741],
+      ],
+    ];
+    
+    const woodsworthResidence2 = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPmzGXBrlPxC9Mz_Lhfc5VzzWtLB4poq-QPYGLcBAZYeUbVH0Be17X3UPR641MYH4set_xfqBh0zNVOi3izF1FNK8iLqsyKHioi4we4vsJNIH5JDIY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Woodsworth Student Residence & Classroom Complex</span>' +
+            '<p class="popup-text">Completed: 2004</p>' +
+            '<p class="popup-text">Client: University of Toronto</p>' +
+            '</div>';
+            
+    const woodsworthResidence2height = 16; 
+    const woodsworthResidence2Lng = -79.39945;
+    const woodsworthResidence2Lat = 43.66743;
+    const woodsworthResidence2Id = 'woodsworth residence-2'
+    
+    addCustomPolygon(map, woodsworthResidence2Coords, woodsworthResidence2height, woodsworthResidence2, woodsworthResidence2Lng, woodsworthResidence2Lat, woodsworthResidence2Id);
+    
+    // MOZO POLYGON:
+    const mozoCoords = [
+      [
+        [-79.36895, 43.65198],   
+        [-79.36869, 43.65204],
+        [-79.36839, 43.65134],
+        [-79.36865, 43.65128],
+        [-79.36895, 43.65198],
+      ],
+    ];
+    
+    const mozo = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMfQ-Z6luDn7XCEfXtT9yNpYv7RS6iZMh8lp6smzr-r0uno7rFGU0ranOnr9th7jEgD24crpfCvknJr3b59AwlWt4biK4epEtLy1-Qxd7BX8j5kwhY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Mozo</span>' +
+            '<p class="popup-text">Completed: 2004</p>' +
+            '<p class="popup-text">Client: Context Development</p>' +
+            '</div>';
+            
+    const mozoheight = 50; 
+    const mozoLng = -79.36895;  
+    const mozoLat = 43.65198;
+    const mozoId = 'mozo'
+    
+    addCustomPolygon(map, mozoCoords, mozoheight, mozo, mozoLng, mozoLat, mozoId);
+    
+    // DISTRICT LOFTS POLYGON:
+    const districtLoftsCoords = [
+      [
+        [-79.39554, 43.64834],   
+        [-79.39488, 43.64848],
+        [-79.39475, 43.64815],
+        [-79.39541, 43.64801],
+        [-79.39546, 43.64815],
+        [-79.39489, 43.64827],
+        [-79.39491, 43.64833],
+        [-79.39549, 43.64821],
+        [-79.39554, 43.64834],
+      ],
+    ];
+    
+    const districtLofts = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMiNOO7IJTlVCjxJn_5vsAJrv_Ob5TlU5TOQ7TrXQAUPDPuIGFSenh0k0fqdA3xqz__XO0s0gD4u-CAopmDL8Lr6iiCQiVQ6l0_wFf1dG_JSrgpJCw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">District Lofts</span>' +
+            '<p class="popup-text">Completed: 2002</p>' +
+            '<p class="popup-text">Client: Context Development</p>' +
+            '</div>';
+            
+    const districtLoftsheight = 60; 
+    const districtLoftsLng = -79.39521211391465;  
+    const districtLoftsLat = 43.6484085500781   ;
+    const districtLoftsId = 'district lofts'
+    
+    addCustomPolygon(map, districtLoftsCoords, districtLoftsheight, districtLofts, districtLoftsLng, districtLoftsLat, districtLoftsId);
+    
+    // TWENTY NIAGARA POLYGON:
+    const twentyNiagaraCoords = [
+      [
+        [-79.40112, 43.64251],   
+        [-79.40086, 43.64256],
+        [-79.40073, 43.64224],
+        [-79.40100, 43.64219],
+        [-79.40112, 43.64251],
+      ],
+    ];
+    
+    const twentyNiagara = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO-UXVRia1gv_5r911VnVYKWWCCc1z98JnV0wSBoXIXAPTnyAqCWduoNsYeGcUqPmtbQqz-KDf09csFyRC6duOFxGEtEnRXhVchPX3GCLX96Bih7-c=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Twenty Niagara</span>' +
+            '<p class="popup-text">Completed: 1997</p>' +
+            '<p class="popup-text">Client: Context Development</p>' +
+            '</div>';
+            
+    const twentyNiagaraheight = 30; 
+    const twentyNiagaraLng = -79.40112;  
+    const twentyNiagaraLat = 43.64251;
+    const twentyNiagaraId = 'twenty niagara'
+    
+    addCustomPolygon(map, twentyNiagaraCoords, twentyNiagaraheight, twentyNiagara, twentyNiagaraLng, twentyNiagaraLat, twentyNiagaraId);
+    
+    // ALTAR POLYGON:
+    const altarCoords = [
+      [
+        [-79.37872, 43.66061],   
+        [-79.37833, 43.66070],
+        [-79.37817, 43.66031],
+        [-79.37855, 43.66023],
+        [-79.37872, 43.66061],
+      ],
+    ];
+    
+    const altar = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOuhoJiIjys04HS9uoipt1D7XWvQqyfZ9Wnqir9_B_TidYWm20rklcZw3dgnXADg3WX4DaAoM1MNQltnxwxguky2bJKurj45Ok5S5TBMqmHS96kZgc=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Alter</span>' +
+            '<p class="popup-text">Completed: 2018</p>' +
+            '<p class="popup-text">Client: Tridel</p>' +
+            '</div>';
+            
+    const altarheight = 111; 
+    const altarLng = -79.37872;  
+    const altarLat = 43.66061;
+    const altarId = 'altar'
+    
+    addCustomPolygon(map, altarCoords, altarheight, altar, altarLng, altarLat, altarId);
+        
+    // PETER STREET CONDOMINIUMS POLYGON:
+    const peterStreetCoords = [
+      [
+        [-79.39284, 43.64766],   
+        [-79.39238, 43.64775],
+        [-79.39229, 43.64754],
+        [-79.39276, 43.64745],
+        [-79.39284, 43.64766],
+      ],
+    ];
+    
+    const peterStreet = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczN3o0PbqiPjzGGZmOmmvgqKuTCMMq_NZ9_lzvgz7n_Jn4FIg25umaIy__zmcY9ZXoAAZ-gIOm-Cnf6otNmkbndRxzg2cb3KBfwPa11R1nYTTrSwE_I=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">Peter Street Condominiums</span>' +
+            '<p class="popup-text">Completed: 2014</p>' +
+            '<p class="popup-text">Client: Centre Court Developments</p>' +
+            '</div>';
+            
+    const peterStreetheight = 150; 
+    const peterStreetLng = -79.39284;  
+    const peterStreetLat = 43.64766;
+    const peterStreetId = 'peter street'
+    
+    addCustomPolygon(map, peterStreetCoords, peterStreetheight, peterStreet, peterStreetLng, peterStreetLat, peterStreetId);
+
+
+    //PIER 27 PHASE 1
+    const pier27Phase1 = 
+        '<a href="https://www.architectsalliance.com/projects/pier-27" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPgDzxoCaXi4YE4TfQRJPRLfdujMT2ffr8yEbN0WiAHFiQLM1lVoypo9OO5X2gUMQUdUqq8JlO-wETrSQzM3NTZ6wys36Hdu5aTC1FdoGhCIOPXsw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Pier 27 Phase 1</span>' +
+        '<p class="popup-text">Completed: 2014</p>' +
+        '<p class="popup-text">Client: Citizen Fernbrook</p>' +
+        '</div>' +
+        '</a>';
+    
+    addPopupToBuilding('Pier 27', pier27Phase1, -79.37228214441956, 43.641501429585674);
+
+
+    //PIER 27 PHASE 2
+    const pier27Phase2 = 
+        '<a href="https://www.architectsalliance.com/projects/pier-27" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPz56vVv-ivbkRxfxC8Dc9EC_xZcL_SLe5WzDlBdhBJdusu7OyapPgmDNZBR143eNbKZvitEXWMbl2fXsJxloK2xUyLqX6nCY8w06B0K_iv7FVQvg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Pier 27 Phase 2</span>' +
+        '<p class="popup-text">Completed: 2016</p>' +
+        '<p class="popup-text">Client: Citizen Fernbrook</p>' +
+        '</div>' +
+        '</a>';
+    
+    addPopupToBuilding('Pier 27-1', pier27Phase2, -79.37356072959896, 43.64174404228421);
+
+
+    //THE WELL
+    const theWellD = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Well - Building D</span>' +
+        '<p class="popup-text">Completed: 2023 </p>' +
+        '<p class="popup-text">Client: Tridel Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('The Well Building D', theWellD, -79.39729, 43.64252);
+
+    const theWellE = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Well - Building E</span>' +
+        '<p class="popup-text">Completed: 2023 </p>' +
+        '<p class="popup-text">Client: Tridel Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('The Well Building E', theWellE, -79.39641, 43.64285);
+
+    const theWellF = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Well - Building F</span>' +
+        '<p class="popup-text">Completed: 2023 </p>' +
+        '<p class="popup-text">Client: Tridel Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('The Well Building F', theWellF, -79.39572, 43.64298);
+    
+    //VIA BLOOR
+    const viaBloorWestTower = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNZtA7ji8QpcKwJnqB9jzJCGqaqv_D2fQ_PKr6-iv6LkyNzvu5grwHUiUrgH-yJl2MYIswxzhJf7Pi2aX1n48iOTuBw0im0TvRflqzQH6MBdMFdkhY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Via Bloor - West Tower</span>' +
+        '<p class="popup-text">Completed: 2022 </p>' +
+        '<p class="popup-text">Client: Tridel Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('Via Bloor-West Tower', viaBloorWestTower, -79.37213, 43.67176);
+
+    const viaBloorEastTower = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNZtA7ji8QpcKwJnqB9jzJCGqaqv_D2fQ_PKr6-iv6LkyNzvu5grwHUiUrgH-yJl2MYIswxzhJf7Pi2aX1n48iOTuBw0im0TvRflqzQH6MBdMFdkhY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Via Bloor - East Tower</span>' +
+        '<p class="popup-text">Completed: 2022 </p>' +
+        '<p class="popup-text">Client: Tridel Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('Via Bloor-East Tower', viaBloorEastTower, -79.37213, 43.67176);
+    addPopupToBuilding('Via Bloor-East Tower-1', viaBloorEastTower, -79.37213, 43.67176);
+    addPopupToBuilding('Via Bloor-East Tower-2', viaBloorEastTower, -79.37213, 43.67176);
+
+    //MUSEUM OF CONTEMPORARY ART
+    const museumOfContemporaryArt = '<a href="https://www.architectsalliance.com/projects/moca" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPOhzuqYKrGfDmH1rEsKGYjebyc4-cPlfPN67vqSDODocGpAw_PaPxyilLLnNrg-F6_twUGy30bJKtpUw4qqnG-s3SGABxcNQJEDgougUMIOwy5sA=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Museum Of Contemporary Art</span>' +
+        '<p class="popup-text">Completed: 2018</p>' +
+        '<p class="popup-text">Client: Castlepoint Greybrook Sterling Inc.</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('Museum of Contemporary Art', museumOfContemporaryArt, -79.44535863150496, 43.654779485812014);   
+
+    //THE WOODSWORTH
+    const theWoodsworth = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTvt3mPswL8H4UxyGd01e4j54QtmeNVaUa9Mv-JiC7HOBbIdzXi9Y_Cf4T9qdZcLW4Ri4s5lGMsrcm-S5zcW3KYMWOYc4BfOqsgPAuBUPGM6prLRE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Woodsworth</span>' +
+        '<p class="popup-text">Completed: 2021</p>' +
+        '<p class="popup-text">Client: Lamb Development Corp. </p>' +
+        '</div>';
+
+    addPopupToBuilding('The Woodsworth', theWoodsworth, -79.397591442016, 43.64801909187685);
+
+    //FOUR SEASONS
+    const fourSeasons = '<a href="https://www.architectsalliance.com/projects/four-seasons-hotel-residences" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO2sTIUj2zSymk9vtMT3Z2Z9YNTXqPxLgKi3D2UgwF9R65Sx-ijfq8IZWUWCbH0r0gKzcER2EWCOdQxPnreUM1CIF8N8qUttJyuvU1ZqPVXpt_2Lw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Four Seasons Hotel and Residences</span>' +
+        '<p class="popup-text">Completed: 2012</p>' +
+        '<p class="popup-text">Client: Four Seasons Hotel Toronto</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('Four Seasons', fourSeasons, -79.38985924451408, 43.67194719845132);
+    addPopupToBuilding('Four Seasons-1', fourSeasons, -79.38985924451408, 43.67194719845132);
+
+    //THE ESPLANADE
+    const theEsplanade = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPq54fSf3E4wXkMlA2kulempDPiZQEcwevZHmBxBMhqnGXXA97ppiBykDvSoTpsJFCP2GAGkQBO5MbdydFt0mhkptMKn7PWYpsN5Duu_aFFK3g5wmE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">75 on The Esplanade</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: Harhay Construction Management Ltd. </p>' +
+        '</div>';
+
+    addPopupToBuilding('75 On The Esplanade', theEsplanade, -79.37371, 43.64691);
+
+    //CASA III
+    const casaIII = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOZQ59J8rXNLQjaq5FeSF57isvBPkbLiXl12h4ds9hgGkamYG846rj4xyyAvzl5b__mFGkP22Yh5ubuGbOBHPSLIOOSUSJ5tvhjXob924XlRcUT3s8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Casa II and III</span>' +
+        '<p class="popup-text">Completed: 2018</p>' +
+        '<p class="popup-text">Client: Cresford Developments </p>' +
+        '</div>';
+
+    addPopupToBuilding('Casa III', casaIII, -79.38368048377866, 43.66962863658184);
+    addPopupToBuilding('Casa III-1', casaIII, -79.38368048377866, 43.66962863658184);
+
+    //THE GLOUCESTER POLYGON
+
+    const theGloucesterCoords = [
+      [
+        [-79.38510, 43.66651],   
+        [-79.38474, 43.66658],
+        [-79.38467, 43.66642],
+        [-79.38445, 43.66647],
+        [-79.38428, 43.66608],
+        [-79.38486, 43.66594],
+        [-79.38510, 43.66651],
+      ],
+    ];
+            
+    const theGloucesterheight = 165; 
+    const theGloucesterLng = -79.38510;  
+    const theGloucesterLat = 43.66651;
+    const theGloucesterId = 'the gloucester'
+    
+    const theGloucester = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNFkZvu-h2Mh-u7aesi9Kz03HWsA5P_uMUjsRCbrDEuDQTpdSM5RKFcZu52TlQjRM4UfruPCnpYjCBxK9TKXQUSqdW1vrK8Ra1yuZddG1uc62q6DEs=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Gloucester</span>' +
+        '<p class="popup-text">Completed: 2022 </p>' +
+        '<p class="popup-text">Client: Concord Adex </p>' +
+        '</div>';
+
+    addCustomPolygon(map, theGloucesterCoords, theGloucesterheight, theGloucester, theGloucesterLng, theGloucesterLat, theGloucesterId);
+
+    // 22 CONDOS POLYGON:
+    const condos22Coords = [
+      [
+        [-79.38355, 43.66567],
+        [-79.38326, 43.66573],
+        [-79.38311, 43.66536],
+        [-79.38335, 43.66531],
+        [-79.38336, 43.66534],
+        [-79.38342, 43.66533],
+        [-79.38355, 43.66567],
+      ],
+    ];
+    
+    const condos22 = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNxw-ijNm4a3lkQznTfcb_sjugBS3ZWFPY-3wP8lXlqqLmCxRiBy5tUtC-KSdm22gVxy2L9wQYtx9VLqlpV5LpYfULYApgzBHpuOf7YR0JRKr8PJPE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">22 Condominiums</span>' +
+        '<p class="popup-text">Completed: 2007</p>' +
+        '<p class="popup-text">Client: Lanterra Developments, H&R Developments</p>' +
+        '</div>';
+    
+    const condos22height = 90; 
+    const condos22Lng = -79.38355;
+    const condos22Lat = 43.66567;
+    const condos22Id = '22 condos'
+    
+    addCustomPolygon(map, condos22Coords, condos22height, condos22, condos22Lng, condos22Lat, condos22Id);
+
+    // VOX POLYGON:
+    const voxCoords = [
+      [
+        [-79.383223, 43.665705],
+        [-79.382934, 43.665767],
+        [-79.382790, 43.665438],
+        [-79.383096, 43.665366],
+        [-79.383223, 43.665705],
+      ],
+    ];
+    
+    const vox = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMZAb14W_g3j9LFLJNCtb-_wqdj4jA_HtttIFtOEmR0oFF6E0guQWeZAqlS4HAHDiKDnyA7SIY0TCdACHNqZ2M6FMfLngL0w6eyZduzefR8-5DZtCc=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Vox</span>' +
+        '<p class="popup-text">Completed: 2018</p>' +
+        '<p class="popup-text">Client: Cresford Developments</p>' +
+        '</div>';
+    
+    const voxheight = 140; 
+    const voxLng = -79.382934;
+    const voxLat = 43.665767;
+    const voxId = 'vox'
+    
+    addCustomPolygon(map, voxCoords, voxheight, vox, voxLng, voxLat, voxId);
+
+    //ROEHAMPTON REDPATH - WEST TOWER
+    const roehamptonRedpathWest = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO4WS7Z2_sF484nvLMTyGZuAR62qx_OzUjAOP-wQj8YVNZzntAaT5ARK0WUs0RJH27gKqTcrWZXYoUTS1tm43Phn7HA56nnSWQwcUIJKkgNNwoo6CI=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Roehampton Redpath - West Tower</span>' +
+        '<p class="popup-text">Completed: 2020</p>' +
+        '<p class="popup-text">Client: Freed Developments, Capital Developments</p>' +
+        '</div>';
+
+    addPopupToBuilding('Roehampton Redpath - West Tower', roehamptonRedpathWest, -79.39339401614666, 43.70893637385099);
+
+    //60 COLBORNE
+    const colborne = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMhJ5jc8fA73tq3It5lkokasqsIC7kb1U9zxkMVOzbvLSkmAcxID_1UKXDuvFqIOidA-XP8Q00Uwr6xGDqvAAlhkEuoAnA56MbgstmrHMBmYj5lj2M=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">60 Colborne</span>' +
+        '<p class="popup-text">Completed: 2017</p>' +
+        '<p class="popup-text">Client: Freed Developments, Carttera Private Equities</p>' +
+        '</div>';
+
+    addPopupToBuilding('60 Colborne', colborne, -79.3744746408605, 43.64945418954499);
+    addPopupToBuilding('60 Colborne-1', colborne, -79.3744746408605, 43.64945418954499);
+    addPopupToBuilding('60 Colborne-2', colborne, -79.3744746408605, 43.64945418954499);
+
+    //11 CHARLOTTE
+    const charlotte = '<a href="https://www.architectsalliance.com/projects/11-charlotte" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOIzXIPZfdziveS3rjdCQXXzTcDcLzdChLlNTSg-eVRvPjHHBz96Nae7-WWN5RoLKibqDEnt9rVL8U5XK3OkzQOcuo0dCnGypRXlYWgHtoxT43lmw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">11 Charlotte</span>' +
+        '<p class="popup-text">Completed: 2016</p>' +
+        '<p class="popup-text">Client: Lamb Development Corp.</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('11 Charlotte', charlotte, -79.39350332658933, 43.64646394933127);
+
+    //PAN AM VILLAGE
+    const panAmVillage = '<a href="https://www.architectsalliance.com/projects/panam-athletes-village" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Pan Am Village</span>' +
+        '<p class="popup-text">Completed: 2015</p>' +
+        '<p class="popup-text">Client: DundeeKilmer</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('Pan Am Village-2', panAmVillage, -79.35638, 43.65280);
+    addPopupToBuilding('Pan Am Village-3', panAmVillage, -79.35638, 43.65280);
+    addPopupToBuilding('Pan Am Village-4', panAmVillage, -79.35638, 43.65280);
+    addPopupToBuilding('Pan Am Village-9', panAmVillage, -79.35638, 43.65280);
+    addPopupToBuilding('Pan Am Village-10', panAmVillage, -79.35638, 43.65280);
+
+    //WEST DON LANDS BLOCK 8
+    const westDonLandsBlock8 = 
+        '<a href="https://www.architectsalliance.com/projects/west-don-lands-block-8" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPB85kwITZEHxZMzmvlBlc-tfs5m8I_EHKBsf2H8ofO0OSl1ivtPnup3vnqYBe-PN0sMGt3bvbk3HUvw_EScwdnZZVAYNLgvP_fl3DsFmVtS8NDBA=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">West Don Lands Block 8</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: DKT Partnership (Dream, Kilmer and Tricon)</p>' +
+        '</div>' +
+        '</a>';
+        
+    addPopupToBuilding('West Don Lands Affordable Housing - Block 8C', westDonLandsBlock8, -79.3544256587411, 43.65197568419737);
+    addPopupToBuilding('West Don Lands Affordable Housing - Block 8A, 8B copy', westDonLandsBlock8, -79.35614465391009, 43.651514687325864);
+
+    //THEATRE PARK
+    const theatrePark = '<a href="https://www.architectsalliance.com/projects/theatre-park" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://live.staticflickr.com/65535/53938299794_b1bafe969e_k.jpg" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Theatre Park</span>' +
+        '<p class="popup-text">Completed: 2015</p>' +
+        '<p class="popup-text">Client: Lamb Development Corp, Harhay Developments.</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('Theatre Park', theatrePark, -79.38741923765487, 43.64770612801376);
+
+    //THE GOODERHAM
+    const gooderham =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Gooderham</span>' +
+        '<p class="popup-text">Completed: 2014</p>' +
+        '<p class="popup-text">Client: Cityscape, Dream Unlimited</p>' +
+        '</div>';
+
+    addPopupToBuilding('The Gooderham', gooderham, -79.35750270816236, 43.650674154107364);
+    addPopupToBuilding('The Gooderham-1', gooderham, -79.35750270816236, 43.650674154107364);
+
+    //CLEAR SPIRIT
+    const clearSpirit =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Clear Spirit</span>' +
+        '<p class="popup-text">Completed: 2012</p>' +
+        '<p class="popup-text">Client: Cityscape, Dream Unlimited</p>' +
+        '</div>';
+
+    addPopupToBuilding('Clear Spirit', clearSpirit, -79.35789592784717, 43.65024998484947);
+
+    //MARKET WHARF
+    const marketWharf =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMPZIffdL6CL97pKfSP-as5oFnTJ-6EzGXwe1mmPkZwk-QQ4g5MvojwiRR8y8AWAaSqBmfV97nepzGefBmzKnwAgafVsv9CIujSmzyC_COOGlxzh7Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Market Wharf</span>' +
+        '<p class="popup-text">Completed: 2013</p>' +
+        '<p class="popup-text">Client: Context Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('Market Wharf', marketWharf, -79.37116, 43.64738);
+    addPopupToBuilding('Market Wharf-1', marketWharf, -79.37116, 43.64738);
+
+    //PARC LOFTS
+    const parcLofts =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO9UHYZS2aOUxvmbaStVBrzLI24jcaqtx1477dMZ1P3pkqYUnmbvYx0UV7wH23wCOoXq4VvHA3Fnvnec1oqgg6BzPOjx6_JzfElq4XL6P3wgSXJPcg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Parc Lofts</span>' +
+        '<p class="popup-text">Completed: 2011</p>' +
+        '<p class="popup-text">Client: Lamb Development Corp, Niche Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('Parc Lofts', parcLofts, -79.41042027271213, 43.64195760582634); 
+
+    //SPIRE
+    const spire =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOgeKt0R1tPvyUVE_a8FHj1Q9i2oNMiCbJMhWlZ2WA--48jImmWP44akAikKVYggpXVe75v-g4s4T89ff_V9FahmxKsvnZyDV4czFMYPZkPTfxT1kw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Spire</span>' +
+        '<p class="popup-text">Completed: 2007</p>' +
+        '<p class="popup-text">Client: Context Development</p>' +
+        '</div>';
+
+    addPopupToBuilding('Spire', spire, -79.37524479892224, 43.65143479469821);
+
+    //TEAHOUSE
+    const teaHouse =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPSGYZ_OZHSzbZhdVQ2CfKgrR1EYrdKGdoWYPaRK3464ekkUcCMU8Jws19k9Qxid7BP0XuUa_3ofc5SN5HxS9m5-56BTG5olOTG1Rxbe9LGQIbV2M8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">TeaHouse</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: Lanterra Developments</p>' +
+        '</div>';
+
+    addPopupToBuilding('TeaHouse', teaHouse, -79.38387, 43.66377);
+
+     // IMMIX POLYGON:
+    
+     const immixCoords = [
+      [
+        [-79.3841329948088, 43.662366455522296],
+        [-79.38430911398962, 43.66280492206845],
+        [-79.3838569160929, 43.66290707742681],
+        [-79.38367603693423, 43.662470907267576],
+        [-79.3841329948088, 43.662366455522296],
+      ],
+    ];
+    
+    const immix = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOhMw3CLOuPPGHfiLs00h2It4p-T7JGI0gpNKCxibPE5njObuSt6tPiVPCzYDZnOU8y2nf4XDRVNFRbp8dk3iUp8l0D4q0s-p8G7_A1iK8SaR1mR24=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Immix</span>' +
+        '<p class="popup-text">Completed: 2023</p>' +
+        '<p class="popup-text">Client: QuadReal Property Group</p>' +
+        '</div>';
+    
+    const immixheight = 145; 
+    const immixLng = -79.38430911398962;
+    const immixLat = 43.66280492206845;
+    const immixId = 'immix'
+    
+    addCustomPolygon(map, immixCoords, immixheight, immix, immixLng, immixLat, immixId);
+
+    //ST LAWRENCE CONDOS
+    const stLawrenceCondos =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMCSbhialO-Hm9sgA_xNjBEnaLLo1spbEgN8pYBt1mUlFWNsCL3kEt5c-2Zs-47d2l-MRHenqHocdHqSznqP0D4TA9WSj-3sXrRtCOTk4WMc7F7bIg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">St. Lawrence Condos</span>' +
+        '<p class="popup-text">Completed: 2022</p>' +
+        '<p class="popup-text">Client: Cityzen Developments</p>' +
+        '</div>';
+
+    addPopupToBuilding('St. Lawrence Condos', stLawrenceCondos, -79.36864, 43.65056);
+    addPopupToBuilding('St. Lawrence Condos-1', stLawrenceCondos, -79.36864, 43.65056);
+
+    //KARMA
+    const karma =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNbqT2KALnDi5o0h3eM0z6tisZKG4paicGdd0GTWztam9pjFHYbj0pHe4rPp5oLiUDwsyhSh2hF3OeSdSoO4lq1nazk07Wu5E-fHch6xg0mBi_PuFI=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Karma</span>' +
+        '<p class="popup-text">Completed: 2016</p>' +
+        '<p class="popup-text">Client: Lifetime Developments</p>' +
+        '</div>';
+
+    addPopupToBuilding('Karma', karma, -79.38442, 43.66180);
+    addPopupToBuilding('Karma-1', karma, -79.38442, 43.66180);
+
+    //16 YORK
+    const york16 =
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNITUtBZQjOE6ucA7EUnOSeye5fth7oOafXZbJz_VC4Q26rIziEfjD1pVSfPyFp9oKn0tzJrIBZ_5SKSwABejYjETOuqlEgQtRir75evi6GmvJh928=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">16 York - Phase 3</span>' +
+        '<p class="popup-text">Completed: 2020</p>' +
+        '<p class="popup-text">Client: Cadillac Fairview</p>' +
+        '</div>';
+
+    addPopupToBuilding('16 York', york16, -79.38260427771354, 43.64249563623355);
+    addPopupToBuilding('16 York-1', york16, -79.38260427771354, 43.64249563623355);
+
+    //HARBOUR PLAZA
+    const harbourPlaza = '<a href="https://www.architectsalliance.com/projects/harbour-residences" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczP-OtmpfMGK2380hdkrXIdKI4-yHZJphCx4NC1eiFhqo9iDztgYrsd5s7oqmGFvpKYR9023iEssS5OWpMnIsz6s5CfHE08SkMhO2CmPT0pEKv_iWQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Harbour Plaza</span>' +
+        '<p class="popup-text">Completed: 2019</p>' +
+        '<p class="popup-text">Client: Menkes Development</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('Harbour Plaza-1', harbourPlaza, -79.37931612594758, 43.64218421649796);
+    addPopupToBuilding('Harbour Plaza', harbourPlaza, -79.37931612594758, 43.64218421649796);
+
+    //ICE
+    const ice = 
+        '<a href="https://www.architectsalliance.com/projects/ice" target="blank" style="color: inherit; text-decoration: none;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNrB-BJoovdNV59LEpdKGvsK14eYmJ452BjimCER2p7T31dJaegnvStW1-XhCnrTLI3_AA6xgSnS7JsCkPMWL2ykrN92IcRg_wiEZI2JPH746GXpA=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">ÏCE</span>' +
+        '<p class="popup-text">Completed: 2016</p>' +
+        '<p class="popup-text">Client: Lanterra, Cadillac Fairview</p>' +
+        '</div>' +
+        '</a>';
+
+    addPopupToBuilding('ICE', ice, -79.38201, 43.64191);
+    addPopupToBuilding('ICE-1', ice, -79.38201, 43.64191);
+    addPopupToBuilding('ICE-2', ice, -79.38201, 43.64191);
+    addPopupToBuilding('ICE-3', ice, -79.38201, 43.64191);
+
+    // 501 ADELAIDE - TCHC POLYGON
+    const adelaideTCHCcoords = [
+      [
+        [-79.36573, 43.65266],   
+        [-79.36565, 43.65268],
+        [-79.36565, 43.65270],
+        [-79.36523, 43.65279],
+        [-79.36500, 43.65226],
+        [-79.36492, 43.65228],
+        [-79.36485, 43.65213],
+        [-79.36517, 43.65206],
+        [-79.36531, 43.65239],
+        [-79.36526, 43.65241],
+        [-79.36534, 43.65260],
+        [-79.36568, 43.65253],
+        [-79.36573, 43.65266],
+      ],
+    ];
+    
+    const adelaideTCHC = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOCJyhnaj5gJAY5toSex61lMaGAtgrv8w2ddeL6UHT6xqETMMVGdzeGP1KYncdLeuou2w4BaDOfd4bQWBIU5Tn22_EHnUsMMeqx40IEY7Dadt4I2R8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">501 Adelaide - TCHC</span>' +
+            '<p class="popup-text">Completed: 2009</p>' +
+            '<p class="popup-text">Client: Context Developments</p>' +
+            '</div>';
+            
+    const adelaideTCHCheight = 60; 
+    const adelaideTCHCLng = -79.36523;  
+    const adelaideTCHCLat = 43.65279;
+    const adelaideTCHCId = '501 adelaide'
+    
+    addCustomPolygon(map, adelaideTCHCcoords, adelaideTCHCheight, adelaideTCHC, adelaideTCHCLng, adelaideTCHCLat, adelaideTCHCId);
+
+    // MYC Merton Yonge Condominiums
+    const myc = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOGX05PvBA5PcSmU0gMRRhkKoW6dpHgMtRrDr5kJTmMcseYowgl5pnHpwLCGTfx3ao459cBqATv3mXPLqfD4lJ8-sbBH77WzAxyv91QjJtlRDqDfWw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">MYC Merton Yonge Condominiums</span>' +
+        '<p class="popup-text">Completed: 2013</p>' +
+        '<p class="popup-text">Client: Cresford Development Inc.</p>' +
+        '</div>';
+
+    addPopupToBuilding('MYC Merton Yonge Condominiums', myc, -79.39559678018841, 43.69614227580232);
+
+    // BURANO
+    const burano = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMyR23liAKFxP5iSC_EG3PfTlIfF9xzjbuCL3ZL1e_DlT9OI-1IfzvDr5KinUPUg7ggixB0aswT63g3cCk6va5I5_DMK5WL_CADrx6P0L9Yp7pI92c=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Burano</span>' +
+        '<p class="popup-text">Completed: 2012</p>' +
+        '<p class="popup-text">Client: Lanterra Developments</p>' +
+        '</div>';
+
+    addPopupToBuilding('Burano', burano, -79.38669, 43.66212);
+
+    // TIP TOP LOFTS POLYGON
+    const tipTopCcoords = [
+      [
+        [-79.40257, 43.63523],   
+        [-79.40190, 43.63559],
+        [-79.40146, 43.63515],
+        [-79.40156, 43.63510],
+        [-79.40161, 43.63514],
+        [-79.40175, 43.63507],
+        [-79.40199, 43.63529],
+        [-79.40218, 43.63518],
+        [-79.40195, 43.63496],
+        [-79.40209, 43.63489],
+        [-79.40204, 43.63484],
+        [-79.40213, 43.63479],
+        [-79.40257, 43.63523],
+      ],
+    ];
+    
+    const tipTop = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN83kG28bXQDyIUvW7OcLjxuccenTnQBmof6y8UzdmlgTAegk-EqxJ5j5tMRPZDUNIeli0ybd-IWG0PjBQPlXeeDVKY_w_v8ISZQ2eyp0112oiN1NU=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Tip Top Lofts</span>' +
+        '<p class="popup-text">Completed: 2006</p>' +
+        '<p class="popup-text">Client: Context Developments</p>' +
+        '</div>';
+            
+    const tipTopheight = 50; 
+    const tipTopLng = -79.40214620987732;  
+    const tipTopLat = 43.635328292936855;
+    const tipTopId = 'tip top'
+    
+    addCustomPolygon(map, tipTopCcoords, tipTopheight, tipTop, tipTopLng, tipTopLat, tipTopId);
+
+    // GLAS CONDOS POLYGON
+    const glasCoords = [
+      [
+        [-79.39462, 43.64633],   
+        [-79.39400, 43.64646],
+        [-79.39392, 43.64626],
+        [-79.39455, 43.64613],
+        [-79.39462, 43.64633],
+      ],
+    ];
+    
+    const glas = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO0gu82hP1kFo3GMhzdJV0qGoAqSGf2OhZ4T_g0uxFRZxVaT0Aiw7IrHoB3jf9aS1LhXDWrE6m4A-2OB3F0wsk9hJ611CPmSluLITEDRzHGtlzCpBE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Gläs</span>' +
+        '<p class="popup-text">Completed: 2009</p>' +
+        '<p class="popup-text">Client: Lamb Development Corp.</p>' +
+        '</div>';
+            
+    const glasheight = 80; 
+    const glasLng = -79.39433654925068;  
+    const glasLat = 43.6463771434146;
+    const glasId = 'glas condos'
+    
+    addCustomPolygon(map, glasCoords, glasheight, glas, glasLng, glasLat, glasId);
+
+    // DUNDAS SACKVILLE APARTMENTS - 1 POLYGON
+    const dundasSackvilleCoords = [
+      [
+        [-79.36385, 43.66058],   
+        [-79.36343, 43.66067],
+        [-79.36336, 43.66049],
+        [-79.36377, 43.66040],
+        [-79.36385, 43.66058],
+      ],
+    ];
+    
+    const dundasSackville = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMwgrGHTByYxbDFCmz2xNVqJBgCdZt7-1pOflipPFLcBM792uX3kZdYLqYnO502alfDsq7Gb7E2TRhwaZaE_ZdvX7YM2f6FJ4wMPm4uJKWrLwpJ7Xw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Dundas Sackville Apartments</span>' +
+        '<p class="popup-text">Completed: 2009</p>' +
+        '<p class="popup-text">Client: Daniels Corporation</p>' +
+        '</div>';
+            
+    const dundasSackvilleheight = 90; 
+    const dundasSackvilleLng = -79.36343;  
+    const dundasSackvilleLat = 43.66067;
+    const dundasSackvilleId = 'dundas sackville'
+    
+    addCustomPolygon(map, dundasSackvilleCoords, dundasSackvilleheight, dundasSackville, dundasSackvilleLng, dundasSackvilleLat, dundasSackvilleId);
+
+    // DUNDAS SACKVILLE APARTMENTS - 2 POLYGON
+    const dundasSackville2Coords = [
+      [
+        [-79.36374, 43.66030],   
+        [-79.36332, 43.66039],
+        [-79.36324, 43.66017],
+        [-79.36365, 43.66009],
+        [-79.36374, 43.66030],
+      ],
+    ];
+    
+    const dundasSackville2 = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMwgrGHTByYxbDFCmz2xNVqJBgCdZt7-1pOflipPFLcBM792uX3kZdYLqYnO502alfDsq7Gb7E2TRhwaZaE_ZdvX7YM2f6FJ4wMPm4uJKWrLwpJ7Xw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Dundas Sackville Apartments</span>' +
+        '<p class="popup-text">Completed: 2009</p>' +
+        '<p class="popup-text">Client: Daniels Corporation</p>' +
+        '</div>';
+            
+    const dundasSackville2height = 35; 
+    const dundasSackville2Lng = -79.36343;  
+    const dundasSackville2Lat = 43.66067;
+    const dundasSackville2Id = 'dundas sackville 2'
+    
+    addCustomPolygon(map, dundasSackville2Coords, dundasSackville2height, dundasSackville, dundasSackvilleLng, dundasSackvilleLat, dundasSackville2Id);
+
+    // U CONDOS - EAST TOWER
+    const uCondosEast = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNePKsbOX8jIFMyx9h1ri0UqRT9ROkqSClvzRdUzLcKjSgsnyJ06hDfuC0TDnJurP-tS0AOwCyTBnyQw_dFUkgA3Xit5nIX703RrywlTQsAl1vpOiM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">U Condominiums - East Tower</span>' +
+        '<p class="popup-text">Completed: 2016</p>' +
+        '<p class="popup-text">Client: Pemberton Group</p>' +
+        '</div>';
+
+    addPopupToBuilding('U Condos - East Tower', uCondosEast, -79.38864787048523, 43.66718041346387);
+
+    // U CONDOS - WEST TOWER
+    const uCondosWest = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNePKsbOX8jIFMyx9h1ri0UqRT9ROkqSClvzRdUzLcKjSgsnyJ06hDfuC0TDnJurP-tS0AOwCyTBnyQw_dFUkgA3Xit5nIX703RrywlTQsAl1vpOiM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">U Condominiums - West Tower</span>' +
+        '<p class="popup-text">Completed: 2016</p>' +
+        '<p class="popup-text">Client: Pemberton Group</p>' +
+        '</div>';
+
+    addPopupToBuilding('U Condos - West Tower', uCondosWest, -79.38937361159331, 43.66711594292169);
+  
+    // ONE THOUSAND BAY POLYGON:
+    const oneThousandBayCoords = [
+      [
+        [-79.38821, 43.66546],   
+        [-79.38779, 43.66556],
+        [-79.38765, 43.66524],
+        [-79.38808, 43.66515],
+        [-79.38821, 43.66546],
+      ],
+    ];
+    
+    const oneThousandBay = 
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMswcvk251ugwkDFBt9sy-e1HIkGQ7EUfO3l48vahNcm3Bw4b3PldxLwb14oa4hUf21yRxYrk817q_SOQkQGW56CbpsTcWgDjKnd34ujdINXNwJNVg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<div style="margin-top: 20px;">' +
+            '<span class="title">1 Thousand Bay</span>' +
+            '<p class="popup-text">Completed: 2016</p>' +
+            '<p class="popup-text">Client: Cresford Developments</p>' +
+            '</div>';
+            
+    const oneThousandBayheight = 120; 
+    const oneThousandBayLng = -79.38779;  
+    const oneThousandBayLat = 43.66556;
+    const oneThousandBayId = 'one thousand bay'
+    
+    addCustomPolygon(map, oneThousandBayCoords, oneThousandBayheight, oneThousandBay, oneThousandBayLng, oneThousandBayLat, oneThousandBayId);
+
+    // QUAY WEST AT TIP TOP POLYGON
+    const quayWestCoords = [
+      [
+        [-79.40153, 43.63493],   
+        [-79.40133, 43.63503],
+        [-79.40089, 43.63458],
+        [-79.40158, 43.63423],
+        [-79.40170, 43.63435],
+        [-79.40122, 43.63460],
+        [-79.40153, 43.63493],
+      ],
+    ];
+    
+    const quayWest = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN83kG28bXQDyIUvW7OcLjxuccenTnQBmof6y8UzdmlgTAegk-EqxJ5j5tMRPZDUNIeli0ybd-IWG0PjBQPlXeeDVKY_w_v8ISZQ2eyp0112oiN1NU=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Quay West at Tip Top</span>' +
+        '<p class="popup-text">Completed: 2011</p>' +
+        '<p class="popup-text">Client: Monarch Corporation</p>' +
+        '</div>';
+            
+    const quayWestheight = 35; 
+    const quayWestLng = -79.4015489170544;  
+    const quayWestLat = 43.63480921412872;
+    const quayWestId = 'quay west'
+    
+    addCustomPolygon(map, quayWestCoords, quayWestheight, quayWest, quayWestLng, quayWestLat, quayWestId);
+    addPopupToBuilding('Quay West', quayWest, -79.4015489170544, 43.63480921412872);
+
+    // EAST LOFTS POLYGON
+    const eastLoftsCoords = [
+      [
+        [-79.36754, 43.65134],   
+        [-79.36712, 43.65144],
+        [-79.36697, 43.65110],
+        [-79.36728, 43.65103],
+        [-79.36737, 43.65125],
+        [-79.36749, 43.65123],
+        [-79.36754, 43.65134],
+      ],
+    ];
+    
+    const eastLofts = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNu7c9_J0bAAdf9EMVInaQQtjQ9ZF4Rv1PwQTTFbAgLqA2QJOvAi1zpx-h3yFPaS4s6kSYifR9tHTKu2GUwGHej7nB2ehe_XB4lilwfptdY5fRsmbQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">East Lofts</span>' +
+        '<p class="popup-text">Completed: 2010</p>' +
+        '<p class="popup-text">Client: Harhay Construction Management Ltd.</p>' +
+        '</div>';
+            
+    const eastLoftsheight = 45; 
+    const eastLoftsLng = -79.36737;  
+    const eastLoftsLat = 43.65125;
+    const eastLoftsId = 'east lofts'
+    
+    addCustomPolygon(map, eastLoftsCoords, eastLoftsheight, eastLofts, eastLoftsLng, eastLoftsLat, eastLoftsId);    
+
+    // FIFE HOUSE POLYGON
+    const fifeHouseCoords = [
+      [
+        [-79.37556, 43.66765],   
+        [-79.37511, 43.66775],
+        [-79.37505, 43.66760],
+        [-79.37550, 43.66750],
+        [-79.37556, 43.66765],
+      ],
+    ];
+    
+    const fifeHouse = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOU3vS67NFYoFRCoZw8KYqYKbeK-prcZbgaHcGdQmp3xuhdOCUXdddzCZrpcm1FKjkjLOFTXT5nMyvQfPI84zhupR9VXo4uKKzig1lNqv_u69MiAjQ" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Fife House</span>' +
+        '<p class="popup-text">Completed: 2008</p>' +
+        '<p class="popup-text">Client: Wellesley Central Residences </p>' +
+        '</div>';
+            
+    const fifeHouseheight = 50; 
+    const fifeHouseLng = -79.37556;  
+    const fifeHouseLat = 43.66765;
+    const fifeHouseId = 'fife house'
+    
+    addCustomPolygon(map, fifeHouseCoords, fifeHouseheight, fifeHouse, fifeHouseLng, fifeHouseLat, fifeHouseId);
+
+    // X CONDOS
+    const xCondos = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNIMDfFav3Q5KgytgjZYc47g7gU172hSXZJojI3QIN0DUCLPR2TwaiIxan5VhcveF2ICmTQ6odHE0c7-KjWWYi4_Z5-SJOcxycJOGClbgqHUZbrxss=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">X The Condominium</span>' +
+        '<p class="popup-text">Completed: 2010</p>' +
+        '<p class="popup-text">Client: Great Gulf Homes Ltd.</p>' +
+        '</div>';
+
+    addPopupToBuilding('X The Condominium', xCondos, -79.38049, 43.67023);
+
+    // 18 YORKVILLE 
+    const yorkville18 = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNIj1An9BghUzSqm6PObVjksN_qvvLtiqvB6lsqdNdDAosRCylgH6NwKwGdzVMidM-QIW6FPxMVGlbMc4peSJu7VqJDU-yWdnH2SLayZxpbv3fHeJM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">18 Yorkville</span>' +
+        '<p class="popup-text">Completed: 2008</p>' +
+        '<p class="popup-text">Client: Great Gulf Homes Ltd.</p>' +
+        '</div>';
+
+    addPopupToBuilding('18 Yorkville', yorkville18, -79.38804628457515, 43.672181737634574);
+
+    // 8 CUMBERLAND POLYGON:
+    const cumberlandCoords = [
+      [
+        [-79.38787624508836, 43.67131591126438],
+        [-79.38744472367742, 43.671400300567015],
+        [-79.38736161585012, 43.67117256477971],
+        [-79.38778754346501, 43.67108586311071],
+        [-79.38787624508836, 43.67131591126438],
+      ],
+    ];
+    
+    const cumberland = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOQTYBUJY-c_Wl5sROJD1cQDYr5bgslYVhz1AbDW8QhtWRpujaqIe4dd6gascOon7aTQGdH-oE9-6p5w873j44LHuRfi6xc7EOVuJvRfgO_fQTtMQw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">8 Cumberland</span>' +
+        '<p class="popup-text">Completed: 2024</p>' +
+        '<p class="popup-text">Client: First Gulf Corp.</p>' +
+        '</div>';
+    
+    const cumberlandheight = 170; 
+    const cumberlandLng = -79.38787624508836;
+    const cumberlandLat = 43.67131591126438;
+    const cumberlandId = 'cumberland'
+    
+    addCustomPolygon(map, cumberlandCoords, cumberlandheight, cumberland, cumberlandLng, cumberlandLat, cumberlandId);
+  
+    //CASA I
+    const casaI = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMDZd9ozu-LrCbKYFluJQL6Rgur1ZSEbIww3cZXJSQYs7hMG9kbvPwMxbvldCXikbrFh_yTCEvIhHNvgzuO2JRrSIfqB2usuOze9DWsGiN8ACrpIPQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Casa</span>' +
+        '<p class="popup-text">Completed: 2010</p>' +
+        '<p class="popup-text">Client: Cresford Developments </p>' +
+        '</div>';
+
+    addPopupToBuilding('CASA I', casaI, -79.38475321851756, 43.66881183756553);
+
+    // MURANO POLYGON:
+    const muranoCoords = [
+      [
+        [-79.38614, 43.66241],
+        [-79.38575, 43.66248],
+        [-79.38568, 43.66231],
+        [-79.38571, 43.66230],
+        [-79.38570, 43.66227],
+        [-79.38601, 43.66220],
+        [-79.38602, 43.66223],
+        [-79.38607, 43.66223],
+        [-79.38614, 43.66241],
+      ],
+    ];
+
+    const murano2Coords = [
+      [
+        [-79.38591, 43.66195],
+        [-79.38560, 43.66202],
+        [-79.38559, 43.66199],
+        [-79.38555, 43.66199],
+        [-79.38548, 43.66181],
+        [-79.38586, 43.66173],
+        [-79.38594, 43.66191],
+        [-79.38590, 43.66192],
+        [-79.38591, 43.66195],
+      ],
+    ];
+    
+    const murano = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMWTJlh1l1T6_rMYq-RwoX-p9ENqsp_iNkIZYCHvdzK-s5rYWDz0O37pCqPQox7l0Fe_fTa8yy4ph_Xu_H_UiBm-Ho0QGIvTO5XMTQodMwjgb8bIBg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Murano</span>' +
+        '<p class="popup-text">Completed: 2010</p>' +
+        '<p class="popup-text">Client: Lanterra Developments, Dov Capital Corporation</p>' +
+        '</div>';
+    
+    const muranoheight = 130;
+    const murano2height = 170;
+    const muranoLng = -79.38574643529499;
+    const muranoLat = 43.66225612473479;
+    const muranoId = 'murano'
+    const murano2Id = 'murano2'
+
+    addCustomPolygon(map, muranoCoords, muranoheight, murano, muranoLng, muranoLat, muranoId);
+    addCustomPolygon(map, murano2Coords, murano2height, murano, muranoLng, muranoLat, murano2Id);
+
+    // SUGAR WHARF 
+    const sugarWharf = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMdr_hC8C8nX2eZ1YuZmK0vESRBj02085TQKnDamRe8qnBBmyEzCFrE6T_IGsdHaShly-k2KtK8frBYYgclnWR__W3h2NOmVGt8xXiVecEzYAqlNRo=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Sugar Wharf</span>' +
+        '<p class="popup-text">Completed: 2023</p>' +
+        '<p class="popup-text">Client: Menkes Developments</p>' +
+        '</div>';
+
+    addPopupToBuilding('Sugar Wharf', sugarWharf, -79.37170, 43.64469);
+    addPopupToBuilding('Sugar Wharf-1', sugarWharf, -79.37170, 43.64469);
+
+    // IDEAL CONDOS POLYGON:
+    const idealCoords = [
+      [
+        [-79.40878, 43.65613],
+        [-79.40832, 43.65623],
+        [-79.40823, 43.65603],
+        [-79.40830, 43.65601],
+        [-79.40825, 43.65589],
+        [-79.40865, 43.65581],
+        [-79.40878, 43.65613],
+      ],
+    ];
+    
+    const ideal = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPsm6HsAQgQCIKzJHa7HneKKjfHfXvS7e4s_iCAKAoHruh1iWYoxnAW9-_MaXnxCrg_6H_YFch5-3FZmtW5L1oX-Oj-1Fc-tcIwAczc1vqMaZQcelM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Ideal</span>' +
+        '<p class="popup-text">Completed: 2002</p>' +
+        '<p class="popup-text">Client: Context Developments</p>' +
+        '</div>';
+    
+    const idealheight = 40; 
+    const idealLng = -79.40878;
+    const idealLat = 43.65613;
+    const idealId = 'ideal'
+    
+    addCustomPolygon(map, idealCoords, idealheight, ideal, idealLng, idealLat, idealId);
+
+    // HOME CONDOS POLYGON:
+    const homeCoords = [
+      [
+        [-79.47101, 43.65218],
+        [-79.47013, 43.65237],
+        [-79.47003, 43.65214],
+        [-79.47067, 43.65200],
+        [-79.47069, 43.65204],
+        [-79.47081, 43.65202],
+        [-79.47101, 43.65218],
+      ],
+    ];
+    
+    const home = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNsLJVSmZCaeErWhK4LjbfTUVj2T5Rr3Ltf8vACr5AsTWaineLShq1mdrFlDXPVr7pfxNiO1noKPcw-1YL-f4H4Ro43_TqY3GI0fmQeo1-OtqMpu1k=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Home Condominiums</span>' +
+        '<p class="popup-text">Completed: 2006</p>' +
+        '<p class="popup-text">Client: Context Developments</p>' +
+        '</div>';
+    
+    const homeheight = 30; 
+    const homeLng = -79.47101;
+    const homeLat = 43.65218;
+    const homeId = 'home'
+    
+    addCustomPolygon(map, homeCoords, homeheight, home, homeLng, homeLat, homeId);
+
+    // PURE SPIRIT
+    const pureSpirit = 
+      '<img src="https://lh3.googleusercontent.com/pw/AP1GczMCx25zl748drhr4a7r6YofiLlP9ALDB_M5Miy8Mv7fgbnxCRusIoWshe1oOW_7qo0b1tERfGoqjweYk8Q4nvGrveqW5Wl_HxcAQKx9o4G1xVv4vq8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+      '<div style="margin-top: 20px;">' +
+      '<span class="title">Pure Spirit</span>' +
+      '<p class="popup-text">Completed: 2009</p>' +
+      '<p class="popup-text">Client:  CityScape Development Corp.</p>' +
+      '</div>';
+
+    addPopupToBuilding('Pure Spirit', pureSpirit, -79.36029505912127, 43.65055900343684);
+
+    // PURE SPIRIT POLYGON:
+    const pureSpiritCoords = [
+    [
+        [-79.36198, 43.65013],
+        [-79.36088, 43.65040],
+        [-79.36089, 43.65042],
+        [-79.36024, 43.65058],
+        [-79.36009, 43.65026],
+        [-79.36085, 43.65007],
+        [-79.36084, 43.65005],
+        [-79.36198, 43.65013],
+      ],
+      ];
+    
+    const pureSpiritheight = 30; 
+    const pureSpiritLng = -79.36029505912127;
+    const pureSpiritLat = 43.65055900343684;
+    const pureSpiritId = 'pure spirit'
+    
+    addCustomPolygon(map, pureSpiritCoords, pureSpiritheight, pureSpirit, pureSpiritLng, pureSpiritLat, pureSpiritId);
+
+
+    // GARDEN DISTRICT POLYGON:
+    const gardenDistrictCoords = [
+      [
+        [-79.37482, 43.65508],
+        [-79.37453, 43.65515],
+        [-79.37443, 43.65491],
+        [-79.37473, 43.65485],
+        [-79.37482, 43.65508],
+      ],
+    ];
+    
+    const gardenDistrict = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOBbb4UWJm77COqoxw9SiGP5JHKgdhwvR083RA8qPQA-1M8KyAhoRGY9p8Ta401bjm6TEbCgIPWrX1HL9uNvBEhKhXACjtmC4YVMAQi_UOERjjLKU0=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Garden District</span>' +
+        '<p class="popup-text">Completed: 2024</p>' +
+        '<p class="popup-text">Hyde Park Homes, The Sher Corporation</p>' +
+        '</div>';
+    
+    const gardenDistrictheight = 94; 
+    const gardenDistrictLng = -79.37482;
+    const gardenDistrictLat = 43.65508;
+    const gardenDistrictId = 'garden district'
+    
+    addCustomPolygon(map, gardenDistrictCoords, gardenDistrictheight, gardenDistrict, gardenDistrictLng, gardenDistrictLat, gardenDistrictId);
+
+    // 55 CHARLES POLYGON:
+    const charles55Coords = [
+      [
+        [-79.38367, 43.66901],
+        [-79.38344, 43.66905],
+        [-79.38330, 43.66870],
+        [-79.38355, 43.66864],
+        [-79.38367, 43.66901],
+      ],
+    ];
+    
+    const charles55 = 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPpgAGf7pSBJIB7tcmBUwLq492oK7deq2xCKsHFTsJdbaCEHyB6Q9l1bvkTwY4uBNUAQLARurEflEU3YTm8ssezcKdxCrajX0l8pJG8LI_mTkLuINE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">55 Charles</span>' +
+        '<p class="popup-text">Completed: 2024</p>' +
+        '<p class="popup-text">MOD Developments Inc.</p>' +
+        '</div>';
+    
+    const charles55height = 154; 
+    const charles55Lng = -79.38367;
+    const charles55Lat = 43.66901;
+    const charlesId = '55 charles'
+    
+    addCustomPolygon(map, charles55Coords, charles55height, charles55, charles55Lng, charles55Lat, charlesId);
+
+    // CONDCORD SKY CONDOS POLYGON:
+    const concordSkyCoords = [
+      [
+        [-79.38195, 43.65904],
+        [-79.38143, 43.65915],
+        [-79.38108, 43.65834],
+        [-79.38159, 43.65822],
+        [-79.38195, 43.65904],
+      ],
+    ];
+    
+    const concordSky= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN-RCzOHESafUOVSN68pO39jrmcFtXX4OfVbo4bC2lE1iRBV3BBNmMvn3qRoDLmMvbKKEN51o_dA-elj1q_Rg3HlrEnBd6vB1DUJwh3XzeHWYi2F84=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Concord Sky</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Concord Adex</p>' +
+        '</div>';
+    
+    const concordSkyheight = 282; 
+    const concordSkyLng = -79.38195;
+    const concordSkyLat = 43.65904;
+    const concordSkyId = 'concord sky'
+    
+    addCustomUnderConstruction(map, concordSkyCoords, concordSkyheight, concordSky, concordSkyLng, concordSkyLat, concordSkyId);
+
+    // BAUHAUS POLYGON:
+    const bauhausCoords = [
+      [
+        [-79.36563, 43.65237],
+        [-79.36536, 43.65242],
+        [-79.36520, 43.65205],
+        [-79.36549, 43.65198],
+        [-79.36563, 43.65237],
+      ],
+    ];
+    
+    const bauhaus= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMT4uWZurRTHT79pvhDVMNzdfC8hJv_O330DdOhAN9UdQB7VUZqw0hVa4-EH3Ss2Gm0OP-RyknryqixvWQdbwdD6joXaY0pu1bgA4xllb5hPUx0H8g=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Bauhaus</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Lamb Development Corp</p>' +
+        '</div>';
+    
+    const bauhausheight = 111; 
+    const bauhausLng = -79.36563;
+    const bauhausLat = 43.65237;
+    const bauhausId = 'bauhaus'
+    
+    addCustomUnderConstruction(map, bauhausCoords, bauhausheight, bauhaus, bauhausLng, bauhausLat, bauhausId);
+
+    // THE GOODE POLYGON:
+    const theGoode1Coords = [
+      [
+        [-79.36166, 43.64945],
+        [-79.36116, 43.64947],
+        [-79.36105, 43.64921],
+        [-79.36049, 43.64934],
+        [-79.36036, 43.64907],
+        [-79.36141, 43.64873],
+        [-79.36166, 43.64945],
+      ],
+    ];
+
+    const theGoode2Coords = [
+      [
+        [-79.36163, 43.64934],
+        [-79.36113, 43.64942],
+        [-79.36092, 43.64884],
+        [-79.36141, 43.64873],
+        [-79.36166, 43.64945],
+      ],
+    ];
+    
+    const theGoode= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOmmHtf_t5soX6wG38W9Pf5D8fgGwxUvv4gik4NT2Eoc5DfOrBFQYI2x5BvRBdZJw8ANAdbhbi9TrqSzQlxe7u9x3kvqHIL0aAjkUZbfDR0tz-dDto=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Goode</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Graywood Developments</p>' +
+        '</div>';
+    
+    const theGoode1height = 40;
+    const theGoode2height = 106; 
+    const theGoodeLng = -79.36166;
+    const theGoodeLat = 43.64945;
+    const theGoode1Id = 'the goode'
+    const theGoode2Id = 'the goode 2'
+    
+    addCustomUnderConstruction(map, theGoode1Coords, theGoode1height, theGoode, theGoodeLng, theGoodeLat, theGoode1Id);
+    addCustomUnderConstruction(map, theGoode2Coords, theGoode2height, theGoode, theGoodeLng, theGoodeLat, theGoode2Id);
+
+    //  BREAD COMPANY POLYGON:
+    const breadCompanyCoords = [
+      [
+        [-79.39243, 43.65692],
+        [-79.39197, 43.65701],
+        [-79.39178, 43.65658],
+        [-79.39225, 43.65647],
+        [-79.39243, 43.65692],
+      ],
+    ];
+
+    const breadCompany= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNMfekSZplrnjyg9uMzW9XzZJ7siHO0NvZ_p9LaFdxKTYzgCr7LCg5GZ6XaGkt1i4wZIyz_Tb8UUfKfoyqUvdmRJrkx1kU7xTPDiRdSAVoqnz5dG2U=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Bread Company</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Lamb Development Corp</p>' +
+        '</div>';
+    
+    const breadCompanyheight = 70; 
+    const breadCompanyLng = -79.39243;
+    const breadCompanyLat = 43.65692;
+    const breadCompanyId = 'bread company'
+    
+    addCustomUnderConstruction(map, breadCompanyCoords, breadCompanyheight, breadCompany, breadCompanyLng, breadCompanyLat, breadCompanyId);
+
+    // THE PEMBERTON POLYGON:
+    const pemberton1Coords = [
+      [
+        [-79.38887, 43.67157],
+        [-79.38861, 43.67161],
+        [-79.38850, 43.67133],
+        [-79.38876, 43.67127],
+        [-79.38887, 43.67157],
+      ],
+    ];
+
+    const pemberton2Coords = [
+      [
+        [-79.38861, 43.67161],
+        [-79.38835, 43.67167],
+        [-79.38823, 43.67138],
+        [-79.38850, 43.67133],
+        [-79.38861, 43.67161],
+      ],
+    ];
+
+    const pemberton= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMk5pQYFFZZXlE-NWFXc6yf2_377Y3Bcr94GCF3qVfZoU3-2ASXWKJX4pjQCMIfdT__IQxfrZA_xBNyV4tNny2jEFEUMLYKsnDss4mxgGh6Upub0hQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">The Pemberton</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Pemberton Group</p>' +
+        '</div>';
+    
+    const pemberton1height = 140; 
+    const pemberton2height = 180;
+    const pembertonLng = -79.38861;
+    const pembertonLat = 43.67161;
+    const pemberton1Id = 'pemberton'
+    const pemberton2Id = 'pemberton2'
+    
+    addCustomUnderConstruction(map, pemberton1Coords, pemberton1height, pemberton, pembertonLng, pembertonLat, pemberton1Id);
+    addCustomUnderConstruction(map, pemberton2Coords, pemberton2height, pemberton, pembertonLng, pembertonLat, pemberton2Id);
+
+    //  JUNCTION POINT POLYGON:
+    const junctionPointCoords = [
+      [
+        [-79.45825, 43.66405],
+        [-79.45766, 43.66370],
+        [-79.45817, 43.66369],
+        [-79.45829, 43.66398],
+        [-79.45825, 43.66405],
+      ],
+    ];
+
+    const junctionPoint= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNBDVHFRVE9-lrotsml8n9kRNcGAw3h6WHF04J4atzn6Yajbz5_HXd3yZdLhT4q2GmdVj4_7ZD_FDo7OYx3wEuDAEWC2KSCWaIuJK1S2xXGd0DLqZM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Junction Point</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Gairloch Developments</p>' +
+        '</div>';
+    
+    const junctionPointheight = 23; 
+    const junctionPointLng = -79.45829;
+    const junctionPointLat = 43.66398;
+    const junctionPointId = 'junction point'
+    
+    addCustomUnderConstruction(map, junctionPointCoords, junctionPointheight, junctionPoint, junctionPointLng, junctionPointLat, junctionPointId);
+
+    //  WEST DON LANDS 3,4,7 POLYGON:
+    const westDonLandsBlock3Coords = [
+      [
+        [-79.36021, 43.65207],
+        [-79.35935, 43.65227],
+        [-79.35925, 43.65204],
+        [-79.35976, 43.65191],
+        [-79.35962, 43.65160],
+        [-79.35911, 43.65171],
+        [-79.35899, 43.65149],
+        [-79.35987, 43.65128],
+        [-79.36021, 43.65207],
+      ],
+    ];
+
+    const westDonLandsBlock4Coords = [
+      [
+        [-79.35915, 43.65232],
+        [-79.35821, 43.65255],
+        [-79.35787, 43.65175],
+        [-79.35878, 43.65154],
+        [-79.35889, 43.65177],
+        [-79.35827, 43.65192],
+        [-79.35843, 43.65226],
+        [-79.35905, 43.65210],
+        [-79.35915, 43.65232],
+      ],
+    ];
+
+    const westDonLandsBlock7Coords = [
+      [
+        [-79.35796, 43.65157],
+        [-79.35764, 43.65164],
+        [-79.35751, 43.65142],
+        [-79.35786, 43.65133],
+        [-79.35796, 43.65157],
+      ],
+    ];
+
+    const westDonLandsBlock347= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMOsqSTr8VXTWSbAp_ZrZRwbDPU_7eaB6xmHJRgoXl4T6PIf8i0BqUXrCzq0IfYM7Ogj2LvN9QK_y6DrajOboY25g3AhCiWc_1mes-kuJGLneWGOXY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">Cherry House at Canary Landing</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">DKT Partnership (Dream, Kilmer and Tricon)</p>' +
+        '</div>';
+    
+    const westDonLandsBlock347height = 46; 
+    const westDonLandsBlock347Lng = -79.35976;
+    const westDonLandsBlock347Lat = 43.65191;
+    const westDonLandsBlock3Id = 'west don lands block 3'
+    const westDonLandsBlock4Id = 'west don lands block 4'
+    const westDonLandsBlock7Id = 'west don lands block 7'
+
+    
+    addCustomUnderConstruction(map, westDonLandsBlock3Coords, westDonLandsBlock347height, westDonLandsBlock347, westDonLandsBlock347Lng, westDonLandsBlock347Lat, westDonLandsBlock3Id);
+    addCustomUnderConstruction(map, westDonLandsBlock4Coords, westDonLandsBlock347height, westDonLandsBlock347, westDonLandsBlock347Lng, westDonLandsBlock347Lat, westDonLandsBlock4Id);
+    addCustomUnderConstruction(map, westDonLandsBlock7Coords, westDonLandsBlock347height, westDonLandsBlock347, westDonLandsBlock347Lng, westDonLandsBlock347Lat, westDonLandsBlock7Id);
+
+    //  1414 BAYVIEW POLYGON:
+    const bayviewCoords = [
+      [
+        [-79.37397, 43.70162],
+        [-79.37376, 43.70166],
+        [-79.37367, 43.70139],
+        [-79.37388, 43.70135],
+        [-79.37397, 43.70162],
+      ],
+    ];
+
+    const bayview= 
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN92eJSbNnhvCFrBYz7ZzsLzhhScQNE2RytWfW96geZKtyXW9DUjsI7HAAvUJV1Q-fDD8thB08XMjjPjytcenp0J32UCdYxhFVmoCkwYkeQjViD4ns=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<div style="margin-top: 20px;">' +
+        '<span class="title">1414 Bayview</span>' +
+        '<p class="popup-text">Under Construction</p>' +
+        '<p class="popup-text">Gairloch Developments</p>' +
+        '</div>';
+    
+    const bayviewheight = 28; 
+    const bayviewLng = -79.37397;
+    const bayviewLat = 43.70162;
+    const bayviewId = '1414 bayview'
+    
+    addCustomUnderConstruction(map, bayviewCoords, bayviewheight, bayview, bayviewLng, bayviewLat, bayviewId);
+    
+  });
+  </script>
+</body>
+
+</html>
+
+
+
+
