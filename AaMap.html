@@ -72,7 +72,7 @@ body {
 <body>
   <div id="map"></div>
   <script>
-
+// Date Edited: October 15, 2024
 const bounds = [
         [-79.47238371329142, 43.61082090443321], // Southwest coordinates
         [-79.33180580177495, 43.73906861492549] // Northeast coordinates
@@ -96,85 +96,84 @@ const bounds = [
 
     // Event listener for when the map is loaded
     map.on('load', function () {
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN0ORHnd2PsHFWTdtLNE5uKcVOJHn1ha_isW5acRCg-ny-STOQEuZVnaZ1Z9Oo5PdJu-9EYS7bbK4VUaORgmi0mxmmAlm_8HRjBBbq5xR66E6qxUrg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPLgerzdhbhmme0UyIzoGmDnpS59YDxbHef8Z3I_RXvAH-X_PhyO1RPUg5YoKI6x_UDz4wDU8kXWy906k4IP2R2-Ho16ISKbKqBS673QId5kqvhTx8=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMZAb14W_g3j9LFLJNCtb-_wqdj4jA_HtttIFtOEmR0oFF6E0guQWeZAqlS4HAHDiKDnyA7SIY0TCdACHNqZ2M6FMfLngL0w6eyZduzefR8-5DZtCc=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczONNY0KwTkZw6QKG7OPQ9PzCI766sJGKDI2JMd0ZbPhXYYxqvz42YTgDDi_fw1W0fZNVZdOt2tvywc8Jyi3vMMxgIBRvKkrCVK4zh7xXzDmy0tBfVQ=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNjoyB--P3nqJzTF14g4koStsT1R2H62-obTGA5r2QT9OLJgj19moGwKHr5I9f6EuuDvQMrc9NdnOBFiSg-kxjkTnG-itWXTnEIoKc7DDZ5CPSQ1XY=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOqNgK-KlDwsnEdUllovdft_ulX0nRJ4VlS0EwFDRnV6-HbIWW9gPJkAUpCNF2yt0pnDZtvnXBf7Bp03fCXOCHw4TqpjH648fW5EsZ_HnI1kpZaH-A=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNT3np8G8WvEjbsUfcm_1sUskVWACbXyNWqTz4ru5NVTv1c_sKsZMGxb68BFckhaC1B13zrtIPuvf5m3ePXzVl3gfGIg0gXf5c1pcFfOVu5ojt2tc4=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO4WS7Z2_sF484nvLMTyGZuAR62qx_OzUjAOP-wQj8YVNZzntAaT5ARK0WUs0RJH27gKqTcrWZXYoUTS1tm43Phn7HA56nnSWQwcUIJKkgNNwoo6CI=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOkzKXhbzmK-qII_8mJHjyRFe16ZAzScU95TrID82S-3r0MHEHhz3b6TMNU6-9v3TAyWymTDdOYeGH5Mo-p-QQfiemg0xqKgRxjPv9W_FNXcFJQlg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP0BHbxD-hntd1GzpWClghQAffRh4s_Zndyqt7ZTfKJyqM_yReVd5ATDT0-oTbLfpmJL8O6V60ZEHButynDAo89HvPKsr87F9ylWFIsyVQEDPhOPw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPC9R_RUlbNNkE7lS6KozlY7wlO9FPqJ91sG9YJ79qCmzSiwpmr2XUkVNewCH6r6D0ipJdoNWbAeWE04UAeo1edL_gS43PsfPFtPyirPZ6Jf8_oG9Q=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNFZGVNKuvoWxJrU9mApAGlqmzRIDdf-s_pPi-drgI52KH1J_iTx9CHSEeEvQucMIeeDDXht0kOzlGbtfRd56vYWEdpUYhxri7cD7DxeKbrL7wgkhk=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOBSGvWGYbwY-sEJEagMkDNV2Kawh8zEvy67Qp12YRlBSPYpjjAqrcvl9xvzcW6CK7qXPTY1DyREPf70bUN5sm_bd2IRuEy5XVn3LwNRB5KUvDBaM8=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP9fbfb_3K8GULbD59a_RjpL5FpKm3ngMhSMVbnYtfDL2E5Vyyrq4wRDxm2aCeI14dd42_SUHSs8Zhzp17AXyx3LW6VaIA3TEO3KYOvtvR89UULeb0=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOVdElK5JCcnUOXZIpViGUmIbfAGHNDA0KjENXhj2YwXpfb0lbJvh_-CqWUMLUHwceoAuAZN2RkFEFm003GV7XY3vZuhfbpaUpU-ILfIDOcFXJz4Q=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP1Vx-2jOphPhbXChpO_roxF7YTtiCUkQwd-0_Y1YMDNf40u8Gqv_416OnSuDR4RXaQZEpmXVsy1fcODkb7KETZIJWRoRJ2unW-HW4Gq3DAE3wHJgc=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO402lpNrs0P0QIcNlrBlk3yKXGEFo1_JwrvknrAx1FjnNI53SFjk2SaJS7pk-4FVRWZKCJlEhrDGoe2kUayL0c-x3j_WoKwU4rHEgqOCv8mXVxbvE=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMn2cqUUOkjnmLUP34wXX8fhVd1L-VYVMQyYC-FMjtdRujUvFLbLzWb1Om4L2WAclWdxKskHa5Lh2JuWqz189INv0iQ8mEveb8L0hWst0wrttK8gQ=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPmzGXBrlPxC9Mz_Lhfc5VzzWtLB4poq-QPYGLcBAZYeUbVH0Be17X3UPR641MYH4set_xfqBh0zNVOi3izF1FNK8iLqsyKHioi4we4vsJNIH5JDIY=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMfQ-Z6luDn7XCEfXtT9yNpYv7RS6iZMh8lp6smzr-r0uno7rFGU0ranOnr9th7jEgD24crpfCvknJr3b59AwlWt4biK4epEtLy1-Qxd7BX8j5kwhY=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMiNOO7IJTlVCjxJn_5vsAJrv_Ob5TlU5TOQ7TrXQAUPDPuIGFSenh0k0fqdA3xqz__XO0s0gD4u-CAopmDL8Lr6iiCQiVQ6l0_wFf1dG_JSrgpJCw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO-UXVRia1gv_5r911VnVYKWWCCc1z98JnV0wSBoXIXAPTnyAqCWduoNsYeGcUqPmtbQqz-KDf09csFyRC6duOFxGEtEnRXhVchPX3GCLX96Bih7-c=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOuhoJiIjys04HS9uoipt1D7XWvQqyfZ9Wnqir9_B_TidYWm20rklcZw3dgnXADg3WX4DaAoM1MNQltnxwxguky2bJKurj45Ok5S5TBMqmHS96kZgc=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMswcvk251ugwkDFBt9sy-e1HIkGQ7EUfO3l48vahNcm3Bw4b3PldxLwb14oa4hUf21yRxYrk817q_SOQkQGW56CbpsTcWgDjKnd34ujdINXNwJNVg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN3o0PbqiPjzGGZmOmmvgqKuTCMMq_NZ9_lzvgz7n_Jn4FIg25umaIy__zmcY9ZXoAAZ-gIOm-Cnf6otNmkbndRxzg2cb3KBfwPa11R1nYTTrSwE_I=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPgDzxoCaXi4YE4TfQRJPRLfdujMT2ffr8yEbN0WiAHFiQLM1lVoypo9OO5X2gUMQUdUqq8JlO-wETrSQzM3NTZ6wys36Hdu5aTC1FdoGhCIOPXsw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPz56vVv-ivbkRxfxC8Dc9EC_xZcL_SLe5WzDlBdhBJdusu7OyapPgmDNZBR143eNbKZvitEXWMbl2fXsJxloK2xUyLqX6nCY8w06B0K_iv7FVQvg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPB85kwITZEHxZMzmvlBlc-tfs5m8I_EHKBsf2H8ofO0OSl1ivtPnup3vnqYBe-PN0sMGt3bvbk3HUvw_EScwdnZZVAYNLgvP_fl3DsFmVtS8NDBA=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP-OtmpfMGK2380hdkrXIdKI4-yHZJphCx4NC1eiFhqo9iDztgYrsd5s7oqmGFvpKYR9023iEssS5OWpMnIsz6s5CfHE08SkMhO2CmPT0pEKv_iWQ=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNZtA7ji8QpcKwJnqB9jzJCGqaqv_D2fQ_PKr6-iv6LkyNzvu5grwHUiUrgH-yJl2MYIswxzhJf7Pi2aX1n48iOTuBw0im0TvRflqzQH6MBdMFdkhY=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPOhzuqYKrGfDmH1rEsKGYjebyc4-cPlfPN67vqSDODocGpAw_PaPxyilLLnNrg-F6_twUGy30bJKtpUw4qqnG-s3SGABxcNQJEDgougUMIOwy5sA=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO2sTIUj2zSymk9vtMT3Z2Z9YNTXqPxLgKi3D2UgwF9R65Sx-ijfq8IZWUWCbH0r0gKzcER2EWCOdQxPnreUM1CIF8N8qUttJyuvU1ZqPVXpt_2Lw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPq54fSf3E4wXkMlA2kulempDPiZQEcwevZHmBxBMhqnGXXA97ppiBykDvSoTpsJFCP2GAGkQBO5MbdydFt0mhkptMKn7PWYpsN5Duu_aFFK3g5wmE=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOZQ59J8rXNLQjaq5FeSF57isvBPkbLiXl12h4ds9hgGkamYG846rj4xyyAvzl5b__mFGkP22Yh5ubuGbOBHPSLIOOSUSJ5tvhjXob924XlRcUT3s8=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMDZd9ozu-LrCbKYFluJQL6Rgur1ZSEbIww3cZXJSQYs7hMG9kbvPwMxbvldCXikbrFh_yTCEvIhHNvgzuO2JRrSIfqB2usuOze9DWsGiN8ACrpIPQ=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNFkZvu-h2Mh-u7aesi9Kz03HWsA5P_uMUjsRCbrDEuDQTpdSM5RKFcZu52TlQjRM4UfruPCnpYjCBxK9TKXQUSqdW1vrK8Ra1yuZddG1uc62q6DEs=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMhJ5jc8fA73tq3It5lkokasqsIC7kb1U9zxkMVOzbvLSkmAcxID_1UKXDuvFqIOidA-XP8Q00Uwr6xGDqvAAlhkEuoAnA56MbgstmrHMBmYj5lj2M=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOIzXIPZfdziveS3rjdCQXXzTcDcLzdChLlNTSg-eVRvPjHHBz96Nae7-WWN5RoLKibqDEnt9rVL8U5XK3OkzQOcuo0dCnGypRXlYWgHtoxT43lmw=s0");
-      preload_image("https://live.staticflickr.com/65535/53938299794_b1bafe969e_k.jpg");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMPZIffdL6CL97pKfSP-as5oFnTJ-6EzGXwe1mmPkZwk-QQ4g5MvojwiRR8y8AWAaSqBmfV97nepzGefBmzKnwAgafVsv9CIujSmzyC_COOGlxzh7Q=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO9UHYZS2aOUxvmbaStVBrzLI24jcaqtx1477dMZ1P3pkqYUnmbvYx0UV7wH23wCOoXq4VvHA3Fnvnec1oqgg6BzPOjx6_JzfElq4XL6P3wgSXJPcg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOgeKt0R1tPvyUVE_a8FHj1Q9i2oNMiCbJMhWlZ2WA--48jImmWP44akAikKVYggpXVe75v-g4s4T89ff_V9FahmxKsvnZyDV4czFMYPZkPTfxT1kw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPSGYZ_OZHSzbZhdVQ2CfKgrR1EYrdKGdoWYPaRK3464ekkUcCMU8Jws19k9Qxid7BP0XuUa_3ofc5SN5HxS9m5-56BTG5olOTG1Rxbe9LGQIbV2M8=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOhMw3CLOuPPGHfiLs00h2It4p-T7JGI0gpNKCxibPE5njObuSt6tPiVPCzYDZnOU8y2nf4XDRVNFRbp8dk3iUp8l0D4q0s-p8G7_A1iK8SaR1mR24=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMCSbhialO-Hm9sgA_xNjBEnaLLo1spbEgN8pYBt1mUlFWNsCL3kEt5c-2Zs-47d2l-MRHenqHocdHqSznqP0D4TA9WSj-3sXrRtCOTk4WMc7F7bIg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNbqT2KALnDi5o0h3eM0z6tisZKG4paicGdd0GTWztam9pjFHYbj0pHe4rPp5oLiUDwsyhSh2hF3OeSdSoO4lq1nazk07Wu5E-fHch6xg0mBi_PuFI=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNITUtBZQjOE6ucA7EUnOSeye5fth7oOafXZbJz_VC4Q26rIziEfjD1pVSfPyFp9oKn0tzJrIBZ_5SKSwABejYjETOuqlEgQtRir75evi6GmvJh928=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNrB-BJoovdNV59LEpdKGvsK14eYmJ452BjimCER2p7T31dJaegnvStW1-XhCnrTLI3_AA6xgSnS7JsCkPMWL2ykrN92IcRg_wiEZI2JPH746GXpA=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOCJyhnaj5gJAY5toSex61lMaGAtgrv8w2ddeL6UHT6xqETMMVGdzeGP1KYncdLeuou2w4BaDOfd4bQWBIU5Tn22_EHnUsMMeqx40IEY7Dadt4I2R8=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOGX05PvBA5PcSmU0gMRRhkKoW6dpHgMtRrDr5kJTmMcseYowgl5pnHpwLCGTfx3ao459cBqATv3mXPLqfD4lJ8-sbBH77WzAxyv91QjJtlRDqDfWw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMyR23liAKFxP5iSC_EG3PfTlIfF9xzjbuCL3ZL1e_DlT9OI-1IfzvDr5KinUPUg7ggixB0aswT63g3cCk6va5I5_DMK5WL_CADrx6P0L9Yp7pI92c=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN83kG28bXQDyIUvW7OcLjxuccenTnQBmof6y8UzdmlgTAegk-EqxJ5j5tMRPZDUNIeli0ybd-IWG0PjBQPlXeeDVKY_w_v8ISZQ2eyp0112oiN1NU=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO0gu82hP1kFo3GMhzdJV0qGoAqSGf2OhZ4T_g0uxFRZxVaT0Aiw7IrHoB3jf9aS1LhXDWrE6m4A-2OB3F0wsk9hJ611CPmSluLITEDRzHGtlzCpBE=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMwgrGHTByYxbDFCmz2xNVqJBgCdZt7-1pOflipPFLcBM792uX3kZdYLqYnO502alfDsq7Gb7E2TRhwaZaE_ZdvX7YM2f6FJ4wMPm4uJKWrLwpJ7Xw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNePKsbOX8jIFMyx9h1ri0UqRT9ROkqSClvzRdUzLcKjSgsnyJ06hDfuC0TDnJurP-tS0AOwCyTBnyQw_dFUkgA3Xit5nIX703RrywlTQsAl1vpOiM=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNu7c9_J0bAAdf9EMVInaQQtjQ9ZF4Rv1PwQTTFbAgLqA2QJOvAi1zpx-h3yFPaS4s6kSYifR9tHTKu2GUwGHej7nB2ehe_XB4lilwfptdY5fRsmbQ=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOU3vS67NFYoFRCoZw8KYqYKbeK-prcZbgaHcGdQmp3xuhdOCUXdddzCZrpcm1FKjkjLOFTXT5nMyvQfPI84zhupR9VXo4uKKzig1lNqv_u69MiAjQ");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNIMDfFav3Q5KgytgjZYc47g7gU172hSXZJojI3QIN0DUCLPR2TwaiIxan5VhcveF2ICmTQ6odHE0c7-KjWWYi4_Z5-SJOcxycJOGClbgqHUZbrxss=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNIj1An9BghUzSqm6PObVjksN_qvvLtiqvB6lsqdNdDAosRCylgH6NwKwGdzVMidM-QIW6FPxMVGlbMc4peSJu7VqJDU-yWdnH2SLayZxpbv3fHeJM=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOQTYBUJY-c_Wl5sROJD1cQDYr5bgslYVhz1AbDW8QhtWRpujaqIe4dd6gascOon7aTQGdH-oE9-6p5w873j44LHuRfi6xc7EOVuJvRfgO_fQTtMQw=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMWTJlh1l1T6_rMYq-RwoX-p9ENqsp_iNkIZYCHvdzK-s5rYWDz0O37pCqPQox7l0Fe_fTa8yy4ph_Xu_H_UiBm-Ho0QGIvTO5XMTQodMwjgb8bIBg=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMdr_hC8C8nX2eZ1YuZmK0vESRBj02085TQKnDamRe8qnBBmyEzCFrE6T_IGsdHaShly-k2KtK8frBYYgclnWR__W3h2NOmVGt8xXiVecEzYAqlNRo=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPsm6HsAQgQCIKzJHa7HneKKjfHfXvS7e4s_iCAKAoHruh1iWYoxnAW9-_MaXnxCrg_6H_YFch5-3FZmtW5L1oX-Oj-1Fc-tcIwAczc1vqMaZQcelM=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNsLJVSmZCaeErWhK4LjbfTUVj2T5Rr3Ltf8vACr5AsTWaineLShq1mdrFlDXPVr7pfxNiO1noKPcw-1YL-f4H4Ro43_TqY3GI0fmQeo1-OtqMpu1k=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMCx25zl748drhr4a7r6YofiLlP9ALDB_M5Miy8Mv7fgbnxCRusIoWshe1oOW_7qo0b1tERfGoqjweYk8Q4nvGrveqW5Wl_HxcAQKx9o4G1xVv4vq8=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOBbb4UWJm77COqoxw9SiGP5JHKgdhwvR083RA8qPQA-1M8KyAhoRGY9p8Ta401bjm6TEbCgIPWrX1HL9uNvBEhKhXACjtmC4YVMAQi_UOERjjLKU0=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPpgAGf7pSBJIB7tcmBUwLq492oK7deq2xCKsHFTsJdbaCEHyB6Q9l1bvkTwY4uBNUAQLARurEflEU3YTm8ssezcKdxCrajX0l8pJG8LI_mTkLuINE=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN-RCzOHESafUOVSN68pO39jrmcFtXX4OfVbo4bC2lE1iRBV3BBNmMvn3qRoDLmMvbKKEN51o_dA-elj1q_Rg3HlrEnBd6vB1DUJwh3XzeHWYi2F84=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMT4uWZurRTHT79pvhDVMNzdfC8hJv_O330DdOhAN9UdQB7VUZqw0hVa4-EH3Ss2Gm0OP-RyknryqixvWQdbwdD6joXaY0pu1bgA4xllb5hPUx0H8g=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOmmHtf_t5soX6wG38W9Pf5D8fgGwxUvv4gik4NT2Eoc5DfOrBFQYI2x5BvRBdZJw8ANAdbhbi9TrqSzQlxe7u9x3kvqHIL0aAjkUZbfDR0tz-dDto=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNMfekSZplrnjyg9uMzW9XzZJ7siHO0NvZ_p9LaFdxKTYzgCr7LCg5GZ6XaGkt1i4wZIyz_Tb8UUfKfoyqUvdmRJrkx1kU7xTPDiRdSAVoqnz5dG2U=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMk5pQYFFZZXlE-NWFXc6yf2_377Y3Bcr94GCF3qVfZoU3-2ASXWKJX4pjQCMIfdT__IQxfrZA_xBNyV4tNny2jEFEUMLYKsnDss4mxgGh6Upub0hQ=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNBDVHFRVE9-lrotsml8n9kRNcGAw3h6WHF04J4atzn6Yajbz5_HXd3yZdLhT4q2GmdVj4_7ZD_FDo7OYx3wEuDAEWC2KSCWaIuJK1S2xXGd0DLqZM=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMOsqSTr8VXTWSbAp_ZrZRwbDPU_7eaB6xmHJRgoXl4T6PIf8i0BqUXrCzq0IfYM7Ogj2LvN9QK_y6DrajOboY25g3AhCiWc_1mes-kuJGLneWGOXY=s0");
-      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN92eJSbNnhvCFrBYz7ZzsLzhhScQNE2RytWfW96geZKtyXW9DUjsI7HAAvUJV1Q-fDD8thB08XMjjPjytcenp0J32UCdYxhFVmoCkwYkeQjViD4ns=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPgV1RTxztenOZeSqB6mCuJCmK8Uczhr_NeOggKP4ph_9fOYbDl6GxNAo3Bg8FrKljlF01shn8zF22inGFHojXFS86jGftscNBiAP3wJtQakpXNmg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOMm-yFITqibdE9X4fQ-C5iUwAfTYySiDUIyVal4lCelJEJPD77WA6JK6lqj6Dk4aaVjpNRlMpEEqZ9mAUqKPjpejiENHS4BcR5aWSmSAePU34Y2w=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO3VTtCivufOkoB73UBT8cYIwJzjZLcoDCcXuaDltXG3yZSRPBHVxX3Dth21YJFBm41sT7FASPH_ML4PZtHCfsqiiat4lpyMCNK8Nas6Z-bETgEmg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPh0odsLSoNHRxNot-7AjwpqVo-fUYtCwds92Ieeyz00ZDpTRKW78vJI0aXoXl7QTuzBslqiSojqHUuF85joULEcNdLvDV03FfQ4gYEo6O42G_JFw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMvVul35_dvgIs4iCyWHUJx4ssP3qq6lCb_3xkGh3ytcy4BXLcPjQRyYlQCWsfec7o6N-pa_BkONXjlIidPEewx6yuEbduQ-asM3VnbPygsVypzYw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNubg0B0ZX85ZSKZOb4PuX88uge5Go1LYe0pDXdT8NYJvKxMudcXp3YMBwLJKaVobuOtdLK7DchFw9Py5ZzQHbdax-D5XgsXG34bp4CQGdDZyFRbA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNrSjkV-XiI_21LBN9Er2Sq4CManWD4V_NXH0uLt_JNqI3D2LNliea2_YuYEO8beJI1d-m5VGb3siUSQo7NLe-HNOgGEqZLZVp3QWnKOWyhqEG-_w=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPu0B8UBb7ktMl5VBiFwOcTEhGODoweXf5H6eTJjlnxFIyfWrukT4JYLohj8NRSpCubYxVFNXUXDtmr7ECIPIX_c0XRPGzpcm26zsauZKS1Lx_rKg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO3edTGwK_ao7upkQ65TMQITPMQQ-47uO_O4EHspLOh-d4TRcCDzXqvgULUV-VD1niHDcq-j_vy7JkD4D8qVHQWelNH1Lgyav9q0H2upEZQKvSMOA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMgj6KbGn6zCBZZhyYkoGNt716cw4E-6CmW9lg42VQWzaNOad_enmTZizKZb8CfGOAQr1q9urEV20Do7nXQJCSBNtpctsZ8ZaG9N-6pxifw_9vXcQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNnANd5obTBlNRLDssQTezs1vg3E9HCxXFRmzyeJpEeLe26xXcvFhMTAf9E45hMaFNUfw9EeM0XqGcboGIxBZaw2iUFx9KSNAYdrbfuyGIpi0A6ew=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMfVnlr-WzaHTO5pmyV4fc9ShsDsGdmCCFKoi2Cp4edeqohtpA8bxnRv4dcxhw-G7jChX8oWvdlWS627nvjKyF5HwcBL7Da7qbsM8ol1x98VVsd_w=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOrPtaT-sTdlk-ZQhY3ZaW8zDh9GZdCF7fvw-Mv4tb1CZeR29Xezng3z3J9Vh6Cmv9qesJbp7myOtEP8FHzGTtkp11mPaTBZ5pWpzzo4MmoXv14VA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOzhfifNE1ExyINA4YPkW7i6dFLHLBERQMm32XJn-vX5B6q5g_X1RqV81ZJ8vBtLwTxzI8iUQ7peAlxRxE_-k8YyK9D-80KWLeNBsUbEtd1JRXlyg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN8Y4hZzoBrgaGgvf6Mj8yW11t29VaSJ5r3mImk9Fb_NKyF6gDYVp5hvFNLKR4qtTixXlxLVBwEg5-UU5gfpulnTEZvm0RicMZn-RoH1RoRJksOow=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNdUKKmcDCJtCxP0JjGt8CVlJdIl_MmOOdDVHPKfGhO0Eu2iWewVgpP4N7qo5B85P144H6jcT7dDNJMGo5KyI5-utOYUQYh7_Xf_CvnNO586Uprqg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN-XQMVwME9lNhsXsIplqTMtUaf_jVqqCEGhj5awWfCbbz8RQT3oQnCBooQDiHRn-AieBcS2j_9fmW-8EH4ZuA0dZzwLNvfqJLDRDCM6K8pFnRbqQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM3hF0DJxO4yXKTHdPd4Q-gMgIjJ5w8GdgoiWswDDX7n8aAU9Si5gYWHPq0Ad70fbEw4KOqxFOzNT2JymAO7FQPu-rrscIYGk2CU4QMfm663wJMMw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNTYz75kHdknyPLSOOVCSXciYAdMJAjjdw0Qnu9pgMUj--Ju5jKRWfGXYHy0NZuDNHmVuny4XP7q2QxUhYq6DChSDR4dkesqDn3JjrCU777buBP5A=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM3Z-OmY0RkZIVVxJIrYdamzfbDvylq-o2XvzwAg6Cc6RZnsvnuTkj0SuLixgdi5WT2lJbc-ZNSMedNWRHnNDNm7ESF13NNGinKsjw8cYpGu67UlQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNbvjq1M4ssJymufB4vIk57uAMynnSX1inpp0i96GCihBDuPoVnZQn3bhEenY63tXGFACjtEZ9iB_O9a6g3FAGbwCsl2CmYh_37ctrISl25P1b-3Q=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMSBfZP05JfyVbsHBMk5cUFaBg-npPsPhcxC0ra639oM14VqElcRMJPM5V5hnjGn9g2OhysGjEp3MO42WKHnGrRXbY_ByE56c94vxpxfTc_XVV8gw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM5S-WHu7Orv6_B9VeLbAujpn0CaJdPg-qAPVlL-thb4IHNphQXw4rwFwLgfnI5Ov_zq_sB1Xy2-gIYUEsdSJbqwWVtf1QqL6Gri8K9gMOWBkNL8Q=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNbjmJmeKE2YKT7FIUS9oyL0gE3DVssTwedpT2DMHornBNLeFfbtR6CkbLXJ27GIzsY6DOqEtDu-V71UjXPFpn0K57Kn3Q_4wK8DMAGjaW1woDtxQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM1rSP8HCmY7lsB0t-agvag5JoWQFiUGKHXCc-G5cjzEUOWdmbu0EPxCY_Uh8Rb7coWd8hhlfYNbXINv1R1i2zfN21Kv1MA71Zp3eD2mnkn9zRnCQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPlgMKXqGGNcyYmth3GszBtQNnuvrqqFvvYyxuv-mXK6CHiczxulSP62HdhXLWKA-MI0plZlofdPVwFY7L6Va80dF31An9xIS4UFAX8oW7RfqdLlQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP_ab3g1kMKZr4QVRLKn4UXcqyp92p6CE7mPEy4rJ8mfLBkdhAa9kcG6JuBZ8BGCB1XU1p5ZR5mpeyoReQmi1tOSbk5vv7usmfHAnl3hrgeOnfoCQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMSW8U0l5HQpyW-_ccG0iJqWTVi69uaw3MFUoe4TGielVepXgXJBCZrqWW3h7STTU4xnzVgONjIe-jXu1hS91HISHbZ06x07dNH5-8tZAqc0ZXfIA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO3CshC3UHO6ndy7dZp81ilxfbNKUCQ_F3ZZ4JXdpTkN-N5nVzTNoujyPpn6GPBa9LutEUko3-szi3CEZDECDQuU7_pXph9JaIhZV7dKr_N5vVFTQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMNmQrsUnqC2NkzUXW1q_CKT3Cj4CzPtU3fKSx6O_F_K3cocjWQnBE5O6YjC5nLkPVRU4tL7GdxldRKnpnHmO4PcC8BBprSCvOaIGv_xSd5ptIAhw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOO_MTs-41TRhc02vy6W5o8Vw0b6lfArVY3GoQEUJmQK-XKweRAz341Io_KHqgk_fDLcoR1mgLtmsro0LmN547I79wVUoP8ihgku3s3cs7XbCyNGw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPhTiPf8fgIYi-GCvSiA90KQ4CK1UE_3t7fb1Kmf__gYiazNMasFGNE27OjkVFFU6Z5dB8H4l740Clz78cynqirl_ajHghgs7FezXTmQAK4ODjZmQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczP9XY1772yPT6vFvKJVNkpierS8fYJZwV5POrnz5Zyx-c1hvP5jDPUGB0Qr-iHj46Mxp0BpbR-52VQPjg_hHD2oVwtr12D12aHEAW0BVEo_uJlqxQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNqHoEwxld7eVcYXbJ4Zc10B-glJe8xCsQ-BzARnday7SiFHQZrlTe7FFMEU8GOWmlTX4N7GA6opFg0b30-rNGjK8mzle-cAtEdWds82rFEGtcjyQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPKQTKcatCx36MBpI6CCLFPyETGp0uc_03AMNusiLSTVFu5IgKyHKhLCryICmzbh74vEFdNbUCe5Nw4Sc4K_B8r_nBQz2Zp4UIDUJCqlpsauDXVcQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOjuq1KOammsHUYi2xMIh1MJT2WYhA2cyQbjWxsr0oQset-WB78_U2eTiBdaZCfX41Zkr-jFA8DZekHwuED9jso-w3gNjBPLmVVzHaVW0P4cWblJw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMSkmzPIqT1Tk0zvl6AjSZo3urODajIJ35OacwBIJltQJftKL8RxnURurMFtxmju2XCqq5X8GL3avcxSkxojg3jzr5h0dvcQT48AWqVfbka-ITbyQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOoFhTVKImn6a9ncMXoRtFtM5wXlayiYJfvf95k-TASOqe9IM-6fMuxebPlQYboYrStQWhp2kkrOZT_Ms8wDHrb1EX24CXIviVZ8xhG4zmktgYRuw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMIkXQnoXo_x0ACNOXyxbsEL1TX7T1nlsK_xn1GtdcPYV8BAKohPAL_xfNhCodMvzn22n22CM_3bQ0HCu8rm2EoR1xw__5P-2GQYV1mMIP0O1bzug=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMJZyLC6wLEIP69595LVb6dGC8MyModpw6qHpSQFlj6_QY7UmumjbC_zo-KVXSZvpXSZ2-_Iuat50oY5zXDPwdlX5GOtRwsC-KqMBNThZIudVPfjA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczO9NcZEi36Yp2R0jrzv68L2jrQrm5ZcaMUTox4JMOiFaLPQtbOW1PsyWjChZRf-jOH3O-TUOJQM1HjRN-9HsOTtbUO5iVHGUD83tkUFe7zjx9ygIA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPYcjj8qMi7vgfS59_KALA8fw4kV2zHDUg6NP5RjdH2PpFutazKMHIucSsx3aGXLLVUxVJxDNh13lI_DDtYbT6BroAedh-fMMJvgEVLqsFCB1eHOA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM4rCHK1AiTdFi7ycEt8NUt-srEsnGJsm7f9iCo_sSyIjATyIS-SrrW4jGswh6lMDIuMwdjc5IItdvj-eCE3Fd2Wz7sbP230vwU2PhGbDM_UaKRGw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMQ0sPtdnSzDyeUlkgrtIS3eFXAbpI2o1IyWgVPgNT2ICL_OgnbEZ0Xx47ED9BrQiB_7MwJZfikHOvM5lW75pVIstP5RLz5SJglynnoqc07cNMLVA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMqPYVGn7wboo2QXM99ntwAtPQHqDDutp5Og8AA9v3M6En-MOOYVXjEJ2Guo15d910yjxePrkJj6tTs-vjBKGYaP1by-zn3bJWZZ6Js2Yq32jxCew=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM7I-CDNi1ZiXOupjp87DWFwR28jAIckXQl5YTLJ6skLqh_Swi4n2Aj1SFK_K5MDQVOHJPut0Eb6AbVVRv8bi_mJvHGk32aMfqOfv26Whw03C-l6A=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMeL8uB5bD8y6QdNx9f7nAtX5cC5V6DKAl8QuHZtkmb_1JXbvY4BCZP4JkeZolRNYkMc7ZX3_NFJO3c0qTR2Buj28yZhpzm7MqnArTVnHe6H-YroQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOlugPTTCq9TH9YMHmsgcffPLi1iUFv1KuRkh7eNXxmhqML8EV0QMpDRKyebGVfucSb9hDBrHD9JVfHwOEdAmfOuWPYDLmoT-mM4_DQX6yQTcOkqQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOoppEnlvWD1m634jc5ATC8OqFtQxAiUifyZeSgoeSaav2GiKzXaWqhd12iqQOhHXA_A7tC7ieCoOgvjjmlWleeDTYBllpZYt_C2Qprq_vq6Ce5zw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOL4T9MU6RHf11HREVjBPNbeEaAP1j8Wrl7Hn4U3Qvu8QKD1xvvv-YpQ7gBSsOwvMAu9eUkYQHeDFz5F0rlMl-oRc1Zj31OeDAKmIy8BAcZdxaEVA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMRWlexeUphUBuDuYZvy1C3hlaQ1YCPcn_F1q0wvht7dGlCP-Z2K-xC_FUK0LlJ2AS0zUZkwNjFtPueUTQUk1z5Y0Do4pg5UAwTBJqMyrCbS_GlvA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOAg-bmevBq4tzrYgB9RhWFB875_90w1X1UAHiSDc2DQ2rv-cQG_P3nNa1CBfWjK_v3zdiM_oydJ8Fycwel7NO9TTtyACfZBVzZlDWEb3ybQ5vK7w=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMSm6XjD8UR0zeRPIMqXXqsJkekB18lL2eRCrQpMv1QV_Ouu_lA3xQW3FnqSb2yk9sptaDR3zQm49k9zG_-7dAJzwjmuCcdxSHIvjL2h1QAKbCF1A=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOpmFumAjxotzrRlZIlNuRS--M8hyv2PFx9Jo0P0X2kpYNZdUcagERjFxAGh_d_-uDWWC6fN2O_p7S36ic8y6xH1sxqNnDAlSYD8HpOPdVNJF0mQw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMJmlaQHAiYCms2_jVXz5PHwKzYcwXmDPpWWJDgwxmK4JFTHJ12I6GcpvwvW7guvtnvsYC9u5_vK3PenaUejee-nKlkFY1HbEcLMBStXzrRUq6Kag=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPJ2Wal2QTG3ITc49fvkxnhPOAFB_TW-dtuD-J-6p-JkKxtVTdIykjIYPmazZC_h1IIAybg_Ch8jBV2vWVhTyXhIgiEuZYoaPox-jyPaT-AGXHmLA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNDWJOsq45HRZciDkTEea5lZFDHSi0jjDpGXWTGRLCKVpx8SsTRzA_d26I68-MB_ZI-tQJxVCM9z3kkGC20P8fzhEVNUYXF-Csp1xW-YWwaxOrTkA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMglHo3Lzp_XornwakFx_0nrld-7iUJFkmkXbRp2SLtq-gNiKaaXulxS35ogC8aNeVJWPJkmyoXx2XL16KfVs_FgPjV4P5ztOuGy3NVejMyE3i2xA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPwpQCfFi6uK2jT91GOFWhZj9nECokTEf4M7dY8cDMkV2FpxAV-eAVEnplAA_BXzjHbl5BC9Pd2TrQegZvmCC8tzRNFfZ-BBOuYrpS7yEsUEirfBw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNkd1bEZPHfAxK56H72m9HUh2lAg4KGWD4t3FvdxVPX0--ha_Rp8P8jbjvK3LgwUlcOQhHQ5UTVPMfgt7yJT0SmW2I-wAyZbWrFW9m4cn6wb7JWVw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNJJlDMg5SummA64qPkrbMtTGPd0TH8fQhFpObJ806mfqGacqa7lYI6NpoAoLOUatFWTzaHkFfIYkAtu7BViOykcVL5H-sD7as9aP9qBpGo7SJ8DQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPhXShzdAc8t4VyVogM--vSVXYU9g8yvjVmfNWoRDpwKR1q7QyEfBQoX-cWmuUdeedt6nCzYI-zwx_AloRamDiftjpV7FIBuVyWQfbriFCIk5xtjQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOMoWJjanJIvkgTdzBABPFxn-p6Wc8e_cl1hjkJQf_J3dX2I0yQ7ThM3n1GJK8tkQpC7GT5ae6v8SZyxta2gypSoSQsOANOLqPEdTeHkVixKoBmMw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMtB4yezDIQPo2qtSeff9lUmQiwzdJBuZa9xBZ6nvdz7csLUUaQd54upqhSddeFkbLIVpHjd6N1-K07RdrYDIqm25V9fsx7dOAsAPvVSCL7mj_MRg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOpwkYJg527ROoHgdAW9cOhVVSUq2TXqVbUrgsS25REaEXqePgbVU_OmR_mn7kfGsJcFCRNvtl8qOZ5KFvJh4juAsVJUpEVruw1KormF8v1CJ4R2g=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNyWg20Cso_NCfyBrttOH9FxIZCjW6A9zWjLJ3GEEola9ELeUIeeQtEIVkfDikqohL3IR0WUW9_dU_ka-7BrWNpljBnu7LRhWuGHosr6xGXDmHfrw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNbXe0BoYIe3iPysFoukxaLsauoVwQbKGpPEyW7kpnKcJtdEoEWkZ4EPDKLGglg_ZeJ0i7kSkBOK8j9kdrCVS35CfYEJcyeUKyYYHS7IblDWZ4afA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPw9rvSyVyROhO_gB14Xsm3aLCHtfhwNTaIrsBbqN8IvaFPPe8z1hKxUr8lXaMGw0W0WIjTfUDZI5MHjzsdlPU9_IicOJri4n9P2edWqdOLuuubrw=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPe-Z8q_eTPjAySxZNhOj8Pc5L12UZ_3X_5hAYm6L1FSiXTosoJfRWUot4lZ3zsofXVHYuG5v7RyBcFNRm55UaQMaSjVs9526z4iVeGJFdmRfXLWQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPHxb9swxMy2cS24rkB-gwx_pmucPInyM1SuLb8MOyyZBM2mmuGwpOviX5Bv0ahYVchEluoISUvzxZT6_io9-WlC3LnyJ5c8wQdvcN_C0baoOzLRg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczN2bSJuOaipyHTakpk7MuNxEEEd3Iklxulk4k1ulQkk7ZmmPXjKcgh6Aa7mbCxHTT3_rGzSqw9tEll9tVvxHpYJT9A18f1aKPCcrhVogpBm6MBrxA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczM-zD-NR-soArzIZvmkMEoQRIX-7y7tYHPaZCaAH1CdBFpoj1A5ocHnxuSK7vGD54aEi5CpM0Qqfl3chqw9NMj66JdjztQfcNNKtUOI0E-x43Odzg=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczNRTi9cANMoeCPMWksi10KAauDTW90CIlYZMYiIQgMhLVepnRzec0qMH-b_Z47TWRt6ddbna7bJBTdKavWFUdBL0a7LNA37gtqax7gtp-5B7c2rrA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczMGFJKftWBF9zJY0W-wsGrHzayw62Vqok-qG9As2oq1Vw8o4W1Tw2w8yrHvzTmoXlSwW1il5AwjGYGohRe2SaWUNBc9PObPwccz0GnnVeWz1_VJDA=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczOguXdQo8N3Aiybwja6yLyqW5tMIUruuLSojNWWNzWupiBfIToV0JRToJ5IbPaHBHOrns_v-7Dj7BdYKzxpJVXzMPnvQmpGxHj3hTFrUyOWd_Z4uQ=s0");
+      preload_image("https://lh3.googleusercontent.com/pw/AP1GczPCbQHbjrMjCO-nJoAUWeRidKjuqXBo8V95KJg8BybXd3tHxieBMg2Ad6YfIZOqEcNo-b8H-9zpiDerIcMusEllzdHwLnnepBi_fCVX0g7nM84GSw=s0");
+      
+
     });
 let popup;
 
@@ -417,7 +416,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const canaryCommonsBlock12 = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN0ORHnd2PsHFWTdtLNE5uKcVOJHn1ha_isW5acRCg-ny-STOQEuZVnaZ1Z9Oo5PdJu-9EYS7bbK4VUaORgmi0mxmmAlm_8HRjBBbq5xR66E6qxUrg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM5S-WHu7Orv6_B9VeLbAujpn0CaJdPg-qAPVlL-thb4IHNphQXw4rwFwLgfnI5Ov_zq_sB1Xy2-gIYUEsdSJbqwWVtf1QqL6Gri8K9gMOWBkNL8Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Canary Commons Block 12</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -447,7 +446,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const fleur = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPLgerzdhbhmme0UyIzoGmDnpS59YDxbHef8Z3I_RXvAH-X_PhyO1RPUg5YoKI6x_UDz4wDU8kXWy906k4IP2R2-Ho16ISKbKqBS673QId5kqvhTx8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO3edTGwK_ao7upkQ65TMQITPMQQ-47uO_O4EHspLOh-d4TRcCDzXqvgULUV-VD1niHDcq-j_vy7JkD4D8qVHQWelNH1Lgyav9q0H2upEZQKvSMOA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Fleur</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -477,7 +476,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
 
     const east55 = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczONNY0KwTkZw6QKG7OPQ9PzCI766sJGKDI2JMd0ZbPhXYYxqvz42YTgDDi_fw1W0fZNVZdOt2tvywc8Jyi3vMMxgIBRvKkrCVK4zh7xXzDmy0tBfVQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPu0B8UBb7ktMl5VBiFwOcTEhGODoweXf5H6eTJjlnxFIyfWrukT4JYLohj8NRSpCubYxVFNXUXDtmr7ECIPIX_c0XRPGzpcm26zsauZKS1Lx_rKg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">East 55</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -508,7 +507,7 @@ map.on('mouseleave', buildingLayerId, function () {
     
     const hotel1 = 
         '<a href="https://www.architectsalliance.com/projects/thompson-hotel-residences" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNjoyB--P3nqJzTF14g4koStsT1R2H62-obTGA5r2QT9OLJgj19moGwKHr5I9f6EuuDvQMrc9NdnOBFiSg-kxjkTnG-itWXTnEIoKc7DDZ5CPSQ1XY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMRWlexeUphUBuDuYZvy1C3hlaQ1YCPcn_F1q0wvht7dGlCP-Z2K-xC_FUK0LlJ2AS0zUZkwNjFtPueUTQUk1z5Y0Do4pg5UAwTBJqMyrCbS_GlvA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">1 Hotel and Condominiums</span>' +
         '<p class="popup-text">Completed: 2008</p>' +
@@ -537,7 +536,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const panda = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOqNgK-KlDwsnEdUllovdft_ulX0nRJ4VlS0EwFDRnV6-HbIWW9gPJkAUpCNF2yt0pnDZtvnXBf7Bp03fCXOCHw4TqpjH648fW5EsZ_HnI1kpZaH-A=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOzhfifNE1ExyINA4YPkW7i6dFLHLBERQMm32XJn-vX5B6q5g_X1RqV81ZJ8vBtLwTxzI8iUQ7peAlxRxE_-k8YyK9D-80KWLeNBsUbEtd1JRXlyg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Panda</span>' +
         '<p class="popup-text">Completed: 2024</p>' +
@@ -567,7 +566,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const smartHouse = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNT3np8G8WvEjbsUfcm_1sUskVWACbXyNWqTz4ru5NVTv1c_sKsZMGxb68BFckhaC1B13zrtIPuvf5m3ePXzVl3gfGIg0gXf5c1pcFfOVu5ojt2tc4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNqHoEwxld7eVcYXbJ4Zc10B-glJe8xCsQ-BzARnday7SiFHQZrlTe7FFMEU8GOWmlTX4N7GA6opFg0b30-rNGjK8mzle-cAtEdWds82rFEGtcjyQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Smart House</span>' +
         '<p class="popup-text">Completed: 2018</p>' +
@@ -593,7 +592,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const roehamptonEast = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO4WS7Z2_sF484nvLMTyGZuAR62qx_OzUjAOP-wQj8YVNZzntAaT5ARK0WUs0RJH27gKqTcrWZXYoUTS1tm43Phn7HA56nnSWQwcUIJKkgNNwoo6CI=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMeL8uB5bD8y6QdNx9f7nAtX5cC5V6DKAl8QuHZtkmb_1JXbvY4BCZP4JkeZolRNYkMc7ZX3_NFJO3c0qTR2Buj28yZhpzm7MqnArTVnHe6H-YroQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Roehampton Redpath - East Tower</span>' +
             '<p class="popup-text">Completed: 2020</p>' +
@@ -619,7 +618,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const westBlock = '<a href="https://www.architectsalliance.com/projects/500-lakeshore-loblaws" target="blank" style="color: inherit; text-decoration: none;">' +
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOkzKXhbzmK-qII_8mJHjyRFe16ZAzScU95TrID82S-3r0MHEHhz3b6TMNU6-9v3TAyWymTDdOYeGH5Mo-p-QQfiemg0xqKgRxjPv9W_FNXcFJQlg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNyWg20Cso_NCfyBrttOH9FxIZCjW6A9zWjLJ3GEEola9ELeUIeeQtEIVkfDikqohL3IR0WUW9_dU_ka-7BrWNpljBnu7LRhWuGHosr6xGXDmHfrw=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">West Block</span>' +
             '<p class="popup-text">Completed: 2020</p>' +
@@ -647,7 +646,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const sorauren = '<a href="https://www.architectsalliance.com/projects/sorauren" target="blank" style="color: inherit; text-decoration: none;">' +
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP0BHbxD-hntd1GzpWClghQAffRh4s_Zndyqt7ZTfKJyqM_yReVd5ATDT0-oTbLfpmJL8O6V60ZEHButynDAo89HvPKsr87F9ylWFIsyVQEDPhOPw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOpwkYJg527ROoHgdAW9cOhVVSUq2TXqVbUrgsS25REaEXqePgbVU_OmR_mn7kfGsJcFCRNvtl8qOZ5KFvJh4juAsVJUpEVruw1KormF8v1CJ4R2g=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">383 Sorauren</span>' +
             '<p class="popup-text">Completed: 2016</p>' +
@@ -685,7 +684,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const yongeAndRich = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPC9R_RUlbNNkE7lS6KozlY7wlO9FPqJ91sG9YJ79qCmzSiwpmr2XUkVNewCH6r6D0ipJdoNWbAeWE04UAeo1edL_gS43PsfPFtPyirPZ6Jf8_oG9Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNbjmJmeKE2YKT7FIUS9oyL0gE3DVssTwedpT2DMHornBNLeFfbtR6CkbLXJ27GIzsY6DOqEtDu-V71UjXPFpn0K57Kn3Q_4wK8DMAGjaW1woDtxQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Yonge+Rich</span>' +
             '<p class="popup-text">Completed: 2018</p>' +
@@ -718,7 +717,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const artShoppe = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNFZGVNKuvoWxJrU9mApAGlqmzRIDdf-s_pPi-drgI52KH1J_iTx9CHSEeEvQucMIeeDDXht0kOzlGbtfRd56vYWEdpUYhxri7cD7DxeKbrL7wgkhk=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP_ab3g1kMKZr4QVRLKn4UXcqyp92p6CE7mPEy4rJ8mfLBkdhAa9kcG6JuBZ8BGCB1XU1p5ZR5mpeyoReQmi1tOSbk5vv7usmfHAnl3hrgeOnfoCQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Art Shoppe</span>' +
             '<p class="popup-text">Completed: 2020</p>' +
@@ -745,7 +744,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const form = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOBSGvWGYbwY-sEJEagMkDNV2Kawh8zEvy67Qp12YRlBSPYpjjAqrcvl9xvzcW6CK7qXPTY1DyREPf70bUN5sm_bd2IRuEy5XVn3LwNRB5KUvDBaM8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczN-XQMVwME9lNhsXsIplqTMtUaf_jVqqCEGhj5awWfCbbz8RQT3oQnCBooQDiHRn-AieBcS2j_9fmW-8EH4ZuA0dZzwLNvfqJLDRDCM6K8pFnRbqQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">FORM</span>' +
             '<p class="popup-text">Completed: 2020</p>' +
@@ -771,7 +770,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const brantPark = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP9fbfb_3K8GULbD59a_RjpL5FpKm3ngMhSMVbnYtfDL2E5Vyyrq4wRDxm2aCeI14dd42_SUHSs8Zhzp17AXyx3LW6VaIA3TEO3KYOvtvR89UULeb0=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOoFhTVKImn6a9ncMXoRtFtM5wXlayiYJfvf95k-TASOqe9IM-6fMuxebPlQYboYrStQWhp2kkrOZT_Ms8wDHrb1EX24CXIviVZ8xhG4zmktgYRuw=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Brant Park</span>' +
             '<p class="popup-text">Completed: 2016</p>' +
@@ -797,7 +796,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const panAm2 = '<a href="https://www.architectsalliance.com/projects/panam-athletes-village" target="blank" style="color: inherit; text-decoration: none;">' +
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO9NcZEi36Yp2R0jrzv68L2jrQrm5ZcaMUTox4JMOiFaLPQtbOW1PsyWjChZRf-jOH3O-TUOJQM1HjRN-9HsOTtbUO5iVHGUD83tkUFe7zjx9ygIA=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Pan Am Village</span>' +
             '<p class="popup-text">Completed: 2015</p>' +
@@ -826,7 +825,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const panAm4 = '<a href="https://www.architectsalliance.com/projects/panam-athletes-village" target="blank" style="color: inherit; text-decoration: none;">' +
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO9NcZEi36Yp2R0jrzv68L2jrQrm5ZcaMUTox4JMOiFaLPQtbOW1PsyWjChZRf-jOH3O-TUOJQM1HjRN-9HsOTtbUO5iVHGUD83tkUFe7zjx9ygIA=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Pan Am Village</span>' +
             '<p class="popup-text">Completed: 2015</p>' +
@@ -876,7 +875,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const stJamesCathedral = '<a href="https://www.architectsalliance.com/projects/saint-james-cathedral-centre" target="blank" style="color: inherit; text-decoration: none;">' +
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOVdElK5JCcnUOXZIpViGUmIbfAGHNDA0KjENXhj2YwXpfb0lbJvh_-CqWUMLUHwceoAuAZN2RkFEFm003GV7XY3vZuhfbpaUpU-ILfIDOcFXJz4Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczN2bSJuOaipyHTakpk7MuNxEEEd3Iklxulk4k1ulQkk7ZmmPXjKcgh6Aa7mbCxHTT3_rGzSqw9tEll9tVvxHpYJT9A18f1aKPCcrhVogpBm6MBrxA=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">St. James Cathedral Centre</span>' +
             '<p class="popup-text">Completed: 2012</p>' +
@@ -903,7 +902,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const nxt =
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczP1Vx-2jOphPhbXChpO_roxF7YTtiCUkQwd-0_Y1YMDNf40u8Gqv_416OnSuDR4RXaQZEpmXVsy1fcODkb7KETZIJWRoRJ2unW-HW4Gq3DAE3wHJgc=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNubg0B0ZX85ZSKZOb4PuX88uge5Go1LYe0pDXdT8NYJvKxMudcXp3YMBwLJKaVobuOtdLK7DchFw9Py5ZzQHbdax-D5XgsXG34bp4CQGdDZyFRbA=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">NXT</span>' +
             '<p class="popup-text">Completed: 2013</p>' +
@@ -936,11 +935,11 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const radioCity1 = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO402lpNrs0P0QIcNlrBlk3yKXGEFo1_JwrvknrAx1FjnNI53SFjk2SaJS7pk-4FVRWZKCJlEhrDGoe2kUayL0c-x3j_WoKwU4rHEgqOCv8mXVxbvE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNkd1bEZPHfAxK56H72m9HUh2lAg4KGWD4t3FvdxVPX0--ha_Rp8P8jbjvK3LgwUlcOQhHQ5UTVPMfgt7yJT0SmW2I-wAyZbWrFW9m4cn6wb7JWVw=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Radio City</span>' +
-            '<p class="popup-text">Completed: 2012</p>' +
-            '<p class="popup-text">Client: Cathedral Church of St. James</p>' +
+            '<p class="popup-text">Completed: 2006</p>' +
+            '<p class="popup-text">Client: Context Development Inc.</p>' +
             '</div>';
             
     const radioCity1height = 100; 
@@ -962,7 +961,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const radioCity2 = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO402lpNrs0P0QIcNlrBlk3yKXGEFo1_JwrvknrAx1FjnNI53SFjk2SaJS7pk-4FVRWZKCJlEhrDGoe2kUayL0c-x3j_WoKwU4rHEgqOCv8mXVxbvE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNkd1bEZPHfAxK56H72m9HUh2lAg4KGWD4t3FvdxVPX0--ha_Rp8P8jbjvK3LgwUlcOQhHQ5UTVPMfgt7yJT0SmW2I-wAyZbWrFW9m4cn6wb7JWVw=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Radio City</span>' +
             '<p class="popup-text">Completed: 2006</p>' +
@@ -990,7 +989,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const bioCentre = '<a href="https://www.architectsalliance.com/projects/tdccbr" target="blank" style="color: inherit; text-decoration: none;">' +
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMn2cqUUOkjnmLUP34wXX8fhVd1L-VYVMQyYC-FMjtdRujUvFLbLzWb1Om4L2WAclWdxKskHa5Lh2JuWqz189INv0iQ8mEveb8L0hWst0wrttK8gQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOguXdQo8N3Aiybwja6yLyqW5tMIUruuLSojNWWNzWupiBfIToV0JRToJ5IbPaHBHOrns_v-7Dj7BdYKzxpJVXzMPnvQmpGxHj3hTFrUyOWd_Z4uQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Terrence Donnelly Centre for Cellular & Biomolecular Research</span>' +
             '<p class="popup-text">Completed: 2006</p>' +
@@ -1021,7 +1020,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const woodsworthResidence1 = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPmzGXBrlPxC9Mz_Lhfc5VzzWtLB4poq-QPYGLcBAZYeUbVH0Be17X3UPR641MYH4set_xfqBh0zNVOi3izF1FNK8iLqsyKHioi4we4vsJNIH5JDIY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPhXShzdAc8t4VyVogM--vSVXYU9g8yvjVmfNWoRDpwKR1q7QyEfBQoX-cWmuUdeedt6nCzYI-zwx_AloRamDiftjpV7FIBuVyWQfbriFCIk5xtjQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Woodsworth Student Residence & Classroom Complex</span>' +
             '<p class="popup-text">Completed: 2004</p>' +
@@ -1055,7 +1054,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const woodsworthResidence2 = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPmzGXBrlPxC9Mz_Lhfc5VzzWtLB4poq-QPYGLcBAZYeUbVH0Be17X3UPR641MYH4set_xfqBh0zNVOi3izF1FNK8iLqsyKHioi4we4vsJNIH5JDIY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczPhXShzdAc8t4VyVogM--vSVXYU9g8yvjVmfNWoRDpwKR1q7QyEfBQoX-cWmuUdeedt6nCzYI-zwx_AloRamDiftjpV7FIBuVyWQfbriFCIk5xtjQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Woodsworth Student Residence & Classroom Complex</span>' +
             '<p class="popup-text">Completed: 2004</p>' +
@@ -1081,7 +1080,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const mozo = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMfQ-Z6luDn7XCEfXtT9yNpYv7RS6iZMh8lp6smzr-r0uno7rFGU0ranOnr9th7jEgD24crpfCvknJr3b59AwlWt4biK4epEtLy1-Qxd7BX8j5kwhY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOMoWJjanJIvkgTdzBABPFxn-p6Wc8e_cl1hjkJQf_J3dX2I0yQ7ThM3n1GJK8tkQpC7GT5ae6v8SZyxta2gypSoSQsOANOLqPEdTeHkVixKoBmMw=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Mozo</span>' +
             '<p class="popup-text">Completed: 2004</p>' +
@@ -1111,7 +1110,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const districtLofts = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMiNOO7IJTlVCjxJn_5vsAJrv_Ob5TlU5TOQ7TrXQAUPDPuIGFSenh0k0fqdA3xqz__XO0s0gD4u-CAopmDL8Lr6iiCQiVQ6l0_wFf1dG_JSrgpJCw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNnANd5obTBlNRLDssQTezs1vg3E9HCxXFRmzyeJpEeLe26xXcvFhMTAf9E45hMaFNUfw9EeM0XqGcboGIxBZaw2iUFx9KSNAYdrbfuyGIpi0A6ew=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">District Lofts</span>' +
             '<p class="popup-text">Completed: 2002</p>' +
@@ -1137,7 +1136,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const twentyNiagara = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczO-UXVRia1gv_5r911VnVYKWWCCc1z98JnV0wSBoXIXAPTnyAqCWduoNsYeGcUqPmtbQqz-KDf09csFyRC6duOFxGEtEnRXhVchPX3GCLX96Bih7-c=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNDWJOsq45HRZciDkTEea5lZFDHSi0jjDpGXWTGRLCKVpx8SsTRzA_d26I68-MB_ZI-tQJxVCM9z3kkGC20P8fzhEVNUYXF-Csp1xW-YWwaxOrTkA=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Twenty Niagara</span>' +
             '<p class="popup-text">Completed: 1997</p>' +
@@ -1163,7 +1162,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const altar = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOuhoJiIjys04HS9uoipt1D7XWvQqyfZ9Wnqir9_B_TidYWm20rklcZw3dgnXADg3WX4DaAoM1MNQltnxwxguky2bJKurj45Ok5S5TBMqmHS96kZgc=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMfVnlr-WzaHTO5pmyV4fc9ShsDsGdmCCFKoi2Cp4edeqohtpA8bxnRv4dcxhw-G7jChX8oWvdlWS627nvjKyF5HwcBL7Da7qbsM8ol1x98VVsd_w=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Alter</span>' +
             '<p class="popup-text">Completed: 2018</p>' +
@@ -1189,7 +1188,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const peterStreet = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczN3o0PbqiPjzGGZmOmmvgqKuTCMMq_NZ9_lzvgz7n_Jn4FIg25umaIy__zmcY9ZXoAAZ-gIOm-Cnf6otNmkbndRxzg2cb3KBfwPa11R1nYTTrSwE_I=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOlugPTTCq9TH9YMHmsgcffPLi1iUFv1KuRkh7eNXxmhqML8EV0QMpDRKyebGVfucSb9hDBrHD9JVfHwOEdAmfOuWPYDLmoT-mM4_DQX6yQTcOkqQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">Peter Street Condominiums</span>' +
             '<p class="popup-text">Completed: 2014</p>' +
@@ -1207,7 +1206,7 @@ map.on('mouseleave', buildingLayerId, function () {
     //PIER 27 PHASE 1
     const pier27Phase1 = 
         '<a href="https://www.architectsalliance.com/projects/pier-27" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPgDzxoCaXi4YE4TfQRJPRLfdujMT2ffr8yEbN0WiAHFiQLM1lVoypo9OO5X2gUMQUdUqq8JlO-wETrSQzM3NTZ6wys36Hdu5aTC1FdoGhCIOPXsw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNRTi9cANMoeCPMWksi10KAauDTW90CIlYZMYiIQgMhLVepnRzec0qMH-b_Z47TWRt6ddbna7bJBTdKavWFUdBL0a7LNA37gtqax7gtp-5B7c2rrA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Pier 27 Phase 1</span>' +
         '<p class="popup-text">Completed: 2014</p>' +
@@ -1221,7 +1220,7 @@ map.on('mouseleave', buildingLayerId, function () {
     //PIER 27 PHASE 2
     const pier27Phase2 = 
         '<a href="https://www.architectsalliance.com/projects/pier-27" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPz56vVv-ivbkRxfxC8Dc9EC_xZcL_SLe5WzDlBdhBJdusu7OyapPgmDNZBR143eNbKZvitEXWMbl2fXsJxloK2xUyLqX6nCY8w06B0K_iv7FVQvg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM-zD-NR-soArzIZvmkMEoQRIX-7y7tYHPaZCaAH1CdBFpoj1A5ocHnxuSK7vGD54aEi5CpM0Qqfl3chqw9NMj66JdjztQfcNNKtUOI0E-x43Odzg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Pier 27 Phase 2</span>' +
         '<p class="popup-text">Completed: 2016</p>' +
@@ -1234,7 +1233,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //THE WELL
     const theWellD = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczP9XY1772yPT6vFvKJVNkpierS8fYJZwV5POrnz5Zyx-c1hvP5jDPUGB0Qr-iHj46Mxp0BpbR-52VQPjg_hHD2oVwtr12D12aHEAW0BVEo_uJlqxQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Well - Building D</span>' +
         '<p class="popup-text">Completed: 2023 </p>' +
@@ -1244,7 +1243,7 @@ map.on('mouseleave', buildingLayerId, function () {
     addPopupToBuilding('The Well Building D', theWellD, -79.39729, 43.64252);
 
     const theWellE = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczP9XY1772yPT6vFvKJVNkpierS8fYJZwV5POrnz5Zyx-c1hvP5jDPUGB0Qr-iHj46Mxp0BpbR-52VQPjg_hHD2oVwtr12D12aHEAW0BVEo_uJlqxQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Well - Building E</span>' +
         '<p class="popup-text">Completed: 2023 </p>' +
@@ -1254,7 +1253,7 @@ map.on('mouseleave', buildingLayerId, function () {
     addPopupToBuilding('The Well Building E', theWellE, -79.39641, 43.64285);
 
     const theWellF = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMLB3AZxUHr7ta2YF3rIClxpc7Dmer9u5Eqq_Z-cNl8zHbu4CTLWrWlN385HqRWnZRZUn-sGaKrN1Jz_YZJPfyC7Ve6_7VRaM9oR0YTx5u5X15Hxmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczP9XY1772yPT6vFvKJVNkpierS8fYJZwV5POrnz5Zyx-c1hvP5jDPUGB0Qr-iHj46Mxp0BpbR-52VQPjg_hHD2oVwtr12D12aHEAW0BVEo_uJlqxQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Well - Building F</span>' +
         '<p class="popup-text">Completed: 2023 </p>' +
@@ -1265,7 +1264,7 @@ map.on('mouseleave', buildingLayerId, function () {
     
     //VIA BLOOR
     const viaBloorWestTower = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNZtA7ji8QpcKwJnqB9jzJCGqaqv_D2fQ_PKr6-iv6LkyNzvu5grwHUiUrgH-yJl2MYIswxzhJf7Pi2aX1n48iOTuBw0im0TvRflqzQH6MBdMFdkhY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMNmQrsUnqC2NkzUXW1q_CKT3Cj4CzPtU3fKSx6O_F_K3cocjWQnBE5O6YjC5nLkPVRU4tL7GdxldRKnpnHmO4PcC8BBprSCvOaIGv_xSd5ptIAhw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Via Bloor - West Tower</span>' +
         '<p class="popup-text">Completed: 2022 </p>' +
@@ -1275,7 +1274,7 @@ map.on('mouseleave', buildingLayerId, function () {
     addPopupToBuilding('Via Bloor-West Tower', viaBloorWestTower, -79.37213, 43.67176);
 
     const viaBloorEastTower = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNZtA7ji8QpcKwJnqB9jzJCGqaqv_D2fQ_PKr6-iv6LkyNzvu5grwHUiUrgH-yJl2MYIswxzhJf7Pi2aX1n48iOTuBw0im0TvRflqzQH6MBdMFdkhY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMNmQrsUnqC2NkzUXW1q_CKT3Cj4CzPtU3fKSx6O_F_K3cocjWQnBE5O6YjC5nLkPVRU4tL7GdxldRKnpnHmO4PcC8BBprSCvOaIGv_xSd5ptIAhw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Via Bloor - East Tower</span>' +
         '<p class="popup-text">Completed: 2022 </p>' +
@@ -1288,7 +1287,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //MUSEUM OF CONTEMPORARY ART
     const museumOfContemporaryArt = '<a href="https://www.architectsalliance.com/projects/moca" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPOhzuqYKrGfDmH1rEsKGYjebyc4-cPlfPN67vqSDODocGpAw_PaPxyilLLnNrg-F6_twUGy30bJKtpUw4qqnG-s3SGABxcNQJEDgougUMIOwy5sA=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM9CwS2cvdRCA4m8-9CWQhpPpHNwNi-sz8zbXPEMoXL_mRcXQbFObuAWBHPiBv6ZtLO3TaWUQIBxbRJ5107BWAZ5BkxsXooMjxM7txMJgsWsXP2Mg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Museum Of Contemporary Art</span>' +
         '<p class="popup-text">Completed: 2018</p>' +
@@ -1300,7 +1299,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //THE WOODSWORTH
     const theWoodsworth = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTvt3mPswL8H4UxyGd01e4j54QtmeNVaUa9Mv-JiC7HOBbIdzXi9Y_Cf4T9qdZcLW4Ri4s5lGMsrcm-S5zcW3KYMWOYc4BfOqsgPAuBUPGM6prLRE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO3VTtCivufOkoB73UBT8cYIwJzjZLcoDCcXuaDltXG3yZSRPBHVxX3Dth21YJFBm41sT7FASPH_ML4PZtHCfsqiiat4lpyMCNK8Nas6Z-bETgEmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Woodsworth</span>' +
         '<p class="popup-text">Completed: 2021</p>' +
@@ -1311,7 +1310,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //FOUR SEASONS
     const fourSeasons = '<a href="https://www.architectsalliance.com/projects/four-seasons-hotel-residences" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO2sTIUj2zSymk9vtMT3Z2Z9YNTXqPxLgKi3D2UgwF9R65Sx-ijfq8IZWUWCbH0r0gKzcER2EWCOdQxPnreUM1CIF8N8qUttJyuvU1ZqPVXpt_2Lw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPCbQHbjrMjCO-nJoAUWeRidKjuqXBo8V95KJg8BybXd3tHxieBMg2Ad6YfIZOqEcNo-b8H-9zpiDerIcMusEllzdHwLnnepBi_fCVX0g7nM84GSw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Four Seasons Hotel and Residences</span>' +
         '<p class="popup-text">Completed: 2012</p>' +
@@ -1324,7 +1323,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //THE ESPLANADE
     const theEsplanade = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPq54fSf3E4wXkMlA2kulempDPiZQEcwevZHmBxBMhqnGXXA97ppiBykDvSoTpsJFCP2GAGkQBO5MbdydFt0mhkptMKn7PWYpsN5Duu_aFFK3g5wmE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMIkXQnoXo_x0ACNOXyxbsEL1TX7T1nlsK_xn1GtdcPYV8BAKohPAL_xfNhCodMvzn22n22CM_3bQ0HCu8rm2EoR1xw__5P-2GQYV1mMIP0O1bzug=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">75 on The Esplanade</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -1335,7 +1334,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //CASA III
     const casaIII = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOZQ59J8rXNLQjaq5FeSF57isvBPkbLiXl12h4ds9hgGkamYG846rj4xyyAvzl5b__mFGkP22Yh5ubuGbOBHPSLIOOSUSJ5tvhjXob924XlRcUT3s8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM3Z-OmY0RkZIVVxJIrYdamzfbDvylq-o2XvzwAg6Cc6RZnsvnuTkj0SuLixgdi5WT2lJbc-ZNSMedNWRHnNDNm7ESF13NNGinKsjw8cYpGu67UlQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Casa II and III</span>' +
         '<p class="popup-text">Completed: 2018</p>' +
@@ -1365,7 +1364,7 @@ map.on('mouseleave', buildingLayerId, function () {
     const theGloucesterId = 'the gloucester'
     
     const theGloucester = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNFkZvu-h2Mh-u7aesi9Kz03HWsA5P_uMUjsRCbrDEuDQTpdSM5RKFcZu52TlQjRM4UfruPCnpYjCBxK9TKXQUSqdW1vrK8Ra1yuZddG1uc62q6DEs=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNdUKKmcDCJtCxP0JjGt8CVlJdIl_MmOOdDVHPKfGhO0Eu2iWewVgpP4N7qo5B85P144H6jcT7dDNJMGo5KyI5-utOYUQYh7_Xf_CvnNO586Uprqg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Gloucester</span>' +
         '<p class="popup-text">Completed: 2022 </p>' +
@@ -1388,7 +1387,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const condos22 = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNxw-ijNm4a3lkQznTfcb_sjugBS3ZWFPY-3wP8lXlqqLmCxRiBy5tUtC-KSdm22gVxy2L9wQYtx9VLqlpV5LpYfULYApgzBHpuOf7YR0JRKr8PJPE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN8Y4hZzoBrgaGgvf6Mj8yW11t29VaSJ5r3mImk9Fb_NKyF6gDYVp5hvFNLKR4qtTixXlxLVBwEg5-UU5gfpulnTEZvm0RicMZn-RoH1RoRJksOow=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">22 Condominiums</span>' +
         '<p class="popup-text">Completed: 2007</p>' +
@@ -1414,7 +1413,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const vox = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMZAb14W_g3j9LFLJNCtb-_wqdj4jA_HtttIFtOEmR0oFF6E0guQWeZAqlS4HAHDiKDnyA7SIY0TCdACHNqZ2M6FMfLngL0w6eyZduzefR8-5DZtCc=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMvVul35_dvgIs4iCyWHUJx4ssP3qq6lCb_3xkGh3ytcy4BXLcPjQRyYlQCWsfec7o6N-pa_BkONXjlIidPEewx6yuEbduQ-asM3VnbPygsVypzYw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Vox</span>' +
         '<p class="popup-text">Completed: 2018</p>' +
@@ -1430,7 +1429,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //ROEHAMPTON REDPATH - WEST TOWER
     const roehamptonRedpathWest = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO4WS7Z2_sF484nvLMTyGZuAR62qx_OzUjAOP-wQj8YVNZzntAaT5ARK0WUs0RJH27gKqTcrWZXYoUTS1tm43Phn7HA56nnSWQwcUIJKkgNNwoo6CI=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOrPtaT-sTdlk-ZQhY3ZaW8zDh9GZdCF7fvw-Mv4tb1CZeR29Xezng3z3J9Vh6Cmv9qesJbp7myOtEP8FHzGTtkp11mPaTBZ5pWpzzo4MmoXv14VA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Roehampton Redpath - West Tower</span>' +
         '<p class="popup-text">Completed: 2020</p>' +
@@ -1441,7 +1440,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //60 COLBORNE
     const colborne = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMhJ5jc8fA73tq3It5lkokasqsIC7kb1U9zxkMVOzbvLSkmAcxID_1UKXDuvFqIOidA-XP8Q00Uwr6xGDqvAAlhkEuoAnA56MbgstmrHMBmYj5lj2M=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOO_MTs-41TRhc02vy6W5o8Vw0b6lfArVY3GoQEUJmQK-XKweRAz341Io_KHqgk_fDLcoR1mgLtmsro0LmN547I79wVUoP8ihgku3s3cs7XbCyNGw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">60 Colborne</span>' +
         '<p class="popup-text">Completed: 2017</p>' +
@@ -1454,7 +1453,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //11 CHARLOTTE
     const charlotte = '<a href="https://www.architectsalliance.com/projects/11-charlotte" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOIzXIPZfdziveS3rjdCQXXzTcDcLzdChLlNTSg-eVRvPjHHBz96Nae7-WWN5RoLKibqDEnt9rVL8U5XK3OkzQOcuo0dCnGypRXlYWgHtoxT43lmw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNbXe0BoYIe3iPysFoukxaLsauoVwQbKGpPEyW7kpnKcJtdEoEWkZ4EPDKLGglg_ZeJ0i7kSkBOK8j9kdrCVS35CfYEJcyeUKyYYHS7IblDWZ4afA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">11 Charlotte</span>' +
         '<p class="popup-text">Completed: 2016</p>' +
@@ -1466,7 +1465,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //PAN AM VILLAGE
     const panAmVillage = '<a href="https://www.architectsalliance.com/projects/panam-athletes-village" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMTy1OhE70_kqaMO-uCu1shigXtuCyuwFDuRHyeWkvkKxQAO2IgeSeJ4tBQbFp-IXeV9iRnbpCOZfWhh0VcnTVM4s8dX2kSStLQIxfz9Bw1cw0HrW4=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO9NcZEi36Yp2R0jrzv68L2jrQrm5ZcaMUTox4JMOiFaLPQtbOW1PsyWjChZRf-jOH3O-TUOJQM1HjRN-9HsOTtbUO5iVHGUD83tkUFe7zjx9ygIA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Pan Am Village</span>' +
         '<p class="popup-text">Completed: 2015</p>' +
@@ -1483,7 +1482,7 @@ map.on('mouseleave', buildingLayerId, function () {
     //WEST DON LANDS BLOCK 8
     const westDonLandsBlock8 = 
         '<a href="https://www.architectsalliance.com/projects/west-don-lands-block-8" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPB85kwITZEHxZMzmvlBlc-tfs5m8I_EHKBsf2H8ofO0OSl1ivtPnup3vnqYBe-PN0sMGt3bvbk3HUvw_EScwdnZZVAYNLgvP_fl3DsFmVtS8NDBA=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMGFJKftWBF9zJY0W-wsGrHzayw62Vqok-qG9As2oq1Vw8o4W1Tw2w8yrHvzTmoXlSwW1il5AwjGYGohRe2SaWUNBc9PObPwccz0GnnVeWz1_VJDA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">West Don Lands Block 8</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -1508,7 +1507,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //THE GOODERHAM
     const gooderham =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMJZyLC6wLEIP69595LVb6dGC8MyModpw6qHpSQFlj6_QY7UmumjbC_zo-KVXSZvpXSZ2-_Iuat50oY5zXDPwdlX5GOtRwsC-KqMBNThZIudVPfjA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Gooderham</span>' +
         '<p class="popup-text">Completed: 2014</p>' +
@@ -1520,7 +1519,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //CLEAR SPIRIT
     const clearSpirit =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPGmYybJO8YpxGmyIUd5L9s8PmsDMNbXfDXYcdLwIbPD4SUSMlaLhH4QziwaaII43usSLiWOV3IRHNY8LAmiZNki-4iSrpKFDKN5hqWUdomnm4rc4o=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMJZyLC6wLEIP69595LVb6dGC8MyModpw6qHpSQFlj6_QY7UmumjbC_zo-KVXSZvpXSZ2-_Iuat50oY5zXDPwdlX5GOtRwsC-KqMBNThZIudVPfjA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Clear Spirit</span>' +
         '<p class="popup-text">Completed: 2012</p>' +
@@ -1531,7 +1530,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //MARKET WHARF
     const marketWharf =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMPZIffdL6CL97pKfSP-as5oFnTJ-6EzGXwe1mmPkZwk-QQ4g5MvojwiRR8y8AWAaSqBmfV97nepzGefBmzKnwAgafVsv9CIujSmzyC_COOGlxzh7Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM4rCHK1AiTdFi7ycEt8NUt-srEsnGJsm7f9iCo_sSyIjATyIS-SrrW4jGswh6lMDIuMwdjc5IItdvj-eCE3Fd2Wz7sbP230vwU2PhGbDM_UaKRGw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Market Wharf</span>' +
         '<p class="popup-text">Completed: 2013</p>' +
@@ -1543,7 +1542,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //PARC LOFTS
     const parcLofts =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO9UHYZS2aOUxvmbaStVBrzLI24jcaqtx1477dMZ1P3pkqYUnmbvYx0UV7wH23wCOoXq4VvHA3Fnvnec1oqgg6BzPOjx6_JzfElq4XL6P3wgSXJPcg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM7I-CDNi1ZiXOupjp87DWFwR28jAIckXQl5YTLJ6skLqh_Swi4n2Aj1SFK_K5MDQVOHJPut0Eb6AbVVRv8bi_mJvHGk32aMfqOfv26Whw03C-l6A=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Parc Lofts</span>' +
         '<p class="popup-text">Completed: 2011</p>' +
@@ -1554,7 +1553,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //SPIRE
     const spire =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOgeKt0R1tPvyUVE_a8FHj1Q9i2oNMiCbJMhWlZ2WA--48jImmWP44akAikKVYggpXVe75v-g4s4T89ff_V9FahmxKsvnZyDV4czFMYPZkPTfxT1kw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMJmlaQHAiYCms2_jVXz5PHwKzYcwXmDPpWWJDgwxmK4JFTHJ12I6GcpvwvW7guvtnvsYC9u5_vK3PenaUejee-nKlkFY1HbEcLMBStXzrRUq6Kag=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Spire</span>' +
         '<p class="popup-text">Completed: 2007</p>' +
@@ -1565,7 +1564,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //TEAHOUSE
     const teaHouse =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPSGYZ_OZHSzbZhdVQ2CfKgrR1EYrdKGdoWYPaRK3464ekkUcCMU8Jws19k9Qxid7BP0XuUa_3ofc5SN5HxS9m5-56BTG5olOTG1Rxbe9LGQIbV2M8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPYcjj8qMi7vgfS59_KALA8fw4kV2zHDUg6NP5RjdH2PpFutazKMHIucSsx3aGXLLVUxVJxDNh13lI_DDtYbT6BroAedh-fMMJvgEVLqsFCB1eHOA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">TeaHouse</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -1587,7 +1586,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const immix = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOhMw3CLOuPPGHfiLs00h2It4p-T7JGI0gpNKCxibPE5njObuSt6tPiVPCzYDZnOU8y2nf4XDRVNFRbp8dk3iUp8l0D4q0s-p8G7_A1iK8SaR1mR24=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMSkmzPIqT1Tk0zvl6AjSZo3urODajIJ35OacwBIJltQJftKL8RxnURurMFtxmju2XCqq5X8GL3avcxSkxojg3jzr5h0dvcQT48AWqVfbka-ITbyQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Immix</span>' +
         '<p class="popup-text">Completed: 2023</p>' +
@@ -1603,7 +1602,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //ST LAWRENCE CONDOS
     const stLawrenceCondos =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMCSbhialO-Hm9sgA_xNjBEnaLLo1spbEgN8pYBt1mUlFWNsCL3kEt5c-2Zs-47d2l-MRHenqHocdHqSznqP0D4TA9WSj-3sXrRtCOTk4WMc7F7bIg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPh0odsLSoNHRxNot-7AjwpqVo-fUYtCwds92Ieeyz00ZDpTRKW78vJI0aXoXl7QTuzBslqiSojqHUuF85joULEcNdLvDV03FfQ4gYEo6O42G_JFw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">St. Lawrence Condos</span>' +
         '<p class="popup-text">Completed: 2022</p>' +
@@ -1615,7 +1614,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //KARMA
     const karma =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNbqT2KALnDi5o0h3eM0z6tisZKG4paicGdd0GTWztam9pjFHYbj0pHe4rPp5oLiUDwsyhSh2hF3OeSdSoO4lq1nazk07Wu5E-fHch6xg0mBi_PuFI=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNrSjkV-XiI_21LBN9Er2Sq4CManWD4V_NXH0uLt_JNqI3D2LNliea2_YuYEO8beJI1d-m5VGb3siUSQo7NLe-HNOgGEqZLZVp3QWnKOWyhqEG-_w=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Karma</span>' +
         '<p class="popup-text">Completed: 2016</p>' +
@@ -1627,7 +1626,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //16 YORK
     const york16 =
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNITUtBZQjOE6ucA7EUnOSeye5fth7oOafXZbJz_VC4Q26rIziEfjD1pVSfPyFp9oKn0tzJrIBZ_5SKSwABejYjETOuqlEgQtRir75evi6GmvJh928=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMQ0sPtdnSzDyeUlkgrtIS3eFXAbpI2o1IyWgVPgNT2ICL_OgnbEZ0Xx47ED9BrQiB_7MwJZfikHOvM5lW75pVIstP5RLz5SJglynnoqc07cNMLVA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">16 York - Phase 3</span>' +
         '<p class="popup-text">Completed: 2020</p>' +
@@ -1639,7 +1638,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     //HARBOUR PLAZA
     const harbourPlaza = '<a href="https://www.architectsalliance.com/projects/harbour-residences" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczP-OtmpfMGK2380hdkrXIdKI4-yHZJphCx4NC1eiFhqo9iDztgYrsd5s7oqmGFvpKYR9023iEssS5OWpMnIsz6s5CfHE08SkMhO2CmPT0pEKv_iWQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPe-Z8q_eTPjAySxZNhOj8Pc5L12UZ_3X_5hAYm6L1FSiXTosoJfRWUot4lZ3zsofXVHYuG5v7RyBcFNRm55UaQMaSjVs9526z4iVeGJFdmRfXLWQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Harbour Plaza</span>' +
         '<p class="popup-text">Completed: 2019</p>' +
@@ -1653,7 +1652,7 @@ map.on('mouseleave', buildingLayerId, function () {
     //ICE
     const ice = 
         '<a href="https://www.architectsalliance.com/projects/ice" target="blank" style="color: inherit; text-decoration: none;">' +
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNrB-BJoovdNV59LEpdKGvsK14eYmJ452BjimCER2p7T31dJaegnvStW1-XhCnrTLI3_AA6xgSnS7JsCkPMWL2ykrN92IcRg_wiEZI2JPH746GXpA=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPw9rvSyVyROhO_gB14Xsm3aLCHtfhwNTaIrsBbqN8IvaFPPe8z1hKxUr8lXaMGw0W0WIjTfUDZI5MHjzsdlPU9_IicOJri4n9P2edWqdOLuuubrw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">ÏCE</span>' +
         '<p class="popup-text">Completed: 2016</p>' +
@@ -1686,7 +1685,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const adelaideTCHC = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOCJyhnaj5gJAY5toSex61lMaGAtgrv8w2ddeL6UHT6xqETMMVGdzeGP1KYncdLeuou2w4BaDOfd4bQWBIU5Tn22_EHnUsMMeqx40IEY7Dadt4I2R8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczOoppEnlvWD1m634jc5ATC8OqFtQxAiUifyZeSgoeSaav2GiKzXaWqhd12iqQOhHXA_A7tC7ieCoOgvjjmlWleeDTYBllpZYt_C2Qprq_vq6Ce5zw=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">501 Adelaide - TCHC</span>' +
             '<p class="popup-text">Completed: 2009</p>' +
@@ -1702,7 +1701,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // MYC Merton Yonge Condominiums
     const myc = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOGX05PvBA5PcSmU0gMRRhkKoW6dpHgMtRrDr5kJTmMcseYowgl5pnHpwLCGTfx3ao459cBqATv3mXPLqfD4lJ8-sbBH77WzAxyv91QjJtlRDqDfWw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPJ2Wal2QTG3ITc49fvkxnhPOAFB_TW-dtuD-J-6p-JkKxtVTdIykjIYPmazZC_h1IIAybg_Ch8jBV2vWVhTyXhIgiEuZYoaPox-jyPaT-AGXHmLA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">MYC Merton Yonge Condominiums</span>' +
         '<p class="popup-text">Completed: 2013</p>' +
@@ -1713,7 +1712,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // BURANO
     const burano = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMyR23liAKFxP5iSC_EG3PfTlIfF9xzjbuCL3ZL1e_DlT9OI-1IfzvDr5KinUPUg7ggixB0aswT63g3cCk6va5I5_DMK5WL_CADrx6P0L9Yp7pI92c=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMqPYVGn7wboo2QXM99ntwAtPQHqDDutp5Og8AA9v3M6En-MOOYVXjEJ2Guo15d910yjxePrkJj6tTs-vjBKGYaP1by-zn3bJWZZ6Js2Yq32jxCew=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Burano</span>' +
         '<p class="popup-text">Completed: 2012</p>' +
@@ -1742,7 +1741,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const tipTop = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN83kG28bXQDyIUvW7OcLjxuccenTnQBmof6y8UzdmlgTAegk-EqxJ5j5tMRPZDUNIeli0ybd-IWG0PjBQPlXeeDVKY_w_v8ISZQ2eyp0112oiN1NU=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMglHo3Lzp_XornwakFx_0nrld-7iUJFkmkXbRp2SLtq-gNiKaaXulxS35ogC8aNeVJWPJkmyoXx2XL16KfVs_FgPjV4P5ztOuGy3NVejMyE3i2xA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Tip Top Lofts</span>' +
         '<p class="popup-text">Completed: 2006</p>' +
@@ -1768,7 +1767,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const glas = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO0gu82hP1kFo3GMhzdJV0qGoAqSGf2OhZ4T_g0uxFRZxVaT0Aiw7IrHoB3jf9aS1LhXDWrE6m4A-2OB3F0wsk9hJ611CPmSluLITEDRzHGtlzCpBE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMSm6XjD8UR0zeRPIMqXXqsJkekB18lL2eRCrQpMv1QV_Ouu_lA3xQW3FnqSb2yk9sptaDR3zQm49k9zG_-7dAJzwjmuCcdxSHIvjL2h1QAKbCF1A=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Gläs</span>' +
         '<p class="popup-text">Completed: 2009</p>' +
@@ -1794,7 +1793,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const dundasSackville = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMwgrGHTByYxbDFCmz2xNVqJBgCdZt7-1pOflipPFLcBM792uX3kZdYLqYnO502alfDsq7Gb7E2TRhwaZaE_ZdvX7YM2f6FJ4wMPm4uJKWrLwpJ7Xw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOpmFumAjxotzrRlZIlNuRS--M8hyv2PFx9Jo0P0X2kpYNZdUcagERjFxAGh_d_-uDWWC6fN2O_p7S36ic8y6xH1sxqNnDAlSYD8HpOPdVNJF0mQw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Dundas Sackville Apartments</span>' +
         '<p class="popup-text">Completed: 2009</p>' +
@@ -1820,7 +1819,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const dundasSackville2 = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMwgrGHTByYxbDFCmz2xNVqJBgCdZt7-1pOflipPFLcBM792uX3kZdYLqYnO502alfDsq7Gb7E2TRhwaZaE_ZdvX7YM2f6FJ4wMPm4uJKWrLwpJ7Xw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOpmFumAjxotzrRlZIlNuRS--M8hyv2PFx9Jo0P0X2kpYNZdUcagERjFxAGh_d_-uDWWC6fN2O_p7S36ic8y6xH1sxqNnDAlSYD8HpOPdVNJF0mQw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Dundas Sackville Apartments</span>' +
         '<p class="popup-text">Completed: 2009</p>' +
@@ -1836,7 +1835,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // U CONDOS - EAST TOWER
     const uCondosEast = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNePKsbOX8jIFMyx9h1ri0UqRT9ROkqSClvzRdUzLcKjSgsnyJ06hDfuC0TDnJurP-tS0AOwCyTBnyQw_dFUkgA3Xit5nIX703RrywlTQsAl1vpOiM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPKQTKcatCx36MBpI6CCLFPyETGp0uc_03AMNusiLSTVFu5IgKyHKhLCryICmzbh74vEFdNbUCe5Nw4Sc4K_B8r_nBQz2Zp4UIDUJCqlpsauDXVcQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">U Condominiums - East Tower</span>' +
         '<p class="popup-text">Completed: 2016</p>' +
@@ -1847,7 +1846,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // U CONDOS - WEST TOWER
     const uCondosWest = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNePKsbOX8jIFMyx9h1ri0UqRT9ROkqSClvzRdUzLcKjSgsnyJ06hDfuC0TDnJurP-tS0AOwCyTBnyQw_dFUkgA3Xit5nIX703RrywlTQsAl1vpOiM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPKQTKcatCx36MBpI6CCLFPyETGp0uc_03AMNusiLSTVFu5IgKyHKhLCryICmzbh74vEFdNbUCe5Nw4Sc4K_B8r_nBQz2Zp4UIDUJCqlpsauDXVcQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">U Condominiums - West Tower</span>' +
         '<p class="popup-text">Completed: 2016</p>' +
@@ -1868,7 +1867,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const oneThousandBay = 
-            '<img src="https://lh3.googleusercontent.com/pw/AP1GczMswcvk251ugwkDFBt9sy-e1HIkGQ7EUfO3l48vahNcm3Bw4b3PldxLwb14oa4hUf21yRxYrk817q_SOQkQGW56CbpsTcWgDjKnd34ujdINXNwJNVg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+            '<img src="https://lh3.googleusercontent.com/pw/AP1GczNTYz75kHdknyPLSOOVCSXciYAdMJAjjdw0Qnu9pgMUj--Ju5jKRWfGXYHy0NZuDNHmVuny4XP7q2QxUhYq6DChSDR4dkesqDn3JjrCU777buBP5A=s0" alt="Image description" style="width: 100%; height: auto;">' +
             '<div style="margin-top: 20px;">' +
             '<span class="title">1 Thousand Bay</span>' +
             '<p class="popup-text">Completed: 2016</p>' +
@@ -1896,7 +1895,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const quayWest = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN83kG28bXQDyIUvW7OcLjxuccenTnQBmof6y8UzdmlgTAegk-EqxJ5j5tMRPZDUNIeli0ybd-IWG0PjBQPlXeeDVKY_w_v8ISZQ2eyp0112oiN1NU=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMglHo3Lzp_XornwakFx_0nrld-7iUJFkmkXbRp2SLtq-gNiKaaXulxS35ogC8aNeVJWPJkmyoXx2XL16KfVs_FgPjV4P5ztOuGy3NVejMyE3i2xA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Quay West at Tip Top</span>' +
         '<p class="popup-text">Completed: 2011</p>' +
@@ -1925,7 +1924,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const eastLofts = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNu7c9_J0bAAdf9EMVInaQQtjQ9ZF4Rv1PwQTTFbAgLqA2QJOvAi1zpx-h3yFPaS4s6kSYifR9tHTKu2GUwGHej7nB2ehe_XB4lilwfptdY5fRsmbQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMgj6KbGn6zCBZZhyYkoGNt716cw4E-6CmW9lg42VQWzaNOad_enmTZizKZb8CfGOAQr1q9urEV20Do7nXQJCSBNtpctsZ8ZaG9N-6pxifw_9vXcQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">East Lofts</span>' +
         '<p class="popup-text">Completed: 2010</p>' +
@@ -1967,7 +1966,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // X CONDOS
     const xCondos = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNIMDfFav3Q5KgytgjZYc47g7gU172hSXZJojI3QIN0DUCLPR2TwaiIxan5VhcveF2ICmTQ6odHE0c7-KjWWYi4_Z5-SJOcxycJOGClbgqHUZbrxss=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOL4T9MU6RHf11HREVjBPNbeEaAP1j8Wrl7Hn4U3Qvu8QKD1xvvv-YpQ7gBSsOwvMAu9eUkYQHeDFz5F0rlMl-oRc1Zj31OeDAKmIy8BAcZdxaEVA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">X The Condominium</span>' +
         '<p class="popup-text">Completed: 2010</p>' +
@@ -1978,7 +1977,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // 18 YORKVILLE 
     const yorkville18 = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNIj1An9BghUzSqm6PObVjksN_qvvLtiqvB6lsqdNdDAosRCylgH6NwKwGdzVMidM-QIW6FPxMVGlbMc4peSJu7VqJDU-yWdnH2SLayZxpbv3fHeJM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNJJlDMg5SummA64qPkrbMtTGPd0TH8fQhFpObJ806mfqGacqa7lYI6NpoAoLOUatFWTzaHkFfIYkAtu7BViOykcVL5H-sD7as9aP9qBpGo7SJ8DQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">18 Yorkville</span>' +
         '<p class="popup-text">Completed: 2008</p>' +
@@ -1999,7 +1998,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const cumberland = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOQTYBUJY-c_Wl5sROJD1cQDYr5bgslYVhz1AbDW8QhtWRpujaqIe4dd6gascOon7aTQGdH-oE9-6p5w873j44LHuRfi6xc7EOVuJvRfgO_fQTtMQw=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOjuq1KOammsHUYi2xMIh1MJT2WYhA2cyQbjWxsr0oQset-WB78_U2eTiBdaZCfX41Zkr-jFA8DZekHwuED9jso-w3gNjBPLmVVzHaVW0P4cWblJw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">8 Cumberland</span>' +
         '<p class="popup-text">Completed: 2024</p>' +
@@ -2015,7 +2014,7 @@ map.on('mouseleave', buildingLayerId, function () {
   
     //CASA I
     const casaI = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMDZd9ozu-LrCbKYFluJQL6Rgur1ZSEbIww3cZXJSQYs7hMG9kbvPwMxbvldCXikbrFh_yTCEvIhHNvgzuO2JRrSIfqB2usuOze9DWsGiN8ACrpIPQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOAg-bmevBq4tzrYgB9RhWFB875_90w1X1UAHiSDc2DQ2rv-cQG_P3nNa1CBfWjK_v3zdiM_oydJ8Fycwel7NO9TTtyACfZBVzZlDWEb3ybQ5vK7w=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Casa</span>' +
         '<p class="popup-text">Completed: 2010</p>' +
@@ -2054,7 +2053,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const murano = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMWTJlh1l1T6_rMYq-RwoX-p9ENqsp_iNkIZYCHvdzK-s5rYWDz0O37pCqPQox7l0Fe_fTa8yy4ph_Xu_H_UiBm-Ho0QGIvTO5XMTQodMwjgb8bIBg=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNA2mMGpjcswCgoe3454Rc5Io6v6cyfBrhu1E31u4LB6jdhmH_KLoGZb9oAG1Kps5ByYGE8NCH_vo9ExldHpih_eaGg8H0Jn4RUDaa4IkPwlTDROA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Murano</span>' +
         '<p class="popup-text">Completed: 2010</p>' +
@@ -2073,7 +2072,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // SUGAR WHARF 
     const sugarWharf = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMdr_hC8C8nX2eZ1YuZmK0vESRBj02085TQKnDamRe8qnBBmyEzCFrE6T_IGsdHaShly-k2KtK8frBYYgclnWR__W3h2NOmVGt8xXiVecEzYAqlNRo=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM3hF0DJxO4yXKTHdPd4Q-gMgIjJ5w8GdgoiWswDDX7n8aAU9Si5gYWHPq0Ad70fbEw4KOqxFOzNT2JymAO7FQPu-rrscIYGk2CU4QMfm663wJMMw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Sugar Wharf</span>' +
         '<p class="popup-text">Completed: 2023</p>' +
@@ -2097,7 +2096,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const ideal = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPsm6HsAQgQCIKzJHa7HneKKjfHfXvS7e4s_iCAKAoHruh1iWYoxnAW9-_MaXnxCrg_6H_YFch5-3FZmtW5L1oX-Oj-1Fc-tcIwAczc1vqMaZQcelM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMtB4yezDIQPo2qtSeff9lUmQiwzdJBuZa9xBZ6nvdz7csLUUaQd54upqhSddeFkbLIVpHjd6N1-K07RdrYDIqm25V9fsx7dOAsAPvVSCL7mj_MRg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Ideal</span>' +
         '<p class="popup-text">Completed: 2002</p>' +
@@ -2125,7 +2124,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const home = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNsLJVSmZCaeErWhK4LjbfTUVj2T5Rr3Ltf8vACr5AsTWaineLShq1mdrFlDXPVr7pfxNiO1noKPcw-1YL-f4H4Ro43_TqY3GI0fmQeo1-OtqMpu1k=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPwpQCfFi6uK2jT91GOFWhZj9nECokTEf4M7dY8cDMkV2FpxAV-eAVEnplAA_BXzjHbl5BC9Pd2TrQegZvmCC8tzRNFfZ-BBOuYrpS7yEsUEirfBw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Home Condominiums</span>' +
         '<p class="popup-text">Completed: 2006</p>' +
@@ -2141,7 +2140,7 @@ map.on('mouseleave', buildingLayerId, function () {
 
     // PURE SPIRIT
     const pureSpirit = 
-      '<img src="https://lh3.googleusercontent.com/pw/AP1GczMCx25zl748drhr4a7r6YofiLlP9ALDB_M5Miy8Mv7fgbnxCRusIoWshe1oOW_7qo0b1tERfGoqjweYk8Q4nvGrveqW5Wl_HxcAQKx9o4G1xVv4vq8=s0" alt="Image description" style="width: 100%; height: auto;">' +
+      '<img src="https://lh3.googleusercontent.com/pw/AP1GczO0I8KGoQ3J1ayusZpfWdB5LPTgGENEf07E3q41BFf1oynXqT44238W-a3V7MHoinRVwjvZVZyJOcwpnaCunezoTwwFRZyrijd6cHxUzLiFAtwP-w=s0" alt="Image description" style="width: 100%; height: auto;">' +
       '<div style="margin-top: 20px;">' +
       '<span class="title">Pure Spirit</span>' +
       '<p class="popup-text">Completed: 2009</p>' +
@@ -2184,7 +2183,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const gardenDistrict = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOBbb4UWJm77COqoxw9SiGP5JHKgdhwvR083RA8qPQA-1M8KyAhoRGY9p8Ta401bjm6TEbCgIPWrX1HL9uNvBEhKhXACjtmC4YVMAQi_UOERjjLKU0=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMSBfZP05JfyVbsHBMk5cUFaBg-npPsPhcxC0ra639oM14VqElcRMJPM5V5hnjGn9g2OhysGjEp3MO42WKHnGrRXbY_ByE56c94vxpxfTc_XVV8gw=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Garden District</span>' +
         '<p class="popup-text">Completed: 2024</p>' +
@@ -2210,7 +2209,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const charles55 = 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPpgAGf7pSBJIB7tcmBUwLq492oK7deq2xCKsHFTsJdbaCEHyB6Q9l1bvkTwY4uBNUAQLARurEflEU3YTm8ssezcKdxCrajX0l8pJG8LI_mTkLuINE=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPhTiPf8fgIYi-GCvSiA90KQ4CK1UE_3t7fb1Kmf__gYiazNMasFGNE27OjkVFFU6Z5dB8H4l740Clz78cynqirl_ajHghgs7FezXTmQAK4ODjZmQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">55 Charles</span>' +
         '<p class="popup-text">Completed: 2024</p>' +
@@ -2236,7 +2235,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const concordSky= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN-RCzOHESafUOVSN68pO39jrmcFtXX4OfVbo4bC2lE1iRBV3BBNmMvn3qRoDLmMvbKKEN51o_dA-elj1q_Rg3HlrEnBd6vB1DUJwh3XzeHWYi2F84=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOMm-yFITqibdE9X4fQ-C5iUwAfTYySiDUIyVal4lCelJEJPD77WA6JK6lqj6Dk4aaVjpNRlMpEEqZ9mAUqKPjpejiENHS4BcR5aWSmSAePU34Y2w=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Concord Sky</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2262,7 +2261,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const bauhaus= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMT4uWZurRTHT79pvhDVMNzdfC8hJv_O330DdOhAN9UdQB7VUZqw0hVa4-EH3Ss2Gm0OP-RyknryqixvWQdbwdD6joXaY0pu1bgA4xllb5hPUx0H8g=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPgV1RTxztenOZeSqB6mCuJCmK8Uczhr_NeOggKP4ph_9fOYbDl6GxNAo3Bg8FrKljlF01shn8zF22inGFHojXFS86jGftscNBiAP3wJtQakpXNmg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Bauhaus</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2300,7 +2299,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
     
     const theGoode= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczOmmHtf_t5soX6wG38W9Pf5D8fgGwxUvv4gik4NT2Eoc5DfOrBFQYI2x5BvRBdZJw8ANAdbhbi9TrqSzQlxe7u9x3kvqHIL0aAjkUZbfDR0tz-dDto=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczM1rSP8HCmY7lsB0t-agvag5JoWQFiUGKHXCc-G5cjzEUOWdmbu0EPxCY_Uh8Rb7coWd8hhlfYNbXINv1R1i2zfN21Kv1MA71Zp3eD2mnkn9zRnCQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Goode</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2329,7 +2328,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
 
     const breadCompany= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNMfekSZplrnjyg9uMzW9XzZJ7siHO0NvZ_p9LaFdxKTYzgCr7LCg5GZ6XaGkt1i4wZIyz_Tb8UUfKfoyqUvdmRJrkx1kU7xTPDiRdSAVoqnz5dG2U=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPHxb9swxMy2cS24rkB-gwx_pmucPInyM1SuLb8MOyyZBM2mmuGwpOviX5Bv0ahYVchEluoISUvzxZT6_io9-WlC3LnyJ5c8wQdvcN_C0baoOzLRg=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Bread Company</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2365,7 +2364,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
 
     const pemberton= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMk5pQYFFZZXlE-NWFXc6yf2_377Y3Bcr94GCF3qVfZoU3-2ASXWKJX4pjQCMIfdT__IQxfrZA_xBNyV4tNny2jEFEUMLYKsnDss4mxgGh6Upub0hQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNbvjq1M4ssJymufB4vIk57uAMynnSX1inpp0i96GCihBDuPoVnZQn3bhEenY63tXGFACjtEZ9iB_O9a6g3FAGbwCsl2CmYh_37ctrISl25P1b-3Q=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">The Pemberton</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2394,7 +2393,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
 
     const junctionPoint= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczNBDVHFRVE9-lrotsml8n9kRNcGAw3h6WHF04J4atzn6Yajbz5_HXd3yZdLhT4q2GmdVj4_7ZD_FDo7OYx3wEuDAEWC2KSCWaIuJK1S2xXGd0DLqZM=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMSW8U0l5HQpyW-_ccG0iJqWTVi69uaw3MFUoe4TGielVepXgXJBCZrqWW3h7STTU4xnzVgONjIe-jXu1hS91HISHbZ06x07dNH5-8tZAqc0ZXfIA=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Junction Point</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2448,7 +2447,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
 
     const westDonLandsBlock347= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczMOsqSTr8VXTWSbAp_ZrZRwbDPU_7eaB6xmHJRgoXl4T6PIf8i0BqUXrCzq0IfYM7Ogj2LvN9QK_y6DrajOboY25g3AhCiWc_1mes-kuJGLneWGOXY=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczPlgMKXqGGNcyYmth3GszBtQNnuvrqqFvvYyxuv-mXK6CHiczxulSP62HdhXLWKA-MI0plZlofdPVwFY7L6Va80dF31An9xIS4UFAX8oW7RfqdLlQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">Cherry House at Canary Landing</span>' +
         '<p class="popup-text">Under Construction</p>' +
@@ -2479,7 +2478,7 @@ map.on('mouseleave', buildingLayerId, function () {
     ];
 
     const bayview= 
-        '<img src="https://lh3.googleusercontent.com/pw/AP1GczN92eJSbNnhvCFrBYz7ZzsLzhhScQNE2RytWfW96geZKtyXW9DUjsI7HAAvUJV1Q-fDD8thB08XMjjPjytcenp0J32UCdYxhFVmoCkwYkeQjViD4ns=s0" alt="Image description" style="width: 100%; height: auto;">' +
+        '<img src="https://lh3.googleusercontent.com/pw/AP1GczO3CshC3UHO6ndy7dZp81ilxfbNKUCQ_F3ZZ4JXdpTkN-N5nVzTNoujyPpn6GPBa9LutEUko3-szi3CEZDECDQuU7_pXph9JaIhZV7dKr_N5vVFTQ=s0" alt="Image description" style="width: 100%; height: auto;">' +
         '<div style="margin-top: 20px;">' +
         '<span class="title">1414 Bayview</span>' +
         '<p class="popup-text">Under Construction</p>' +
