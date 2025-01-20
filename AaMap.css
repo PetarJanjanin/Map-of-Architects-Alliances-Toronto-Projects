@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.animated-popup {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform-origin: bottom;
+    transition: opacity 1.2s, max-height 0.7s ease-out;
+}
+
+.animated-popup.show {
+    opacity: 1;
+    max-height: 600px;
+    color: azures; 
+}
+
+.animated-popup .title {
+    font-size: 20px;
+    font-family: 'apercu-regular-pro', 'aktiv-grotesk', 'Helvetica Neue', sans-serif;
+    font-weight: bold; 
+    margin: 0; 
+    padding: 0;
+
+}
+
+.animated-popup .popup-text {
+    font-family: 'apercu-regular-pro', 'aktiv-grotesk', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+}
+
+.animated-popup img {
+    max-width: 100%; 
+    max-height: auto;
+
+}
+
+@media (max-height: 700px) {
+    .animated-popup img {
+        display: none;
+        padding-bottom: 0% !important;
+    }
+    .animated-popup {
+        height: auto;
+        margin-top: -15px !important;
+        margin-bottom: -5px !important;
+        margin-right: 5px;
+    } 
+}
